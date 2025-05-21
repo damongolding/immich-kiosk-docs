@@ -1,0 +1,65 @@
+---
+title: User Interface
+---
+
+import { Aside } from '@astrojs/starlight/components';
+import Settings from "../../../components/config-settings.astro";
+
+## Disable Navigation
+
+Disable all Kiosk’s navigation (touch/click, keyboard and menu).
+
+<Settings
+    config="disable_navigation"
+    env="KIOSK_DISABLE_NAVIGATION"
+    url="disable_navigation"
+    value="bool"
+    defaultValue="false"
+/>
+
+## Disable UI
+
+A shortcut to set show_time, show_date, show_image_time and image_date_format to false.
+
+<Settings
+    config="disable_ui"
+    env="KIOSK_DISABLE_UI"
+    url="disable_ui"
+    value="bool"
+    defaultValue="false"
+/>
+
+## Frameless
+
+Remove borders and rounded corners on images.
+
+<Settings
+    config="frameless"
+    env="KIOSK_FRAMELESS"
+    url="frameless"
+    value="bool"
+    defaultValue="false"
+/>
+
+## Hide Cursor
+
+Hide cursor/mouse via CSS.
+
+<Settings
+    config="hide_cursor"
+    env="KIOSK_HIDE_CURSOR"
+    url="hide_cursor"
+    value="bool"
+    defaultValue="false"
+/>
+
+
+## Font Size
+
+<Settings
+    config="font_size"
+    env="KIOSK_FONT_SIZE"
+    url="font_size"
+    value="int"
+    defaultValue="100"
+/>

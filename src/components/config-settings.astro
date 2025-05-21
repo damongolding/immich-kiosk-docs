@@ -7,7 +7,7 @@ interface Props {
     env: string;
     url: string;
     value: string;
-    defaultValue: string;
+    defaultValue?: string;
     configOver?: string;
     envOver?: string;
     urlOver?: string;
@@ -15,6 +15,8 @@ interface Props {
 
 const { config, env, url, value, defaultValue, configOver, envOver, urlOver } =
     Astro.props;
+
+let dValue = defaultValue ?? '""';
 
 const html = `
   <table>
@@ -52,7 +54,7 @@ const html = `
           <tr>
               <td>DEFAULT</td>
               <td>
-                  <code>${defaultValue}</code>
+                  <code>${dValue}</code>
               </td>
           </tr>
       </tbody>
@@ -65,23 +67,20 @@ const html = `
 
     <h5>Using with config.yaml file</h5>
 
-    <Code
-        code={configOver ? configOver : `${config}: ${defaultValue}`}
-        lang="yaml"
-    />
+    <Code code={configOver ? configOver : `${config}: ${dValue}`} lang="yaml" />
 
     <h5>Using with ENV in your docker-compose file</h5>
     <Code
         code={envOver
             ? envOver
             : `environment:
-  ${env}: ${defaultValue}`}
+  ${env}: ${dValue}`}
         lang="yaml"
     />
 
     <h5>Using with url queries</h5>
     <Code
-        code={urlOver ? urlOver : `http://{URL}?${url}=${defaultValue}`}
+        code={urlOver ? urlOver : `http://{URL}?${url}=${dValue}`}
         lang="http"
     />
 </Card>

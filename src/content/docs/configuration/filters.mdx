@@ -1,0 +1,31 @@
+---
+title: Filters
+---
+
+import { Aside } from '@astrojs/starlight/components';
+import Settings from "../../../components/config-settings.astro";
+
+<Aside type="caution">
+    Not all filters work on all asset source/buckets.
+</Aside>
+
+Filters allow you to filter asset buckets (people/albums/date etc.) by certain criteria.
+
+
+## Date filter
+
+<Aside type="caution">
+    `date_filter` applies to person, album, tag and random assets.
+</Aside>
+
+`date_filter` accepts the same values as [date range](/configuration/date-range).
+
+<Settings
+    config="date_filter"
+    env="N/A"
+    url="date_filter"
+    value="string"
+    urlOver={"http://{URL}?person=PERSON_ID&date_filter=2023-01-01_to_2023-02-01"}
+/>
+
+`http://{URL}?date_filter=last-30-days` will only show (random) assets from the last 30 days.

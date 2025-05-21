@@ -1,0 +1,36 @@
+---
+title: Tags
+---
+
+import { Aside } from '@astrojs/starlight/components';
+import Settings from "../../../components/config-settings.astro";
+
+## Getting a tag value from Immich
+1. Open Immich's web interface and click on "Tags" in the left-hand navigation.
+2. Click on the tag you want the value of.
+3. The url will now look something like this `http://192.168.86.123:2283/tags?path=cake`.
+4. The tag value is everything after `path=`, so in this example it would be `cake`.
+
+## Tags
+
+A date range or ranges. See Date range for more information.
+
+<Settings
+    config="date"
+    env="KIOSK_DATE"
+    url="date"
+    value="[]string"
+    defaultValue="[]"
+    configOver={`tag:
+    - TAG_VALUE
+    - TAG_VALUE
+    `}
+    envOver={`environment:
+    KIOSK_TAG: "TAG_VALUE, TAG_VALUE, TAG_VALUE"
+    `}
+    urlOver={"http://{URL}?tag=TAG_VALUE&tag=TAG_VALUE&tag=TAG_VALUE"}
+/>
+
+### How multiple tags work
+When you specify multiple tags, Immich Kiosk creates a pool of all the requested tag values.
+For each asset refresh, Kiosk randomly selects one of the tag values from this pool and fetches an asset associated with it.

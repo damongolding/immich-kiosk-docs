@@ -1,0 +1,87 @@
+---
+import AnchorHeading from "@astrojs/starlight/components/AnchorHeading.astro";
+import { Card, Code } from "@astrojs/starlight/components";
+
+interface Props {
+    config: string;
+    env: string;
+    url: string;
+    value: string;
+    defaultValue: string;
+    configOver?: string;
+    envOver?: string;
+    urlOver?: string;
+}
+
+const { config, env, url, value, defaultValue, configOver, envOver, urlOver } =
+    Astro.props;
+
+const html = `
+  <table>
+      <thead>
+          <tr>
+              <th>Key</th>
+              <th>Value</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr>
+              <td>CONFIG</td>
+              <td>
+                  <code>${config}</code>
+              </td>
+          </tr>
+          <tr>
+              <td>ENV</td>
+              <td>
+                  <code>${env}</code>
+              </td>
+          </tr>
+          <tr>
+              <td>URL</td>
+              <td>
+                  <code>${url}</code>
+              </td>
+          </tr>
+          <tr>
+              <td>VALUE</td>
+              <td>
+                  <code>${value}</code>
+              </td>
+          </tr>
+          <tr>
+              <td>DEFAULT</td>
+              <td>
+                  <code>${defaultValue}</code>
+              </td>
+          </tr>
+      </tbody>
+  </table>
+  `;
+---
+
+<Card title="Settings" icon="setting">
+    <div set:html={html} />
+
+    <h5>Using with config.yaml file</h5>
+
+    <Code
+        code={configOver ? configOver : `${config}: ${defaultValue}`}
+        lang="yaml"
+    />
+
+    <h5>Using with ENV in your docker-compose file</h5>
+    <Code
+        code={envOver
+            ? envOver
+            : `environment:
+  ${env}: ${defaultValue}`}
+        lang="yaml"
+    />
+
+    <h5>Using with url queries</h5>
+    <Code
+        code={urlOver ? urlOver : `http://{URL}?${url}=${defaultValue}`}
+        lang="http"
+    />
+</Card>

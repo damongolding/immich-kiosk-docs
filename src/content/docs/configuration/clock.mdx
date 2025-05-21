@@ -1,0 +1,103 @@
+---
+title: Clock
+---
+
+import { Aside } from '@astrojs/starlight/components';
+import { Card } from '@astrojs/starlight/components';
+import Settings from "../../../components/config-settings.astro";
+
+
+## Time
+
+Display the current time.
+
+<Settings
+    config="show_time"
+    env="KIOSK_SHOW_TIME"
+    url="show_time"
+    value="bool"
+    defaultValue="false"
+/>
+
+## Time Format
+
+Display clock time in either 12-hour or 24-hour format. This can either be 12 or 24.
+
+<Settings
+    config="time_format"
+    env="KIOSK_TIME_FORMAT"
+    url="time_format"
+    value="24 | 12"
+    defaultValue="24"
+/>
+
+
+## Date
+
+Display the date.
+
+<Settings
+    config="show_date"
+    env="KIOSK_SHOW_DATE"
+    url="show_date"
+    value="bool"
+    defaultValue="false"
+/>
+
+
+## Date Format
+
+The format of the date. default is day/month/year.
+
+<Settings
+    config="date_format"
+    env="KIOSK_DATE_FORMAT"
+    url="date_format"
+    value="string"
+    defaultValue="DD/MM/YYYY"
+/>
+
+### Date format
+<Aside type="note">
+Some characters, such as `/` and `:` are not allowed in URL params.
+So while you can set the date layout via URL params, I would suggest setting them via `config.yaml` or environment variables.
+</Aside>
+
+You can use the below values to create your preferred date layout.
+
+| **Value**   | **Example output**  |
+|-------------|---------------------|
+| YYYY        | 2024                |
+| YY          | 24                  |
+| MMMM        | August              |
+| MMM         | Aug                 |
+| MM          | 08                  |
+| M           | 8                   |
+| DDDD        | Monday              |
+| DDD         | Mon                 |
+| DD          | 04                  |
+| D           | 4                   |
+
+### Date layout examples
+These examples assume that today's date is the 22nd of August 2024.
+
+* "YYYY-MM-DD"        => "2024-08-22"
+* "YYYY/MM/DD"        => "2024/08/22"
+* "YYYY:MM:DD"        => "2024:08:22"
+* "YYYY MM DD"        => "2024 08 22"
+* "YYYY MMM (DDD)"    => "2024 Aug (Thur)"
+* "DDDD DD MMMM YYYY" => "Thursday 22 August 2024"
+
+---
+
+## Clock Source
+
+The source of the clock. Either client or server.
+
+<Settings
+    config="clock_source"
+    env="KIOSK_CLOCK_SOURCE"
+    url="clock_source"
+    value="client | server"
+    defaultValue="client"
+/>

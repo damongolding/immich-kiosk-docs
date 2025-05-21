@@ -1,0 +1,19 @@
+---
+import StarlightPage from "@astrojs/starlight/components/StarlightPage.astro";
+
+import { Code } from "@astrojs/starlight/components";
+
+const config = await fetch(
+    "https://raw.githubusercontent.com/damongolding/immich-kiosk/refs/heads/main/docker-compose.yaml",
+);
+
+const myCode = await config.text();
+---
+
+<StarlightPage
+    frontmatter={{
+        title: "docker-compose.yaml",
+    }}
+>
+    <Code code={myCode} lang="yaml" title="docker-compose.yaml" />
+</StarlightPage>

@@ -1,0 +1,204 @@
+---
+title: People
+---
+
+import { Aside } from '@astrojs/starlight/components';
+import { Card } from '@astrojs/starlight/components';
+
+## Getting a person's ID from Immich
+1. Open Immich's web interface and click on "Explore" in the left-hand navigation.
+2. Click on the person you want the ID of (you may have to click "view all" if you don't see them).
+3. The url will now look something like this `http://192.168.86.123:2283/people/a04175f4-97bb-4d97-8d49-3700263043e5`.
+4. The persons ID is everything after `people/`, so in this example it would be `a04175f4-97bb-4d97-8d49-3700263043e5`.
+
+
+## Person
+
+The ID(s) of a specific person or people you want to display.
+
+<Card title="Settings" icon="setting">
+|         |                |
+| ------- | -------------- |
+| CONFIG  | `person`       |
+| ENV     | `KIOSK_PERSON` |
+| URL     | `person`       |
+| VALUE   | `[]string`     |
+| DEFAULT | `[]`           |
+
+#### Using with config.yaml file
+
+```yaml
+person:
+  - PERSON_ID
+  - PERSON_ID
+```
+
+#### Using with ENV in your docker-compose file
+
+ use a `,` to separate IDs
+
+```yaml
+environment:
+  KIOSK_PERSON: "PERSON_ID,PERSON_ID,PERSON_ID"
+```
+
+#### Using with url queries
+
+```http
+http://{URL}?person=PERSON_ID&person=PERSON_ID&person=PERSON_ID
+```
+</Card>
+
+
+### How multiple people work
+When you specify multiple people and/or albums, Immich Kiosk creates a pool of all the requested album and person IDs.
+For each image refresh, Kiosk randomly selects one ID from this pool and fetches an image associated with that person or album.
+
+
+---
+
+## Require All People
+
+The `require_all_people` feature allows you to filter images to only show those where all specified people are present together in the same photo.
+
+<Card title="Settings" icon="setting">
+    |         |                            |
+    | ------- | -------------------------- |
+    | CONFIG  | `require_all_people`       |
+    | ENV     | `KIOSK_REQUIRE_ALL_PEOPLE` |
+    | URL     | `require_all_people`       |
+    | VALUE   | `bool`                     |
+    | DEFAULT | `false`                    |
+
+#### Using with config.yaml file
+
+```yaml
+require_all_people: true
+```
+
+#### Using with ENV in your docker-compose file
+
+```yaml
+environment:
+  KIOSK_REQUIRE_ALL_PEOPLE: true
+```
+
+#### Using with url queries
+
+```http
+http://{URL}?require_all_people=true
+```
+</Card>
+
+### How It Works
+
+When enabled:
+- Only photos containing ALL specified people will be displayed
+- Photos where only some of the specified people appear will be excluded
+
+### Example Use Cases
+
+1. **Family Photos**:
+   - Set multiple person IDs for family members
+   - Enable `require_all_people` to only show assets where the whole family is together
+
+2. **Group Events**:
+   - Specify IDs for members of a group
+   - See only photos where everyone was present
+
+### Important Notes
+
+<Aside type="note">
+- This setting only takes effect when multiple people are specified
+- If no matching photos are found (where all people appear together), Kiosk will display an error message
+- This feature **cannot** be combined with other source/buckets like date ranges or albums
+- Setting to `false` returns to default behavior where photos containing ANY of the specified people will be shown
+</Aside>
+
+------
+
+## Excluded People
+
+<Aside type="caution">
+    The person or people you want to exclude from the slideshow must be tagged for the exclusion to work.
+</Aside>
+
+This feature allows you to prevent specific people from being displayed in the slideshow.
+
+<Card title="Settings" icon="setting">
+    |         |                         |
+    | ------- | ----------------------- |
+    | CONFIG  | `excluded_people`       |
+    | ENV     | `KIOSK_EXCLUDED_PEOPLE` |
+    | URL     | `exclude_person`        |
+    | VALUE   | `[]string`              |
+    | DEFAULT | `[]`                    |
+
+#### Using with config.yaml file
+
+```yaml
+excluded_people:
+  - PERSON_ID
+  - PERSON_ID
+```
+
+#### Using with ENV in your docker-compose file
+
+ use a `,` to separate IDs
+
+```yaml
+environment:
+  KIOSK_EXCLUDED_PEOPLE: "PERSON_ID,PERSON_ID,PERSON_ID"
+```
+
+#### Using with url queries
+
+Note it is `exclude_person=` and not `excluded_people=` in the url.
+
+```http
+http://{URL}?exclude_person=PERSON_ID&exclude_person=PERSON_ID&exclude_person=PERSON_ID
+```
+</Card>
+
+<Aside type="tip">
+    You can remove all excluded people settings (from your `config.yaml` or environment variables) by using `none` in the URL query parameters.
+
+    Example:
+    ```http
+    https://{URL}?album=ALBUM_ID&exclude_person=none
+    ```
+</Aside>
+
+---
+
+## Special People Keywords
+
+---
+
+### ` all `
+
+Will use all named people.
+
+<Card title="Settings" icon="setting">
+
+#### Using with config.yaml file
+
+```yaml
+person:
+  - all
+```
+
+#### Using with ENV in your docker-compose file
+
+```yaml
+environment:
+  KIOSK_PERSON: "all"
+```
+
+#### Using with url queries
+
+```http
+http://{URL}?person=all
+```
+
+</Card>

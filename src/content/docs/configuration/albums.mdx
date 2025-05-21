@@ -1,0 +1,187 @@
+---
+title: Albums
+---
+
+import { Aside } from '@astrojs/starlight/components';
+import { Card } from '@astrojs/starlight/components';
+import Settings from "../../../components/config-settings.astro";
+
+## Getting an albums ID from Immich
+1. Open Immich's web interface and click on "Albums" in the left-hand navigation.
+2. Click on the album you want the ID of.
+3. The url will now look something like this `http://192.168.86.123:2283/albums/a04175f4-97bb-4d97-8d49-3700263043e5`.
+4. The album ID is everything after `albums/`, so in this example it would be `a04175f4-97bb-4d97-8d49-3700263043e5`.
+
+## Album
+
+The ID(s) of a specific album or albums you want to display.
+
+<Settings
+    config="album"
+    env="KIOSK_ALBUM"
+    url="album"
+    value="[]string"
+    defaultValue="[]"
+    configOver={`album:
+    - ALBUM_ID
+    - ALBUM_ID
+    `}
+    envOver={`environment:
+    KIOSK_ALBUM: "ALBUM_ID, ALBUM_ID"
+    `}
+    urlOver={"http://{URL}?album=ALBUM_ID"}
+/>
+
+
+### How multiple albums work
+When you specify multiple albums and/or people, Immich Kiosk creates a pool of all the requested person and album IDs.
+For each image refresh, Kiosk randomly selects one ID from this pool and fetches an image associated with that album or person.
+
+
+## Exclude albums
+
+This feature allows you to prevent specific album assets from being displayed in the slideshow.
+
+<Aside type="note">
+Excluded albums take precedence over album selection methods. If an album is in both the selected albums and excluded albums lists, it will be excluded.
+</Aside>
+
+<Aside type="tip">
+You can remove excluded albums that were previously set in your `config.yaml` or environment variables by using `none` in the URL query parameters.
+
+Example:
+```url
+https://{URL}?album=ALBUM_ID&exclude_album=none
+```
+</Aside>
+
+## Album Order
+
+<Aside type="note">
+- When using multiple albums, the order of the albums is random.
+- When using splitview layouts:
+  - Kiosk will look for a second image with matching orientation
+  - The second image shown may not be the next sequential image
+  - Priority is given to finding images with the right aspect ratio for a balanced display
+</Aside>
+
+This controls the order in which the assets from the selected album(s) are displayed.
+
+<Card title="Settings" icon="setting">
+|         |               |
+| ------- | ------------- |
+| CONFIG  | `album_order`       |
+| ENV     | `KIOSK_ALBUM_ORDER` |
+| URL     | `album_order`       |
+| VALUE   | `random \| newest \| oldest`    |
+| DEFAULT | `random`          |
+
+#### Using with config.yaml file
+
+```yaml
+album_order: random
+```
+
+#### Using with ENV in your docker-compose file
+
+```yaml
+environment:
+  KIOSK_ALBUM_ORDER: random
+```
+
+#### Using with url queries
+
+```http
+http://{URL}?album_order=random
+```
+</Card>
+
+## Experimental Album Video Support
+
+<Aside type="caution">
+This feature is experimental and currently only supports album videos with certain limitations:
+- Videos will autoplay with audio muted
+- the `experimental_album_video` [configuration](#configuration) setting must be enabled
+- the `prefetch` [configuration](#configuration) setting must be enabled
+- Browser codec support may vary
+</Aside>
+
+<Card title="Settings" icon="setting">
+|         |               |
+| ------- | ------------- |
+| CONFIG  | `experimental_album_video`       |
+| ENV     | `KIOSK_EXPERIMENTAL_ALBUM_VIDEO` |
+| URL     | `experimental_album_video`       |
+| VALUE   | `bool`    |
+| DEFAULT | `false`          |
+
+#### Using with config.yaml file
+
+```yaml
+experimental_album_video: false
+```
+
+#### Using with ENV in your docker-compose file
+
+```yaml
+environment:
+  KIOSK_EXPERIMENTAL_ALBUM_VIDEO: false
+```
+
+#### Using with url queries
+
+```http
+http://{URL}?experimental_album_video=false
+```
+</Card>
+
+
+### Video Optimization Recommendations
+
+For optimal playback performance, it's strongly recommended to transcode your videos. This can be configured in Immich:
+```
+Admin Panel -> System Settings -> Video Transcoding
+```
+
+**Recommended Settings:**
+- Codec: H264 (for maximum browser compatibility)
+- Target Resolution: Select the lowest acceptable resolution for your needs
+
+### How Video Playback Works
+
+1. **Video Selection Process:**
+   - When Kiosk selects a video from an album, it first checks if the video is cached.
+   - Videos are temporarily stored in the operating system's temp directory.
+   - If not cached, the video downloads in the background while another asset is displayed.
+
+2. **Cache Management:**
+   - Downloaded videos are queued for display once ready.
+   - Cached videos are automatically removed after 10 minutes of inactivity to conserve disk space.
+   - Videos are automatically removed when Kiosk shuts down.
+
+3. **Playback Handling:**
+   Kiosk will skip to the next asset if any of these conditions occur:
+   - Video codec is unsupported by the browser
+   - Playback doesn't start within 5 seconds
+   - Video playback completes
+   - Any playback errors are detected
+
+### Troubleshooting Tips
+- Ensure your videos are transcoded to H264 format.
+- Check browser compatibility with your video codecs.
+- Verify that `prefetch` is enabled in your configuration.
+- Monitor system storage for cached video files.
+
+## Special album keywords
+
+### ` all `
+Will use all albums.
+e.g. `http://{URL}?album=all`
+
+### ` shared `
+Will use only shared albums.
+e.g. `http://{URL}?album=shared`
+
+###  ` favorites ` or ` favourites `
+Will use only favourited assets.
+e.g. `http://{URL}?album=favorites` or `http://{URL}?album=favourites`

@@ -54,7 +54,10 @@ Hide cursor/mouse via CSS.
 />
 
 
+
 ## Font Size
+
+The base font size for Kiosk. Default is 100% (16px). DO NOT include the % character.
 
 <Settings
     config="font_size"
@@ -62,4 +65,30 @@ Hide cursor/mouse via CSS.
     url="font_size"
     value="int"
     defaultValue="100"
+/>
+
+
+## Background Blur
+
+Display a blurred version of the image as a background.
+
+<Settings
+    config="background_blur"
+    env="KIOSK_BACKGROUND_BLUR"
+    url="background_blur"
+    value="bool"
+    defaultValue="true"
+/>
+
+
+## Background Blur Amount
+
+The amount of blur to apply to the background image (sigma).
+
+<Settings
+    config="background_blur_amount"
+    env="KIOSK_BACKGROUND_BLUR_AMOUNT"
+    url="background_blur_amount"
+    value="int"
+    defaultValue="10"
 />

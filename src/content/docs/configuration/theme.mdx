@@ -1,0 +1,28 @@
+---
+title: Themes
+---
+
+import { Aside } from '@astrojs/starlight/components';
+import Settings from "../../../components/config-settings.astro";
+
+## Theme
+
+Which theme to use
+
+<Settings
+    config="theme"
+    env="KIOSK_THEME"
+    url="theme"
+    value="fade | solid"
+    defaultValue="fade"
+/>
+
+### Fade (the default)
+Soft gradient background for the clock and image metadata.
+
+![Kiosk theme fade](../../../assets/theme-fade.jpeg)
+
+### Solid
+Solid background for the clock and image metadata.
+
+![Kiosk theme solid](../../../assets/theme-solid.jpeg)

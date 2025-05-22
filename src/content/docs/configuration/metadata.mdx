@@ -1,0 +1,171 @@
+---
+title: Metadata
+---
+
+import { Aside } from '@astrojs/starlight/components';
+import Settings from "../../../components/config-settings.astro";
+
+## Show Owner
+
+  Display the asset owner. Useful for shared albums.
+
+  <Settings
+     config="show_owner"
+     env="KIOSK_SHOW_OWNER"
+     value="bool"
+    defaultValue="false" />
+
+## Show Album Name
+
+  Display album name(s) that the asset appears in.
+
+  <Settings
+     config="show_album_name"
+     env="KIOSK_SHOW_ALBUM_NAME"
+     value="bool"
+    defaultValue="false" />
+
+## Show Person Name
+
+  Display person name(s).
+
+  <Settings
+     config="show_person_name"
+     env="KIOSK_SHOW_PERSON_NAME"
+     value="bool"
+    defaultValue="false" />
+
+## Show Person Age
+
+  Display person age.
+
+  <Settings
+     config="show_person_age"
+     env="KIOSK_SHOW_PERSON_AGE"
+     value="bool"
+    defaultValue="false" />
+
+## Show Image Time
+
+  Display image time from METADATA (if available).
+
+  <Settings
+     config="show_image_time"
+     env="KIOSK_SHOW_IMAGE_TIME"
+     value="bool"
+    defaultValue="false" />
+
+## Image Time Format
+
+  Display image time in either 12-hour or 24-hour format. This can either be 12 or 24.
+
+  <Settings
+     config="image_time_format"
+     env="KIOSK_IMAGE_TIME_FORMAT"
+     value="12 | 24"
+    defaultValue="24" />
+
+## Show Image Date
+
+  Display the image date from METADATA (if available).
+
+  <Settings
+     config="show_image_date"
+     env="KIOSK_SHOW_IMAGE_DATE"
+     value="bool"
+    defaultValue="false" />
+
+## Image Date Format
+
+  The format of the image date. default is day/month/year. See date format for more information.
+
+  <Settings
+     config="image_date_format"
+     env="KIOSK_IMAGE_DATE_FORMAT"
+     value="string"
+    defaultValue="DD/MM/YYYY" />
+
+
+### Date format
+
+<Aside type="note">
+ Some characters, such as `/` and `:` are not allowed in URL params.
+ So while you can set the date layout via URL params, I would suggest setting them via `config.yaml` or environment variables.
+</Aside>
+
+You can use the below values to create your preferred date layout.
+
+| **Value**   | **Example output**  |
+|-------------|--------------|
+| YYYY        | 2024         |
+| YY          | 24           |
+| MMMM        | August       |
+| MMM         | Aug          |
+| MM          | 08           |
+| M           | 8            |
+| DDDD        | Monday       |
+| DDD         | Mon          |
+| DD          | 04           |
+| D           | 4            |
+
+### Date layout examples
+These examples assume that today's date is the 22nd of August 2024.
+
+* `YYYY-MM-DD`        => `2024-08-22`
+* `YYYY/MM/DD`        => `2024/08/22`
+* `YYYY:MM:DD`        => `2024:08:22`
+* `YYYY MM DD`        => `2024 08 22`
+* `YYYY MMM (DDD)`    => `2024 Aug (Thur)`
+* `DDDD DD MMMM YYYY` => `Thursday 22 August 2024`
+
+
+## Show Image Description
+
+  Display image description from METADATA (if available).
+
+  <Settings
+     config="show_image_description"
+     env="KIOSK_SHOW_IMAGE_DESCRIPTION"
+     value="bool"
+    defaultValue="false" />
+
+## Show Image Exif
+
+  Display image Fnumber, Shutter speed, focal length, ISO from METADATA (if available).
+
+  <Settings
+     config="show_image_exif"
+     env="KIOSK_SHOW_IMAGE_EXIF"
+     value="bool"
+    defaultValue="false" />
+
+## Show Image Location
+
+  Display the image location from METADATA (if available).
+
+  <Settings
+     config="show_image_location"
+     env="KIOSK_SHOW_IMAGE_LOCATION"
+     value="bool"
+    defaultValue="false" />
+
+## Hide Countries
+
+  List of countries to hide from image_location
+
+  <Settings
+     config="hide_countries"
+     env="KIOSK_HIDE_COUNTRIES"
+     value="[]string"
+    defaultValue="[]" />
+
+
+## Show Image QR
+
+  Displays a QR code linking to the original image (in Immich) next to the image metadata.
+
+  <Settings
+     config="show_image_qr"
+     env="KIOSK_SHOW_IMAGE_QR"
+     value="bool"
+    defaultValue="false" />

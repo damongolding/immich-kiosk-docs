@@ -1,0 +1,109 @@
+---
+title: More Info Overlay
+---
+
+import Settings from "../../../components/config-settings.astro";
+
+## Show More Info
+
+Enables the display of additional information about the current image(s)
+
+<Settings
+  config="show_more_info"
+  env="KIOSK_SHOW_MORE_INFO"
+  url="show_more_info"
+  value="bool"
+  defaultValue="true" />
+
+## Show More Info Image Link
+
+    Shows a link to the original image (in Immich) in the additional information overlay
+
+    <Settings
+    config="show_more_info_image_link"
+    env="KIOSK_SHOW_MORE_INFO_IMAGE_LINK"
+    url="show_more_info_image_link"
+    value="bool"
+    defaultValue="true" />
+
+## Show More Info Qr Code
+
+    Displays a QR code linking to the original image (in Immich) in the additional information overlay
+
+    <Settings
+    config="show_more_info_qr_code"
+    env="KIOSK_SHOW_MORE_INFO_QR_CODE"
+    url="show_more_info_qr_code"
+    value="bool"
+    defaultValue="true" />
+
+## Like Button Action
+
+    Action(s) to perform when the like button is clicked. Supported actions are [favorite, album].
+
+    <Settings
+    config="like_button_action"
+    env="KIOSK_LIKE_BUTTON_ACTION"
+    url="like_button_action"
+    value="[]string"
+    defaultValue='["favorite"]' />
+
+### Favorite (the default)
+Set asset as a favorite inside Immich.
+
+Example:
+```yaml
+like_button_action: favorite
+```
+
+### Album
+Add asset to the "Kiosk Favorites" albums, which will be created if it doesn't exist.
+
+Example:
+```yaml
+like_button_action: album
+```
+
+### Both
+Marks the asset as a favourite and adds it to the 'Kiosk Favorites' album
+
+Example:
+```yaml
+like_button_action: [favorite, album]
+```
+
+
+## Hide Button Action
+
+    Action(s) to perform when the hide button is clicked. Supported actions are [tag, archive].
+
+    <Settings
+    config="hide_button_action"
+    env="KIOSK_HIDE_BUTTON_ACTION"
+    url="hide_button_action"
+    value="[]string"
+    defaultValue='["tag"]' />
+
+### Tag (the default)
+Tag asset with the "kiosk-skip" tag.
+
+Example:
+```yaml
+hide_button_action: tag
+```
+
+### Archive
+Set asset as archived inside Immich.
+
+Example:
+```yaml
+hide_button_action: archive
+```
+
+### Both
+Add tag and archive asset.
+
+Example:
+```yaml
+hide_button_action: [tag, archive]
+```

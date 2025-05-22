@@ -1,0 +1,56 @@
+---
+title: Image Effects
+sidebar:
+  order: 12
+---
+
+import { Aside } from '@astrojs/starlight/components';
+import Settings from "../../../components/config-settings.astro";
+
+
+## Image Effect
+
+Add an effect to images.
+
+<Settings
+  config="image_effect"
+  env="KIOSK_IMAGE_EFFECT"
+  url="image_effect"
+  value="none | zoom | smart-zoom"
+  defaultValue="none"
+/>
+
+
+## Image Effect Amount
+
+Set the intensity of the image effect. Use a number between 100 (minimum) and higher, without the % symbol.
+
+<Settings
+  config="image_effect_amount"
+  env="KIOSK_IMAGE_EFFECT_AMOUNT"
+  url="image_effect_amount"
+  value="int"
+  defaultValue="120"
+/>
+
+## Options
+
+### zoom
+
+<Aside type="note">
+Image fit is set to cover automatically when this effect is used, unless layout is set to single.
+</Aside>
+
+This effect zooms in or out to add movement to your images, with the center of the image as the focal point.
+
+### smart-zoom
+
+<Aside type="note">
+Image fit is set to cover automatically when this effect is used. If the image has multiple faces, Kiosk calculates the center of all faces to use as the focal point.
+</Aside>
+
+Smart zoom works like the regular zoom but focuses on faces and includes both zooming and panning.
+
+<Aside type="tip">
+To achieve a "Ken Burns" style effect change the image_effect_amount to somewhere between 200-400.
+</Aside>

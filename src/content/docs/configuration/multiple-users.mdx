@@ -3,9 +3,8 @@ title: Multiple Users
 description: Configure multiple users for Immich Kiosk
 ---
 
-import { Aside } from '@astrojs/starlight/components';
-import { Steps } from '@astrojs/starlight/components';
-
+import { Aside, Steps } from "@astrojs/starlight/components";
+import Settings from "../../../components/config-settings.astro";
 
 <Aside type="caution">This feature can only be configured using a config.yaml file.</Aside>
 
@@ -13,38 +12,64 @@ import { Steps } from '@astrojs/starlight/components';
 It is not possible to mix assets from different accounts. The example below will not work.
 
 `http://{URL}?user=john&person=PERSON_ID&user=jane&person=PERSON_ID`
+
 </Aside>
 
 <Aside type="tip">
 You can remove specific asset sources that were previously set in your config.yaml or environment variables by using none in the URL query parameters.
 
 Example:
+
 ```yaml
 https://{URL}?user=USER&person=none&album=none
 This will disable both the 'person' and 'album' asset sources.
 ```
+
 </Aside>
 
-Immich Kiosk supports multiple user API keys. Here's how to set it up:
+Immich Kiosk supports multiple user API keys.
+
+## Immich Users Api Keys
+
+key:value mappings of Immich usernames to their corresponding API keys.
+
+<Settings
+ config="immich_users_api_keys"
+ env="N/A"
+ url="N/A"
+ value="map[string]string"
+/>
+
+### Configuration
 
 <Steps>
 
-  1. Configure multiple users by adding their API keys to the immich_users_api_keys field in your config.yaml:
+1. Configure multiple users by adding their API keys to the immich_users_api_keys field in your config.yaml:
 
-     ```yaml
-     immich_users_api_keys:
-     john: "api_key_here"
-     jane: "api_key_here"
-     ```
+   ```yaml
+   immich_users_api_keys:
+   john: "api_key_here"
+   jane: "api_key_here"
+   ```
 
-  2. Access a specific user's content by including the user parameter in the URL:
+2. Access a specific user's content by including the user parameter in the URL:
 
-     ```http
-     https://{URL}?user=john
-     ```
+   ```http
+   https://{URL}?user=john
+   ```
 
-     <Aside type="note">
-       If no user is specified in the URL, Immich Kiosk will default to using the global API key defined in immich_api_key.
-     </Aside>
+   <Aside type="note">If no user is specified in the URL, Immich Kiosk will default to using the global API key defined in immich_api_key.</Aside>
 
 </Steps>
+
+## Show User
+
+Display the user used to fetch the image.
+
+<Settings
+ config="show_user"
+ env="KIOSK_SHOW_USER"
+ url="show_user"
+ value="bool"
+ defaultValue="false"
+/>

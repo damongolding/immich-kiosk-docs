@@ -1,0 +1,119 @@
+---
+title: Additional Options
+sidebar:
+  order: 20
+---
+
+import Settings from "../../../components/config-settings.astro";
+
+The below options are NOT configurable through URL params. In the `config.yaml` file they sit under `kiosk` (demo below and in example `config.yaml`)
+
+```yaml
+immich_url: "****"
+immich_api_key: "****"
+// all your other config options
+
+// 👇 Additional options
+kiosk:
+  password: ""
+  cache: true
+  prefetch: true
+```
+
+## Port
+
+Which port Kiosk should use. NOTE: This is only typically needed when running Kiosk outside of a container. If you are running inside a container the port will need to be reflected in your compose file, e.g. `HOST_PORT:KIOSK_PORT`
+
+<Settings
+    config="port"
+    env="KIOSK_PORT"
+    url="N/A"
+    value="int"
+    defaultValue="3000"
+/>
+
+## Watch Config
+
+Should Kiosk watch config.yaml file for changes. Reloads all connect clients if a change is detected.
+
+<Settings
+    config="watch_config"
+    env="KIOSK_WATCH_CONFIG"
+    url="N/A"
+    value="bool"
+    defaultValue="false"
+/>
+
+## Fetched Assets Size
+
+The number of assets (data) requested from Immich per api call. min=1 max=1000.
+
+<Settings
+    config="fetched_assets_size"
+    env="KIOSK_FETCHED_ASSETS_SIZE"
+    url="N/A"
+    value="int"
+    defaultValue="1000"
+/>
+
+## Http Timeout
+
+The number of seconds before an http request will time out.
+
+<Settings
+    config="http_timeout"
+    env="KIOSK_HTTP_TIMEOUT"
+    url="N/A"
+    value="int"
+    defaultValue="20"
+/>
+
+## Password
+
+If set, requests MUST contain the password in the GET parameters, e.g. `http://192.168.0.123:3000?password=PASSWORD`.
+
+<Settings
+    config="password"
+    env="KIOSK_PASSWORD"
+    url="N/A"
+    value="string"
+    defaultValue=""
+/>
+
+
+## Cache
+
+Cache selective Immich api calls to reduce unnecessary calls.
+
+<Settings
+    config="cache"
+    env="KIOSK_CACHE"
+    url="N/A"
+    value="bool"
+    defaultValue="true"
+/>
+
+## Prefetch
+
+Pre-fetch assets in the background, so images load much quicker when refresh timer ends.
+
+<Settings
+    config="prefetch"
+    env="KIOSK_PREFETCH"
+    url="N/A"
+    value="bool"
+    defaultValue="true"
+/>
+
+
+## Asset Weighting
+
+Balances asset selection when multiple sources are used, e.g. multiple people and albums. When enabled, sources with fewer assets will show less often.
+
+<Settings
+    config="asset_weighting"
+    env="KIOSK_ASSET_WEIGHTING"
+    url="N/A"
+    value="bool"
+    defaultValue="true"
+/>

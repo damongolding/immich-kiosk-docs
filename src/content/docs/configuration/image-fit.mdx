@@ -1,0 +1,31 @@
+---
+title: Image Fit
+sidebar:
+  order: 11
+---
+
+import { Aside } from '@astrojs/starlight/components';
+import Settings from "../../../components/config-settings.astro";
+
+
+This controls how the image will fit on your screen
+
+<Settings
+  config="image_fit"
+  env="KIOSK_IMAGE_FIT"
+  url="image_fit"
+  value="contain | cover | none"
+  defaultValue="contain"
+/>
+
+
+## Options
+
+### Contain (the default)
+The image keeps its aspect ratio, but is resized to fit the whole screen. If the image is smaller than your screen, there will be some fuzzyness to your image.
+
+### Cover
+The image will cover the whole screen. To achieve this the image will mostly likely have some clipping/cropping and if the image is smaller than your screen, there will be some fuzzyness to your image.
+
+### None
+The image is centered and displayed "as is". If the image is larger than your screen it will be scaled down to fit your screen.

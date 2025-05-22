@@ -6,8 +6,12 @@ import { Code } from "@astrojs/starlight/components";
 const config = await fetch(
     "https://raw.githubusercontent.com/damongolding/immich-kiosk/refs/heads/main/docker-compose.yaml",
 );
-
 const myCode = await config.text();
+
+const composeEnv = await fetch(
+    "https://raw.githubusercontent.com/damongolding/immich-kiosk/refs/heads/main/docker-compose-env.yaml",
+);
+const composeEnvExample = await composeEnv.text();
 ---
 
 <StarlightPage
@@ -16,4 +20,8 @@ const myCode = await config.text();
     }}
 >
     <Code code={myCode} lang="yaml" title="docker-compose.yaml" />
+
+    ## With Environment Variables
+
+    <Code code={composeEnvExample} lang="yaml" title="docker-compose.yaml" />
 </StarlightPage>

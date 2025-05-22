@@ -48,26 +48,3 @@ import FAQ from "../../components/faq.astro";
 
   Nope. Just change the host port in your docker compose file i.e. `- 3000:3000` to `- PORT_YOU_WANT:3000`
 </FAQ>
-
-
-<FAQ>
-## How do I set/use a password?
-<Aside type="caution">
- This feature is meant for edgecase scenarios and offers very little in terms of protection.
- If you are aiming to expose Kiosk beyond your local network, please investigate more secure alternatives.
-</Aside>
-
-via config.yaml file
-```yaml
-kiosk:
-  password: 12345
-```
-
-via ENV in your docker-compose file
-```yaml
-environment:
-  KIOSK_PASSWORD: "12345"
-```
-
-Then to access Kiosk you MUST add the password param in your URL e.g. `http://{URL}?password=12345`
-</FAQ>

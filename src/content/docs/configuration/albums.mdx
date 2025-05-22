@@ -3,7 +3,6 @@ title: Albums
 ---
 
 import { Aside } from '@astrojs/starlight/components';
-import { Card } from '@astrojs/starlight/components';
 import Settings from "../../../components/config-settings.astro";
 
 ## Getting an albums ID from Immich
@@ -83,34 +82,13 @@ https://{URL}?album=ALBUM_ID&exclude_album=none
 
 This controls the order in which the assets from the selected album(s) are displayed.
 
-<Card title="Settings" icon="setting">
-|         |               |
-| ------- | ------------- |
-| CONFIG  | `album_order`       |
-| ENV     | `KIOSK_ALBUM_ORDER` |
-| URL     | `album_order`       |
-| VALUE   | `random \| newest \| oldest`    |
-| DEFAULT | `random`          |
-
-#### Using with config.yaml file
-
-```yaml
-album_order: random
-```
-
-#### Using with ENV in your docker-compose file
-
-```yaml
-environment:
-  KIOSK_ALBUM_ORDER: random
-```
-
-#### Using with url queries
-
-```http
-http://{URL}?album_order=random
-```
-</Card>
+<Settings
+    config="album_order"
+    env="KIOSK_ALBUM_ORDER"
+    url="album_order"
+    value="random | newest | oldest"
+    defaultValue="random"
+/>
 
 ## Experimental Album Video Support
 
@@ -122,34 +100,13 @@ This feature is experimental and currently only supports album videos with certa
 - Browser codec support may vary
 </Aside>
 
-<Card title="Settings" icon="setting">
-|         |               |
-| ------- | ------------- |
-| CONFIG  | `experimental_album_video`       |
-| ENV     | `KIOSK_EXPERIMENTAL_ALBUM_VIDEO` |
-| URL     | `experimental_album_video`       |
-| VALUE   | `bool`    |
-| DEFAULT | `false`          |
-
-#### Using with config.yaml file
-
-```yaml
-experimental_album_video: false
-```
-
-#### Using with ENV in your docker-compose file
-
-```yaml
-environment:
-  KIOSK_EXPERIMENTAL_ALBUM_VIDEO: false
-```
-
-#### Using with url queries
-
-```http
-http://{URL}?experimental_album_video=false
-```
-</Card>
+<Settings
+    config="experimental_album_video"
+    env="KIOSK_EXPERIMENTAL_ALBUM_VIDEO"
+    url="experimental_album_video"
+    value="bool"
+    defaultValue="false"
+/>
 
 
 ### Video Optimization Recommendations

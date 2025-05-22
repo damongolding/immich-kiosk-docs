@@ -65,10 +65,13 @@ const html = `
 <Card title="Settings" icon="setting">
     <div set:html={html} />
 
+
+     { config !== "N/A" &&
     <h5>Using with config.yaml file</h5>
-
     <Code code={configOver ? configOver : `${config}: ${dValue}`} lang="yaml" />
+    }
 
+    { env !== "N/A" &&
     <h5>Using with ENV in your docker-compose file</h5>
     <Code
         code={envOver
@@ -77,10 +80,13 @@ const html = `
   ${env}: ${dValue}`}
         lang="yaml"
     />
+    }
 
+    { url !== "N/A" &&
     <h5>Using with url queries</h5>
     <Code
         code={urlOver ? urlOver : `http://{URL}?${url}=${dValue}`}
         lang="http"
     />
+    }
 </Card>

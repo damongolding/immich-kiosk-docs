@@ -86,3 +86,10 @@ html,
 body {
     font-family: "Barlow", sans-serif;
 }
+
+.card .icon {
+    border: 1px solid #de475a;
+    background-color: rgba(222, 71, 90, 0.5);
+    padding: 0.2em;
+    border-radius: 0.25rem;
+}

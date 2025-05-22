@@ -1,0 +1,49 @@
+---
+title: Redirects
+---
+
+import { Aside, Steps } from "@astrojs/starlight/components";
+import Settings from "../../../components/config-settings.astro";
+
+<Aside type="caution">This feature can only be configured using a `config.yaml` file.</Aside>
+
+Redirects provide a simple way to map short, memorable paths to longer URLs.
+It's particularly useful for creating friendly URLs that redirect to more
+complex endpoints with query parameters.
+
+## How they Work
+
+### Configuration
+
+Redirects are defined in the `config.yaml` file under the `kiosk.redirects` section:
+
+Each redirect consists of:
+
+- `name`: The short path that users will use
+- `url`: The destination URL where users will be redirected to
+- `type`: Optional field that controls URL behavior:
+  - `internal`: The default behavior that keeps the URL unchanged during redirection (useful for maintaining browser history)
+  - `external`: Allows URL changes during redirection
+
+### Examples
+
+```yaml
+kiosk:
+  redirects:
+    - name: london
+      url: /?weather=london
+      type: external
+
+    - name: sheffield
+      url: /?weather=sheffield
+
+    - name: our-wedding
+      url: /?weather=london&album=51be319b-55ea-40b0-83b7-27ac0a0d84a3
+      type: external
+```
+
+| Source URL                 | Redirects to                                                  |
+| -------------------------- | ------------------------------------------------------------- |
+| `http://{URL}/london`      | `/?weather=london`                                            |
+| `http://{URL}/sheffield`   | `http://{URL}/sheffield`                                      |
+| `http://{URL}/our-wedding` | `/?weather=london&album=51be319b-55ea-40b0-83b7-27ac0a0d84a3` |

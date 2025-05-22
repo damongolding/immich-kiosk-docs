@@ -1,0 +1,93 @@
+---
+title: Sleeo Mode
+---
+
+import { Aside } from '@astrojs/starlight/components';
+import Settings from "../../../components/config-settings.astro";
+
+
+<Aside type="tip">
+    You can add `disable_sleep=true` to your URL queries to bypass sleepmode.
+</Aside>
+
+## Sleep Start
+
+Time (in 24hr format) to start sleep mode
+
+<Settings
+    config="sleep_start"
+    env="KIOSK_SLEEP_START"
+    url="sleep_start"
+    value="string"
+    defaultValue=""
+/>
+
+
+## Sleep End
+
+Time (in 24hr format) to end sleep mode
+
+<Settings
+    config="sleep_end"
+    env="KIOSK_SLEEP_END"
+    url="sleep_end"
+    value="string"
+    defaultValue=""
+/>
+
+## Sleep Icon
+
+Display icon during sleep mode.
+
+<Settings
+    config="sleep_icon"
+    env="KIOSK_SLEEP_ICON"
+    url="sleep_icon"
+    value="bool"
+    defaultValue="true"
+/>
+
+## Sleep Dim Screen
+
+Dim screen during sleep mode when using Fully Kiosk Browser
+
+<Settings
+    config="sleep_dim_screen"
+    env="KIOSK_SLEEP_DIM_SCREEN"
+    url="sleep_dim_screen"
+    value="bool"
+    defaultValue="false"
+/>
+
+
+## Disable Sleep
+
+Bypass sleep mode by adding `disable_sleep=true` to the URL
+
+<Settings
+    config="disable_sleep"
+    env="N/A"
+    url="disable_sleep"
+    value="bool"
+    defaultValue="false"
+/>
+
+
+
+## Enabling Sleep Mode
+Setting both `sleep_start` and `sleep_end` using the 24-hour format will enable sleep mode.
+
+### During Sleep Mode
+Kiosk will display a black screen and can optionally show a faint clock if `show_time` or `show_date` and enabled.
+
+## Dimming the Screen with Fully Kiosk Browser
+
+<Aside type="caution">
+If you will need the pro version of Fully Kiosk Browser, and will need to turn on "Enable JavaScript Interface" in the Advanced Web Settings.
+</Aside>
+
+If you are running Kiosk within the [Fully Kiosk Browser](https://www.fully-kiosk.com/), setting `sleep_dim_screen=true` will dim the screen during sleep mode.
+
+## Examples
+- Setting `sleep_start=22` and `sleep_end=7` will enable sleep mode from 22:00 (10pm) to 07:00 (7am).
+- Setting `sleep_start=1332` and `sleep_end=1508` will enable sleep mode from 13:32 (1:32pm) to 15:08 (3:08pm).

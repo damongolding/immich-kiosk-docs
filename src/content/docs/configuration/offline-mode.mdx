@@ -1,0 +1,109 @@
+---
+title: Offline Mode
+---
+
+import { Aside, Steps } from '@astrojs/starlight/components';
+import Settings from "../../../components/config-settings.astro";
+
+
+<Aside type="caution">
+    If you are using Docker and want offline assets to persist between container restarts, you will need to mount a volume into the container.
+
+    e.g.
+
+    ```yaml
+    volumes:
+      - ./offline-assets:/offline-assets  # Mount a local directory to persist cached assets
+    ```
+</Aside>
+
+<Aside type="caution">
+ Unlike most Kiosk settings, most configuration options cannot be overridden via URL parameters while using Offline Mode. Only a few UI options are allowed:
+ - `use_offline_mode` (required for offline mode)
+ - `show_progress`
+ - `frameless`
+ - `disable_navigation`
+ - `clock_source`
+ - `refresh`
+ - `font_size`
+ - `sleep_start`
+ - `sleep_end`
+</Aside>
+
+Offline Mode allows you to download assets for offline viewing.
+This feature is useful when you want to view your photos without an active connection to Immich (after download).
+
+<Settings
+    config="offline_mode"
+    env="N/A"
+    url="N/A"
+    value="OfflineMode"
+    configOver={`offline_mode:
+    enabled: true
+    number_of_assets: 500
+    max_size: 50mb
+    expiration_hours: 24
+    `}
+/>
+
+## Use Offline Mode
+
+Enable offline mode for the device/client.
+
+<Settings
+    config="use_offline_mode"
+    env="KIOSK_USE_OFFLINE_MODE"
+    url="use_offline_mode"
+    value="bool"
+    defaultValue="false"
+/>
+
+
+## Why it's useful:
+Offline Mode is ideal for setups where maintaining a live connection to Immich might be costly or inefficient.
+For example, if your Immich storage is hosted on a NAS with disks that spin down to save power, using Offline
+Mode prevents Kiosk from constantly triggering disk spin-ups.
+
+## Limitations of Offline Mode
+
+When using Offline Mode, some Kiosk features are unavailable. These include:
+
+- Experimental Album Video
+- Album Ordering
+- Like/Hide Buttons
+
+## Setting Up Offline Mode
+
+<Steps>
+
+    1. Ensure you mount a volume (see note above) if you want offline assets to persist across restarts.
+
+    2. Configure Offline Mode by setting the `offline_mode.enabled` option to `true` (and any other options you want) in your config.yaml.
+
+    3. When accessing Immich Kiosk from a device that needs offline mode, add the `use_offline_mode=true` parameter to the URL: `http://{URL}?use_offline_mode=true`
+
+</Steps>
+
+## Offline Mode Configuration Options
+
+| **Value**          | **Default** | **Description**                                               |
+|--------------------|-------------|---------------------------------------------------------------|
+| enabled            | false       | Enable offline mode                                           |
+| number_of_assets   | 100         | Target number of assets to download                           |
+| max_size           | 0           | Disk space assets are allowed to take up. You can use `mb`, `gb`, `tb`, etc. 0 = no limit |
+| expiration_hours   | 0           | Number of hours before assets expire. 0 = assets never expire |
+
+## Example Configuration
+
+Here's an example configuration for offline mode:
+- Downloads up to 500 assets
+- Limits total disk usage to 50MB
+- Deletes downloaded assets after 24 hours
+
+```yaml
+offline_mode:
+  enabled: true
+  number_of_assets: 500
+  max_size: 50mb
+  expiration_hours: 24
+```

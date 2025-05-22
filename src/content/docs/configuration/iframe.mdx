@@ -1,0 +1,54 @@
+---
+title: iframe
+---
+
+import { Aside, Steps } from '@astrojs/starlight/components';
+import Settings from "../../../components/config-settings.astro";
+
+
+<Aside type="danger">
+    If you plan to add iframes to untrusted or external content, be aware of security implications. Only load content from trusted sources that you contro
+</Aside>
+
+If you want to display custom content in Kiosk, you can use iframes.
+
+<Settings
+    config="iframe"
+    env="KIOSK_IFRAME"
+    url="N/A"
+    value="[]string"
+    configOver={`iframe:
+    - https://example.com
+    - ./weather.html  # Local file in same directory
+    - ./content/dashboard.html  # Local file in subdirectory
+    `}
+    envOver={`environment:
+    KIOSK_IFRAME: "https://example.com, ./weather.html, ./content/dashboard.html"
+    `}
+/>
+
+
+## Adding iframes to Kiosk
+
+You can configure Kiosk to display external or local HTML content using iframes. This can be set in your `config.yaml` file:
+
+```yaml
+iframe: "https://example.com"  # Remote URL
+```
+
+For local files, they must be `.html` files and at the same level or in a subdirectory of the Kiosk application:
+
+<Aside type="tip">
+  If using docker you will need to mount local files into the container.
+  ```yaml
+  volumes:
+    - ./weather.html:/weather.html
+    - ./content/dashboard.html:/content/dashboard.html
+  ```
+</Aside>
+
+```yaml
+iframe:
+  - "./weather.html"  # Local file in same directory
+  - "./content/dashboard.html"  # Local file in subdirectory
+```

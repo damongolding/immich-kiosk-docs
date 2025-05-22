@@ -29,8 +29,14 @@ export default defineConfig({
 
         {
           label: "Configuration",
-          // Autogenerate a group of links for the 'constellations' directory.
           autogenerate: { directory: "configuration" },
+        },
+        {
+          label: "Misc",
+          autogenerate: { directory: "misc" },
+        },
+        {
+          slug: "faq",
         },
         {
           label: "Examples",

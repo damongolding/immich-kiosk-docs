@@ -93,3 +93,19 @@ body {
     padding: 0.2em;
     border-radius: 0.25rem;
 }
+
+.faq {
+    margin-bottom: 4rem;
+}
+
+.faq p {
+    font-size: 1.3rem;
+}
+
+.faq .sl-heading-wrapper {
+    margin-top: 1rem;
+}
+
+.inline {
+    display: inline;
+}

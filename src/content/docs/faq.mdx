@@ -1,0 +1,73 @@
+---
+title: FAQ
+---
+
+import { Aside, Icon } from "@astrojs/starlight/components";
+import FAQ from "../../components/faq.astro";
+
+<FAQ>
+    ![no-wifi icon](../../assets/offline.svg)
+
+    ## What is the no wifi icon?
+
+    This icon shows when the front end can't connect to the back end.
+</FAQ>
+
+<FAQ>
+![flush cache icon](../../assets/flush-cache.svg)
+
+  ## What is this icon in the menu?
+
+  Clicking this icon tells Kiosk to delete all cached data and refresh the current device.
+</FAQ>
+
+
+<FAQ>
+   ## Can I use this to set Immich images as my Home Assistant dashboard background?
+
+    Yes! Just navigate to the dashboard with the view you wish to add the image background to.
+
+    Enter edit mode and click the <Icon name="pencil" class="inline" /> next to the view you want to add the image to.
+
+    Then select the "background" tab and toggle on "Local path or web URL" and enter your url with path `/image` e.g. `http://192.168.0.123:3000/image`.
+
+    If you want to specify an album or a person you can also add that to the url e.g. `http://192.168.0.123:3000/image?album=ALBUM_ID`
+
+    Check out the [Home Assistant section](/misc/home-assistant/).
+
+</FAQ>
+
+<FAQ>
+  ## Do I need to a docker service for each client
+
+  You only need one docker service (or binary running) that your devices(s) will connect to.
+</FAQ>
+
+<FAQ>
+  ## Do I have to use port 3000
+
+  Nope. Just change the host port in your docker compose file i.e. `- 3000:3000` to `- PORT_YOU_WANT:3000`
+</FAQ>
+
+
+<FAQ>
+## How do I set/use a password?
+<Aside type="caution">
+ This feature is meant for edgecase scenarios and offers very little in terms of protection.
+ If you are aiming to expose Kiosk beyond your local network, please investigate more secure alternatives.
+</Aside>
+
+via config.yaml file
+```yaml
+kiosk:
+  password: 12345
+```
+
+via ENV in your docker-compose file
+```yaml
+environment:
+  KIOSK_PASSWORD: "12345"
+```
+
+Then to access Kiosk you MUST add the password param in your URL e.g. `http://{URL}?password=12345`
+</FAQ>

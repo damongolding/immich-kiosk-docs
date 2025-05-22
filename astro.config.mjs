@@ -77,7 +77,7 @@ export default defineConfig({
           slug: "contributing",
         },
         {
-          label: "Examples",
+          label: "Resources",
           items: [
             { label: "Compose example", link: "compose-example" },
             { label: "Config example", link: "config-example" },

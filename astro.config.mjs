@@ -81,6 +81,10 @@ export default defineConfig({
           items: [
             { label: "Compose example", link: "compose-example" },
             { label: "Config example", link: "config-example" },
+            {
+              label: "Fanyang Meng's digital picture frame",
+              link: "fanyang-meng",
+            },
           ],
         },
       ],

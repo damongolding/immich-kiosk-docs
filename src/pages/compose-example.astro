@@ -1,5 +1,6 @@
 ---
 import StarlightPage from "@astrojs/starlight/components/StarlightPage.astro";
+import AnchorHeading from "@astrojs/starlight/components/AnchorHeading.astro";
 
 import { Code } from "@astrojs/starlight/components";
 
@@ -21,7 +22,9 @@ const composeEnvExample = await composeEnv.text();
 >
     <Code code={myCode} lang="yaml" title="docker-compose.yaml" />
 
-    ## With Environment Variables
+    <AnchorHeading level="2" id="With Environment Variables"
+        >With Environment Variables</AnchorHeading
+    >
 
     <Code code={composeEnvExample} lang="yaml" title="docker-compose.yaml" />
 </StarlightPage>

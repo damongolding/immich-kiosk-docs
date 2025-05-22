@@ -1,0 +1,7 @@
+---
+title: Fanyang Meng's Digital Picture Frame
+---
+
+Fanyang Meng created a digital picture frame using a Raspberry Pi Zero 2 W and Kiosk. You can read the blog post about the process [here](https://fanyangmeng.blog/build-a-selfhosted-digital-frame/).
+
+This example includes instructions on how to autoboot a Raspberry Pi directly into Immich Kiosk.

@@ -16,6 +16,10 @@ export const composeExample = await compose.text();
 export const composeEnv = await fetch("https://raw.githubusercontent.com/damongolding/immich-kiosk/refs/heads/main/docker-compose-env.yaml");
 export const composeEnvExample = await composeEnv.text();
 
+While Kiosk is highly customizable, most of the settings and features are opt-in. The only required settings are `immich_url` and `immich_api_key` found in [core](/configuration/core).
+
+Below you will find a configuration file and environment variables containing all the available settings.
+
 ## docker-compose.yaml
 
 <Aside type="note">

@@ -20,7 +20,7 @@ export default defineConfig({
         {
           icon: "github",
           label: "GitHub",
-          href: "https://github.com/withastro/starlight",
+          href: "https://github.com/damongolding/immich-kiosk",
         },
       ],
       sidebar: [
@@ -83,13 +83,6 @@ export default defineConfig({
             { label: "Config example", link: "config-example" },
           ],
         },
-        // {
-        //   label: "Guides",
-        //   items: [
-        //     // Each item here is one entry in the navigation menu.
-        //     { label: "Example Guide", slug: "guides/example" },
-        //   ],
-        // }
       ],
     }),
   ],

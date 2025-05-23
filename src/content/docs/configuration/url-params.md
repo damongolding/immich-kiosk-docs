@@ -1,7 +1,5 @@
 ---
 title: Changing settings via URL
-sidebar:
-  order: 2
 ---
 
 You can configure settings for individual devices through the URL. This feature is particularly useful when you need different settings for different devices, especially if the only input option available is a URL, such as with kiosk devices.

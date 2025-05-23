@@ -71,6 +71,9 @@ export default defineConfig({
           autogenerate: { directory: "misc" },
         },
         {
+          slug: "error",
+        },
+        {
           slug: "faq",
         },
         {

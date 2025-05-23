@@ -4,7 +4,7 @@ sidebar:
   order: 5
 ---
 
-import { Aside } from '@astrojs/starlight/components';
+import { Aside, Badge } from '@astrojs/starlight/components';
 import { Card } from '@astrojs/starlight/components';
 
 ## Getting a person's ID from Immich
@@ -59,7 +59,7 @@ For each image refresh, Kiosk randomly selects one ID from this pool and fetches
 
 ---
 
-## Require All People
+## Require All People <Badge text="New" variant="note" />
 
 The `require_all_people` feature allows you to filter images to only show those where all specified people are present together in the same photo.
 

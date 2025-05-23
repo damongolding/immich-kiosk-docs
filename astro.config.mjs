@@ -52,9 +52,15 @@ export default defineConfig({
             { slug: "configuration/more-info" },
             { slug: "configuration/redirects" },
             { slug: "configuration/sleep-mode" },
-            { slug: "configuration/offline-mode" },
+            {
+              slug: "configuration/offline-mode",
+              badge: { text: "New", variant: "note" },
+            },
             { slug: "configuration/custom-css" },
-            { slug: "configuration/iframe" },
+            {
+              slug: "configuration/iframe",
+              badge: { text: "New", variant: "note" },
+            },
             { slug: "configuration/multiple-users" },
             { slug: "configuration/webhooks" },
             { slug: "configuration/additional-options" },

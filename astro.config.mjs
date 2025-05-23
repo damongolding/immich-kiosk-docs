@@ -8,6 +8,9 @@ export default defineConfig({
     starlight({
       title: "Immich Kiosk",
       favicon: "/favicon.ico",
+      editLink: {
+        baseUrl: "https://github.com/damongolding/immich-kiosk-docs/edit/main/",
+      },
       customCss: [
         // Relative path to your custom CSS file
         "./src/styles/custom.css",

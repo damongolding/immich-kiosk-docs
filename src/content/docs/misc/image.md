@@ -8,7 +8,7 @@ sidebar:
 
 Kiosk exposes a `/image` endpoint that serves up a raw image rather then HTML.
 
-### Accepted configurtion
+### Accepted configuration
 The endpoint accepts all of the "bucket" options (`album`, `person`, `date` and `tag`).
 
 Examples:
@@ -28,8 +28,8 @@ Examples:
 
 The `/image/reload` endpoint does the same as [`/image`](#image) but wraps the supplied image in a lightweight HTML page that auto reloads.
 
-### Accepted configurtion
-The endpoint accepts the same options as [`/image`](#image) but also accepts [`refresh`](/configuration/behavior/#refresh) configurtion.
+### Accepted configuration
+The endpoint accepts the same options as [`/image`](#image) but also accepts [`refresh`](/configuration/behavior/#refresh) configuration.
 
 Examples:
 - `http://{URL}/image/reload?album=ALBUM_ID`

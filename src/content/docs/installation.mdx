@@ -2,8 +2,7 @@
 title: Installation
 ---
 
-import { Steps } from '@astrojs/starlight/components';
-import { Aside, Tabs, TabItem, Code, Steps  } from '@astrojs/starlight/components';
+import { Aside, Tabs, TabItem, Code, Steps } from '@astrojs/starlight/components';
 
 export const compose = await fetch("https://raw.githubusercontent.com/damongolding/immich-kiosk/refs/heads/main/docker-compose.yaml");
 export const composeExample = await compose.text();

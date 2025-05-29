@@ -33,20 +33,20 @@ Frameo frame device normally come with a very old system WebView that is not com
     1. Download the 106 WebView apk from [here](https://www.apkmirror.com/apk/lineageos/android-system-webview-2/android-system-webview-2-106-0-5249-126-release/android-system-webview-106-0-5249-126-12-android-apk-download/)
 
     2. Connect to your device with adb
-       ```bash
+       ```sh
        adb connect <device_ip>:5555
        ```
     3. Push the WebView apk to the device
-       ```bash
+       ```sh
        adb push path/to/downloaded/webview.apk /sdcard/
        ```
     4. Enter root
-       ```bash
+       ```sh
        adb shell su
        ```
 
     5. Mount system partition
-       ```bash
+       ```sh
        mount -o remount,rw /system
        ```
 
@@ -66,7 +66,7 @@ Frameo frame device normally come with a very old system WebView that is not com
        ```
 
     9. Exit root
-       ```bash
+       ```sh
        exit
        ```
 
@@ -90,12 +90,12 @@ Although Kiosk doesn’t have its own dedicated mobile app, the ImmichFrame team
     1. Download the latest ImmichFrame apk from [here](https://github.com/immichFrame/ImmichFrame_Android/releases)
 
     2. Connect to your device with adb
-       ```bash
+       ```sh
        adb connect <device_ip>:5555
        ```
 
     3. Install the ImmichFrame apk
-       ```bash
+       ```sh
        adb install path/to/downloaded/immichframe.apk
        ```
 
@@ -106,22 +106,22 @@ Although Kiosk doesn’t have its own dedicated mobile app, the ImmichFrame team
 
 <Steps>
     1. Connect to your device with adb
-       ```bash
+       ```sh
        adb connect <device_ip>:5555
        ```
 
     2. Enter root
-       ```bash
+       ```sh
        adb shell su
        ```
 
     3. Disable the Frameo app
-       ```bash
+       ```sh
        pm disable net.frameo.frame
        ```
 
     4. Exit root
-       ```bash
+       ```sh
        exit
        ```
 </Steps>
@@ -131,17 +131,17 @@ Although Kiosk doesn’t have its own dedicated mobile app, the ImmichFrame team
 
 <Steps>
     1. Connect to your device with adb
-       ```bash
+       ```sh
        adb connect <device_ip>:5555
        ```
 
     2. Uninstall the Frameo app
-       ```bash
+       ```sh
        adb uninstall com.immichframe.immichframe
        ```
 
     3. Enable the Frameo app
-       ```bash
+       ```sh
        pm disable net.frameo.frame
        ```
 </Steps>
@@ -154,12 +154,12 @@ Although Kiosk doesn’t have its own dedicated mobile app, the ImmichFrame team
     1. Download the latest ImmichFrame apk from [here](https://www.fully-kiosk.com/files/2025/01/Fully-Kiosk-Browser-v1.57.1.apk)
 
     2. Connect to your device with adb
-       ```bash
+       ```sh
        adb connect <device_ip>:5555
        ```
 
     3. Install the ImmichFrame apk
-       ```bash
+       ```sh
        adb install path/to/downloaded/Fully-Kiosk-Browser-v1.57.1.apk
        ```
 
@@ -170,17 +170,17 @@ Although Kiosk doesn’t have its own dedicated mobile app, the ImmichFrame team
 
 <Steps>
     1. Enter root
-       ```bash
+       ```sh
        adb shell su
        ```
 
     2. Disable the Frameo app
-       ```bash
+       ```sh
        pm disable net.frameo.frame
        ```
 
     3. Exit root
-       ```bash
+       ```sh
        exit
        ```
 </Steps>

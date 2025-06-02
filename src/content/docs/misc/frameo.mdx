@@ -45,32 +45,27 @@ Frameo frame device normally come with a very old system WebView that is not com
        adb shell su
        ```
 
-    5. Mount system partition
+    5. Backup the original WebView apk
        ```sh
-       mount -o remount,rw /system
+       mount -o remount,rw /system && cp /system/app/webview/webview.apk /system/app/webview/webview.apk.bak
        ```
 
-    6. Backup the original WebView apk
+    6. Remove the existing WebView oat files
        ```sh
-       cp /system/app/webview/webview.apk /system/app/webview/webview.apk.bak
+       mount -o remount,rw /system && rm -rf /system/app/webview/oat
        ```
 
-    7. Remove the existing WebView oat files
+    7. Copy the new WebView apk to the device
        ```sh
-       rm -rf /system/app/webview/oat
+       mount -o remount,rw /system && cp /sdcard/webview.apk /system/app/webview/webview.apk
        ```
 
-    8. Copy the new WebView apk to the device
-       ```sh
-       cp /sdcard/webview.apk /system/app/webview/webview.apk
-       ```
-
-    9. Exit root
+    8. Exit root
        ```sh
        exit
        ```
 
-    10. Reboot the device
+    9. Reboot the device
         ```sh
         adb reboot
         ```

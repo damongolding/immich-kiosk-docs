@@ -6,6 +6,7 @@ sidebar:
 ---
 
 import { Aside, Steps } from '@astrojs/starlight/components';
+import  Acknowledgement from '../../../components/acknowledgement.astro';
 
 
 <Aside type="note">
@@ -22,9 +23,14 @@ If you have a Frameo frame device and want to use Kiosk on it, follow these step
 
 ## Updating the system WebView
 
+
 <Aside type="caution">
     Not all Frameo devices are the same and hardware and software versions may differ, and these instructions may not work for every device. Proceed at your own risk. We accept no responsibility for any damage or issues that may result from following these steps.
 </Aside>
+
+<Acknowledgement type="tip" title="Acknowledgement">
+    A big thank you to [Rob](https://github.com/3rob3). This guide wouldn’t be possible without his help!
+</Acknowledgement>
 
 Frameo frame device normally come with a very old system WebView that is not compatible with Kiosk. To update the WebView, follow these steps:
 
@@ -86,6 +92,11 @@ Frameo frame device normally come with a very old system WebView that is not com
     3. Install the ImmichFrame apk
        ```sh
        adb install path/to/downloaded/Fully-Kiosk-Browser-v1.57.1.apk
+       ```
+
+    4. Start the Fully Kiosk Browser app
+       ```sh
+       adb shell am start -n de.ozerov.fully/.MainActivity
        ```
 
 </Steps>

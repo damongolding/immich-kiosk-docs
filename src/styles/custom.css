@@ -109,3 +109,9 @@ body {
 .inline {
     display: inline;
 }
+
+.starlight-aside--acknowledgement {
+    --sl-color-asides-text-accent: var(--sl-color-accent-high);
+    --sl-color-asides-border: var(--sl-color-accent);
+    background-color: var(--sl-color-accent-low);
+}

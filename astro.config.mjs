@@ -11,6 +11,16 @@ export default defineConfig({
       editLink: {
         baseUrl: "https://github.com/damongolding/immich-kiosk-docs/edit/main/",
       },
+      head: [
+        {
+          tag: "script",
+          attrs: {
+            src: "https://cloud.umami.is/script.js",
+            "data-website-id": "2173d937-7da3-4ca7-91a6-647464af2385",
+            defer: true,
+          },
+        },
+      ],
       customCss: [
         // Relative path to your custom CSS file
         "./src/styles/custom.css",

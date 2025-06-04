@@ -30,6 +30,8 @@ webhooks:
     secret: "my_webhook_secret" # Optional secret for securing webhooks
 ```
 
+### Webhook Security
+
 When a secret is provided, Kiosk will generate a SHA-256 HMAC signature using the webhook payload and include it in the `X-Kiosk-Signature-256` header.
 This allows you to verify that webhook request came from your Kiosk instance, following the same validation pattern as [GitHub webhooks](https://docs.github.com/en/webhooks/using-webhooks/validating-webhook-deliveries).
 

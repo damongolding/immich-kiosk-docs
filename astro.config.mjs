@@ -47,7 +47,10 @@ export default defineConfig({
             { slug: "configuration" },
             { slug: "configuration/url-params" },
             { slug: "configuration/core" },
-            { slug: "configuration/albums" },
+            {
+              slug: "configuration/albums",
+              badge: { text: "Updated", variant: "tip" },
+            },
             { slug: "configuration/people" },
             { slug: "configuration/memories" },
             { slug: "configuration/date-range" },
@@ -75,8 +78,14 @@ export default defineConfig({
               badge: { text: "New", variant: "note" },
             },
             { slug: "configuration/multiple-users" },
-            { slug: "configuration/webhooks" },
-            { slug: "configuration/additional-options" },
+            {
+              slug: "configuration/webhooks",
+              badge: { text: "Updated", variant: "tip" },
+            },
+            {
+              slug: "configuration/additional-options",
+              badge: { text: "Updated", variant: "tip" },
+            },
           ],
         },
         {

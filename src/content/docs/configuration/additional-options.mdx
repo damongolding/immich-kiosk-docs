@@ -31,6 +31,18 @@ Which port Kiosk should use. NOTE: This is only typically needed when running Ki
     defaultValue="3000"
 />
 
+## Behind Proxy
+
+If you are running Kiosk behind a proxy, set this to true. This will enable Kiosk to look up the `X-Forwarded-For` header to determine the client's IP address, which is used to create a unique device ID for each client.
+
+<Settings
+    config="behind_proxy"
+    env="KIOSK_BEHIND_PROXY"
+    url="N/A"
+    value="bool"
+    defaultValue="false"
+/>
+
 ## Watch Config
 
 Should Kiosk watch config.yaml file for changes. Reloads all connect clients if a change is detected.

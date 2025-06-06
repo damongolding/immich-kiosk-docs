@@ -1,6 +1,8 @@
 // @ts-check
 import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
+import starlightUtils from "@lorenzo_lewis/starlight-utils";
+import starlightHeadingBadges from "starlight-heading-badges";
 
 // https://astro.build/config
 export default defineConfig({
@@ -27,7 +29,7 @@ export default defineConfig({
       ],
       logo: {
         src: "./src/assets/logo.svg",
-        replacesTitle: true,
+        replacesTitle: false,
       },
       social: [
         {
@@ -35,8 +37,17 @@ export default defineConfig({
           label: "GitHub",
           href: "https://github.com/damongolding/immich-kiosk",
         },
+        {
+          icon: "discord",
+          label: "Discord",
+          href: "https://discord.gg/pcDSC9X3",
+        },
       ],
       sidebar: [
+        {
+          label: "topNavLinks",
+          items: [{ label: "Demo", link: "https://demo.immichkiosk.app" }],
+        },
         {
           slug: "installation",
         },
@@ -116,12 +127,16 @@ export default defineConfig({
           items: [
             { label: "Compose example", link: "compose-example" },
             { label: "Config example", link: "config-example" },
-            {
-              label: "Fanyang Meng's digital picture frame",
-              link: "fanyang-meng",
-            },
           ],
         },
+      ],
+      plugins: [
+        starlightHeadingBadges(),
+        starlightUtils({
+          navLinks: {
+            leading: { useSidebarLabelled: "topNavLinks" },
+          },
+        }),
       ],
     }),
   ],

@@ -87,6 +87,10 @@ body {
     font-family: "Barlow", sans-serif;
 }
 
+.site-title {
+    color: var(--sl-color-white);
+}
+
 .card .icon {
     border: 1px solid #de475a;
     background-color: rgba(222, 71, 90, 0.5);

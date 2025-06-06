@@ -24,7 +24,7 @@ Examples:
 - As a REST endpoint to leveage the power of Kiosk's randomisation engine in your project.
 
 
-## `/image/reload`
+## `/image/reload` :badge[New]{variant=note}
 
 The `/image/reload` endpoint does the same as [`/image`](#image) but wraps the supplied image in a lightweight HTML page that auto reloads.
 

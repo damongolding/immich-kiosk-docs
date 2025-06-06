@@ -93,6 +93,10 @@ export default defineConfig({
           autogenerate: { directory: "misc" },
         },
         {
+          label: "Guides",
+          autogenerate: { directory: "guides" },
+        },
+        {
           slug: "error",
         },
         {

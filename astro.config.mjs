@@ -9,6 +9,8 @@ export default defineConfig({
   integrations: [
     starlight({
       title: "Immich Kiosk",
+      description:
+        "Immich Kiosk is a lightweight slideshow for running on kiosk devices and browsers that uses Immich as a data source.",
       favicon: "/favicon.ico",
       editLink: {
         baseUrl: "https://github.com/damongolding/immich-kiosk-docs/edit/main/",
@@ -20,6 +22,25 @@ export default defineConfig({
             src: "https://cloud.umami.is/script.js",
             "data-website-id": "2173d937-7da3-4ca7-91a6-647464af2385",
             defer: true,
+          },
+        },
+        {
+          tag: "meta",
+          attrs: {
+            property: "og:image",
+            content: "/kiosk-banner.png",
+          },
+        },
+        {
+          tag: "meta",
+          attrs: { property: "og:image:width", content: "1280," },
+        },
+        { tag: "meta", attrs: { property: "og:image:height", content: "640" } },
+        {
+          tag: "meta",
+          attrs: {
+            property: "twitter:image",
+            content: "/kiosk-banner.png",
           },
         },
       ],

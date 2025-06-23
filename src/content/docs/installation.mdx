@@ -174,3 +174,35 @@ It is recommended to avoid checking-in any secrets.
      ```
 
   5. Add `docker-compose.env` to `.gitignore`.
+
+
+## API key permissions:
+
+To ensure Kiosk has full functionality, your API key should include the following permissions.
+
+- asset.read
+- asset.update
+- album.read
+- album.statistics
+- album.create
+- album.addAsset
+- album.removeAsset
+- album.update
+- person.read
+- person.statistics
+- tag.read
+- tag.asset
+- tag.create
+- archive.read # only needed if you want to use [show_archived](/configuration/behavior/#show-archived)
+- face.read
+- memory.read
+
+
+If you do not intend to the the like/hide buttons, you can remove the following permissions:
+
+- album.create
+- album.addAsset
+- album.removeAsset
+- album.update
+- tag.asset
+- tag.create

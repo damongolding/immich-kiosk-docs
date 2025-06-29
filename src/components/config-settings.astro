@@ -42,7 +42,7 @@ const html = `
           <tr>
               <td>URL</td>
               <td>
-                  <code>${url}</code>
+                  <code>${url ?? config}</code>
               </td>
           </tr>
           <tr>
@@ -85,7 +85,7 @@ const html = `
     { url !== "N/A" &&
     <h5>Using with url queries</h5>
     <Code
-        code={urlOver ? urlOver : `http://{URL}?${url}=${dValue}`}
+        code={urlOver ? urlOver : `http://{URL}?${url ?? config}=${dValue}`}
         lang="http"
     />
     }

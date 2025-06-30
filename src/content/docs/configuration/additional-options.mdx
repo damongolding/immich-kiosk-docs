@@ -25,6 +25,9 @@ Which port Kiosk should use. NOTE: This is only typically needed when running Ki
 
 <Settings
     config="port"
+    configOver={`kiosk:
+    port: 3000
+    `}
     env="KIOSK_PORT"
     url="N/A"
     value="int"
@@ -37,11 +40,28 @@ If you are running Kiosk behind a proxy, set this to true. This will enable Kios
 
 <Settings
     config="behind_proxy"
+    configOver={`kiosk:
+    behind_proxy: false
+    `}
     env="KIOSK_BEHIND_PROXY"
     url="N/A"
     value="bool"
     defaultValue="false"
 />
+
+## Config Endpoint :badge[New]
+
+Disable the config endpoint which outputs a redacted version of the config.yaml file at `/config`.
+
+<Settings
+    config="disable_config_endpoint"
+    configOver={`kiosk:
+    disable_config_endpoint: false
+    `}
+    env="KIOSK_DISABLE_CONFIG_ENDPOINT"
+    url="N/A"
+    value="bool"
+    defaultValue="false"/>
 
 ## Watch Config
 
@@ -49,6 +69,9 @@ Should Kiosk watch config.yaml file for changes. Reloads all connect clients if 
 
 <Settings
     config="watch_config"
+    configOver={`kiosk:
+    watch_config: false
+    `}
     env="KIOSK_WATCH_CONFIG"
     url="N/A"
     value="bool"
@@ -61,6 +84,9 @@ The number of assets (data) requested from Immich per api call. min=1 max=1000.
 
 <Settings
     config="fetched_assets_size"
+    configOver={`kiosk:
+    fetched_assets_size: 1000
+    `}
     env="KIOSK_FETCHED_ASSETS_SIZE"
     url="N/A"
     value="int"
@@ -73,6 +99,9 @@ The number of seconds before an http request will time out.
 
 <Settings
     config="http_timeout"
+    configOver={`kiosk:
+    http_timeout: 20
+    `}
     env="KIOSK_HTTP_TIMEOUT"
     url="N/A"
     value="int"
@@ -90,10 +119,12 @@ If a password is set, at least one of the [auth headers](#auth-headers) or the `
 
 <Settings
     config="password"
+    configOver={`kiosk:
+    password: ""
+    `}
     env="KIOSK_PASSWORD"
     url="N/A"
     value="string"
-    defaultValue=""
 />
 
 ### Setting a Password
@@ -141,6 +172,9 @@ Cache selective Immich api calls to reduce unnecessary calls.
 
 <Settings
     config="cache"
+    configOver={`kiosk:
+    cache: true
+    `}
     env="KIOSK_CACHE"
     url="N/A"
     value="bool"
@@ -153,6 +187,9 @@ Pre-fetch assets in the background, so images load much quicker when refresh tim
 
 <Settings
     config="prefetch"
+    configOver={`kiosk:
+    prefetch: true
+    `}
     env="KIOSK_PREFETCH"
     url="N/A"
     value="bool"
@@ -166,6 +203,9 @@ Balances asset selection when multiple sources are used, e.g. multiple people an
 
 <Settings
     config="asset_weighting"
+    configOver={`kiosk:
+    asset_weighting: true
+    `}
     env="KIOSK_ASSET_WEIGHTING"
     url="N/A"
     value="bool"

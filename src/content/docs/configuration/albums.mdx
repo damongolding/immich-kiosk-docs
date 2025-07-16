@@ -11,22 +11,22 @@ import Settings from "../../../components/config-settings.astro";
 3. The url will now look something like this `http://192.168.86.123:2283/albums/a04175f4-97bb-4d97-8d49-3700263043e5`.
 4. The album ID is everything after `albums/`, so in this example it would be `a04175f4-97bb-4d97-8d49-3700263043e5`.
 
-## Album
+## Albums
 
 The ID(s) of a specific album or albums you want to display.
 
 <Settings
-    config="album"
-    env="KIOSK_ALBUM"
+    config="albums"
+    env="KIOSK_ALBUMS"
     url="album"
     value="[]string"
     defaultValue="[]"
-    configOver={`album:
+    configOver={`albums:
     - ALBUM_ID
     - ALBUM_ID
     `}
     envOver={`environment:
-    KIOSK_ALBUM: "ALBUM_ID, ALBUM_ID"
+    KIOSK_ALBUMS: "ALBUM_ID, ALBUM_ID"
     `}
     urlOver={"http://{URL}?album=ALBUM_ID"}
 />
@@ -90,20 +90,20 @@ This controls the order in which the assets from the selected album(s) are displ
     defaultValue="random"
 />
 
-## Experimental Album Video Support
+## Album Video
 
 <Aside type="caution">
-This feature is experimental and currently only supports album videos with certain limitations:
+This feature only supports album videos with certain limitations:
 - Videos will autoplay with audio muted
-- the `experimental_album_video` [configuration](#configuration) setting must be enabled
-- the `prefetch` [configuration](#configuration) setting must be enabled
+- the `album_video` setting must be enabled
+- the `prefetch` setting must be enabled
 - Browser codec support may vary
 </Aside>
 
 <Settings
-    config="experimental_album_video"
-    env="KIOSK_EXPERIMENTAL_ALBUM_VIDEO"
-    url="experimental_album_video"
+    config="album_video"
+    env="KIOSK_ALBUM_VIDEO"
+    url="album_video"
     value="bool"
     defaultValue="false"
 />

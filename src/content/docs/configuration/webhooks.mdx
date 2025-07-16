@@ -1,5 +1,7 @@
 ---
 title: Webhooks
+sidebar:
+  badge: {"text":"Updated", "variant":"tip"}
 ---
 
 import { Aside } from '@astrojs/starlight/components';
@@ -49,7 +51,7 @@ To validate webhooks on your server, you should:
 |`asset.history.next`                | Triggered when a history asset (next) is requested from Kiosk                       |
 |`asset.history.previous`            | Triggered when a history asset (previous) is requested from Kiosk                   |
 |`cache.flushed`                     | Triggered when the cache is manually cleared                                        |
-|`user.interaction.click`            | Triggered when the user clicks/taps Kiosk                                           |
+|`user.navigation.custom`            | Triggered when the user clicks/taps the custom navigation section in Kiosk          |
 |`user.webhook.trigger.info_overlay` | Triggered when the "trigger webhook" button is clicked in the asset details overlay |
 |`user.like.info_overlay`            | Triggered when the "like" button is clicked in the asset details overlay            |
 |`user.unlike.info_overlay`          | Triggered when the "unlike" button is clicked in the asset details overlay          |

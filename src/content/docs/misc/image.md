@@ -1,7 +1,5 @@
 ---
 title: Image Endpoint
-sidebar:
-  badge: {"text":"New", "variant":"note"}
 ---
 
 ## `/image`

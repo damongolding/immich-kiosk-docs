@@ -1,0 +1,37 @@
+---
+title: Live Photos
+sidebar:
+  badge: {"text":"New", "variant":"note"}
+---
+
+import { Aside } from '@astrojs/starlight/components';
+import Settings from "../../../components/config-settings.astro";
+
+<Aside>
+The same constraints/recomendations apply to Live Photos as they do to [album videos](/configuration/albums/#album-video).
+</Aside>
+
+## Live Photos :badge[New]{variant="note"}
+
+Enable Live Photos.
+
+<Settings
+    config="live_photos"
+    env="KIOSK_LIVE_PHOTOS"
+    url="live_photos"
+    value="bool"
+    defaultValue="false"
+/>
+
+
+## Live Photos loop delay :badge[New]{variant="note"}
+
+The delay (in seconds) between each live photo replay.
+
+<Settings
+    config="live_photo_loop_delay"
+    env="KIOSK_LIVE_PHOTO_LOOP_DELAY"
+    url="live_photo_loop_delay"
+    value="int"
+    defaultValue="0"
+/>

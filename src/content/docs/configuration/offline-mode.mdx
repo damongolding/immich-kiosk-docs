@@ -30,8 +30,7 @@ import Settings from "../../../components/config-settings.astro";
  - `sleep_end`
 </Aside>
 
-Offline Mode allows you to download assets for offline viewing.
-This feature is useful when you want to view your photos without an active connection to Immich (after download).
+Offline Mode lets you download assets to the Kiosk server so you don’t need a constant connection to Immich. After downloading, you can view your photos even when Immich is offline. However, an active connection to the Kiosk server is still required to access and display the downloaded assets.
 
 <Settings
     config="offline_mode"
@@ -98,7 +97,7 @@ When using Offline Mode, some Kiosk features are unavailable. These include:
 Here's an example configuration for offline mode:
 - Downloads up to 500 assets
 - Limits total disk usage to 50MB
-- Deletes downloaded assets after 24 hours
+- Deletes downloaded assets after 24 hours if Kiosk is able to reach your Immich server
 
 ```yaml
 offline_mode:

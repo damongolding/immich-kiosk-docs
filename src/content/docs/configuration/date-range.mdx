@@ -20,19 +20,19 @@ A date range or ranges. See Date range for more information.
 </Aside>
 
 <Settings
-    config="date"
-    env="KIOSK_DATE"
+    config="dates"
+    env="KIOSK_DATES"
     url="date"
     value="[]string"
     defaultValue="[]"
-    configOver={`date:
+    configOver={`dates:
     - 2023-01-01_to_2023-02-01
     - 2024-11-12_to_2023-11-18
     - last-30-days
     - today
     `}
     envOver={`environment:
-    KIOSK_DATE: "DATE_RANGE, DATE_RANGE, DATE_RANGE"
+    KIOSK_DATES: "DATE_RANGE, DATE_RANGE, DATE_RANGE"
     `}
     urlOver={"http://{URL}?date=DATE_RANGE&date=DATE_RANGE&date=DATE_RANGE"}
 />

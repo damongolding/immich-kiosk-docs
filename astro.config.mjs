@@ -81,7 +81,6 @@ export default defineConfig({
             { slug: "configuration/core" },
             {
               slug: "configuration/albums",
-              badge: { text: "Updated", variant: "tip" },
             },
             { slug: "configuration/people" },
             { slug: "configuration/memories" },
@@ -95,6 +94,9 @@ export default defineConfig({
             { slug: "configuration/ui" },
             { slug: "configuration/themes" },
             { slug: "configuration/layouts" },
+            {
+              slug: "configuration/live-photos",
+            },
             { slug: "configuration/weather" },
             { slug: "configuration/filters" },
             { slug: "configuration/more-info" },
@@ -102,21 +104,17 @@ export default defineConfig({
             { slug: "configuration/sleep-mode" },
             {
               slug: "configuration/offline-mode",
-              badge: { text: "New", variant: "note" },
             },
             { slug: "configuration/custom-css" },
             {
               slug: "configuration/iframe",
-              badge: { text: "New", variant: "note" },
             },
             { slug: "configuration/multiple-users" },
             {
               slug: "configuration/webhooks",
-              badge: { text: "Updated", variant: "tip" },
             },
             {
               slug: "configuration/additional-options",
-              badge: { text: "Updated", variant: "tip" },
             },
           ],
         },

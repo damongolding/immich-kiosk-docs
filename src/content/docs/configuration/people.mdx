@@ -2,8 +2,8 @@
 title: People
 ---
 
-import { Aside, Badge } from '@astrojs/starlight/components';
-import { Card } from '@astrojs/starlight/components';
+import { Aside, Badge, Card } from '@astrojs/starlight/components';
+import Settings from "../../../components/config-settings.astro";
 
 ## Getting a person's ID from Immich
 1. Open Immich's web interface and click on "Explore" in the left-hand navigation.
@@ -16,38 +16,21 @@ import { Card } from '@astrojs/starlight/components';
 
 The ID(s) of a specific person or people you want to display.
 
-<Card title="Settings" icon="setting">
-|         |                |
-| ------- | -------------- |
-| CONFIG  | `person`       |
-| ENV     | `KIOSK_PERSON` |
-| URL     | `person`       |
-| VALUE   | `[]string`     |
-| DEFAULT | `[]`           |
-
-#### Using with config.yaml file
-
-```yaml
-person:
-  - PERSON_ID
-  - PERSON_ID
-```
-
-#### Using with ENV in your docker-compose file
-
- use a `,` to separate IDs
-
-```yaml
-environment:
-  KIOSK_PERSON: "PERSON_ID,PERSON_ID,PERSON_ID"
-```
-
-#### Using with url queries
-
-```http
-http://{URL}?person=PERSON_ID&person=PERSON_ID&person=PERSON_ID
-```
-</Card>
+<Settings
+    config="people"
+    env="KIOSK_PEOPLE"
+    url="person"
+    value="[]string"
+    defaultValue="[]"
+    configOver={`people:
+    - PERSON_ID
+    - PERSON_ID
+    `}
+    envOver={`environment:
+    KIOSK_PERSON: "PERSON_ID, PERSON_ID"
+    `}
+    urlOver={"http://{URL}?person=PERSON_ID"}
+/>
 
 
 ### How multiple people work
@@ -61,34 +44,14 @@ For each image refresh, Kiosk randomly selects one ID from this pool and fetches
 
 The `require_all_people` feature allows you to filter images to only show those where all specified people are present together in the same photo.
 
-<Card title="Settings" icon="setting">
-    |         |                            |
-    | ------- | -------------------------- |
-    | CONFIG  | `require_all_people`       |
-    | ENV     | `KIOSK_REQUIRE_ALL_PEOPLE` |
-    | URL     | `require_all_people`       |
-    | VALUE   | `bool`                     |
-    | DEFAULT | `false`                    |
+<Settings
+    config="require_all_people"
+    env="KIOSK_REQUIRE_ALL_PEOPLE"
+    url="require_all_people"
+    value="bool"
+    defaultValue="false"
+/>
 
-#### Using with config.yaml file
-
-```yaml
-require_all_people: true
-```
-
-#### Using with ENV in your docker-compose file
-
-```yaml
-environment:
-  KIOSK_REQUIRE_ALL_PEOPLE: true
-```
-
-#### Using with url queries
-
-```http
-http://{URL}?require_all_people=true
-```
-</Card>
 
 ### How It Works
 
@@ -125,40 +88,24 @@ When enabled:
 
 This feature allows you to prevent specific people from being displayed in the slideshow.
 
-<Card title="Settings" icon="setting">
-    |         |                         |
-    | ------- | ----------------------- |
-    | CONFIG  | `excluded_people`       |
-    | ENV     | `KIOSK_EXCLUDED_PEOPLE` |
-    | URL     | `exclude_person`        |
-    | VALUE   | `[]string`              |
-    | DEFAULT | `[]`                    |
 
-#### Using with config.yaml file
+<Settings
+    config="excluded_people"
+    env="KIOSK_EXCLUDED_PEOPLE"
+    url="exclude_person"
+    value="[]string"
+    defaultValue="[]"
+    configOver={`excluded_people:
+    - PERSON_ID
+    - PERSON_ID
+    `}
+    envOver={`environment:
+    KIOSK_EXCLUDED_PEOPLE: "PERSON_ID, PERSON_ID"
+    `}
+    urlOver={"http://{URL}?exclude_person=PERSON_ID"}
+/>
 
-```yaml
-excluded_people:
-  - PERSON_ID
-  - PERSON_ID
-```
 
-#### Using with ENV in your docker-compose file
-
- use a `,` to separate IDs
-
-```yaml
-environment:
-  KIOSK_EXCLUDED_PEOPLE: "PERSON_ID,PERSON_ID,PERSON_ID"
-```
-
-#### Using with url queries
-
-Note it is `exclude_person=` and not `excluded_people=` in the url.
-
-```http
-http://{URL}?exclude_person=PERSON_ID&exclude_person=PERSON_ID&exclude_person=PERSON_ID
-```
-</Card>
 
 <Aside type="tip">
     You can remove all excluded people settings (from your `config.yaml` or environment variables) by using `none` in the URL query parameters.
@@ -184,7 +131,7 @@ Will use all named people.
 #### Using with config.yaml file
 
 ```yaml
-person:
+people:
   - all
 ```
 
@@ -192,7 +139,7 @@ person:
 
 ```yaml
 environment:
-  KIOSK_PERSON: "all"
+  KIOSK_PEOPLE: "all"
 ```
 
 #### Using with url queries

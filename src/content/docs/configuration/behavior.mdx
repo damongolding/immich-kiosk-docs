@@ -6,14 +6,14 @@ import { Aside } from '@astrojs/starlight/components';
 import Settings from "../../../components/config-settings.astro";
 
 
-## Refresh
+## Duration
 
 The amount of time in seconds an asset will be displayed for.
 
 <Settings
-  config="refresh"
-  env="KIOSK_REFRESH"
-  url="refresh"
+  config="duration"
+  env="KIOSK_DURATION"
+  url="duration"
   value="int"
   defaultValue="60"
 />
@@ -69,26 +69,26 @@ The duration of the cross-fade (in seconds) transition.
   defaultValue="1"
 />
 
-## Show Progress
+## Show Progress bar
 
 The duration of the cross-fade (in seconds) transition.
 
 <Settings
-  config="show_progress"
-  env="KIOSK_SHOW_PROGRESS"
-  url="show_progress"
+  config="show_progress_bar"
+  env="KIOSK_SHOW_PROGRESS_BAR"
+  url="show_progress_bar"
   value="bool"
   defaultValue="false"
 />
 
-## Progress position
+## Progress bar position
 
 Set the position of the progress bar.
 
 <Settings
-  config="progress_position"
-  env="KIOSK_PROGRESS_POSITION"
-  url="progress_position"
+  config="progress_bar_position"
+  env="KIOSK_PROGRESS_BAR_POSITION"
+  url="progress_bar_position"
   value="top | bottom"
   defaultValue="top"
 />
@@ -147,7 +147,6 @@ Allow assets marked as archived to be displayed.
   value="bool"
   defaultValue="false"
 />
-
 
 
 ## Use Original Image

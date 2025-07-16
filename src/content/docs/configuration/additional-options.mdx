@@ -1,5 +1,7 @@
 ---
 title: Additional Options
+sidebar:
+  badge: {"text":"Updated", "variant":"tip"}
 ---
 
 import { Aside } from '@astrojs/starlight/components';
@@ -34,7 +36,7 @@ Which port Kiosk should use. NOTE: This is only typically needed when running Ki
     defaultValue="3000"
 />
 
-## Behind Proxy :badge[New]
+## Behind Proxy
 
 If you are running Kiosk behind a proxy, set this to true. This will enable Kiosk to look up the `X-Forwarded-For` header to determine the client's IP address, which is used to create a unique device ID for each client.
 
@@ -49,7 +51,22 @@ If you are running Kiosk behind a proxy, set this to true. This will enable Kios
     defaultValue="false"
 />
 
-## Config Endpoint :badge[New]
+
+## Disable url queries :badge[New]{variant="note"}
+
+Disable overriding config options via the URL.
+
+<Settings
+    config="disable_url_queries"
+    configOver={`kiosk:
+    disable_url_queries: false
+    `}
+    env="KIOSK_DISABLE_URL_QUERIES"
+    url="N/A"
+    value="bool"
+    defaultValue="false"/>
+
+## Config Endpoint
 
 Disable the config endpoint which outputs a redacted version of the config.yaml file at `/config`.
 
@@ -143,7 +160,7 @@ environment:
 
 Then to access Kiosk you MUST add the password param in your URL e.g. `http://{URL}?password=12345`
 
-### Auth Headers :badge[Updated]{variant=tip}
+### Auth Headers
 
 You can authenticate requests by including either the `X-Api-Key` or `Authorization` header with your password value. This is an alternative to passing the password as a URL parameter.
 

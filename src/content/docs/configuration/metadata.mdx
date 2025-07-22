@@ -43,6 +43,13 @@ Switch to years after a certain age.
 | -------------------- | ----------------- |
 | `NAME (9y 4m)`       | `NAME (10)`       |
 
+
+### Always display year unit :badge[New]{variant=note}
+
+<Settings config="show_age_year_unit" env="KIOSK_SHOW_AGE_YEAR_UNIT" value="bool" defaultValue="false" />
+
+Set to true if you would prefer to always display the year unit e.g. `NAME (24y)`.
+
 ## Show Image Time
 
 Display image time from METADATA (if available).
@@ -121,7 +128,7 @@ List of countries to hide from image_location
 
 <Settings config="hide_countries" env="KIOSK_HIDE_COUNTRIES" value="[]string" defaultValue="[]" />
 
-## Show Image QR <Badge text="New" variant="note" />
+## Show Image QR
 
 Displays a QR code linking to the original image (in Immich) next to the image metadata.
 

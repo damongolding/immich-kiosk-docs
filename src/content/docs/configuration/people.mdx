@@ -12,7 +12,7 @@ import Settings from "../../../components/config-settings.astro";
 4. The persons ID is everything after `people/`, so in this example it would be `a04175f4-97bb-4d97-8d49-3700263043e5`.
 
 
-## Person
+## People
 
 The ID(s) of a specific person or people you want to display.
 
@@ -27,15 +27,10 @@ The ID(s) of a specific person or people you want to display.
     - PERSON_ID
     `}
     envOver={`environment:
-    KIOSK_PERSON: "PERSON_ID, PERSON_ID"
+    KIOSK_PEOPLE: "PERSON_ID, PERSON_ID"
     `}
     urlOver={"http://{URL}?person=PERSON_ID"}
 />
-
-
-### How multiple people work
-When you specify multiple people and/or albums, Immich Kiosk creates a pool of all the requested album and person IDs.
-For each image refresh, Kiosk randomly selects one ID from this pool and fetches an image associated with that person or album.
 
 
 ---

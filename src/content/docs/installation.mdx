@@ -178,36 +178,70 @@ It is recommended to avoid checking-in any secrets.
 
 ## API key permissions:
 
-<Aside type="caution">
-    As of Immich `v1.136.0`, your API key must have all permissions.
+<Aside type="note">
+    As of Immich `v1.137.0`, your API key can have fine-grained permissions.
 </Aside>
 
-<!-- To ensure Kiosk has full functionality, your API key should include the following permissions.
+To ensure Kiosk has full functionality, your API key should include the following permissions.
 
+```yaml
+# Asset
 - asset.read
 - asset.update
-- album.read
-- album.statistics
+- asset.view
+
+# Album
 - album.create
-- album.addAsset
-- album.removeAsset
+- album.read
 - album.update
-- person.read
-- person.statistics
-- tag.read
-- tag.asset
-- tag.create
-- archive.read # only needed if you want to use [show_archived](/configuration/behavior/#show-archived)
+- album.statistics
+# Album Assets
+- albumAsset.create
+- albumAsset.delete
+
+# Archive (used for "show_archived")
+- archive.read
+
+# Face (used for smart-zoom)
 - face.read
+
+# Memories
 - memory.read
 
+# Person
+- person.read
+- person.statistics
+
+# Server (used for the /about page)
+- server.about
+
+# Tag
+- tag.create
+- tag.read
+- tag.update
+- tag.asset
+
+# User (used to see asset onwership)
+- user.read
+```
+
+### Optional permissions
 
 If you do not intend to the the like/hide buttons, you can remove the following permissions:
 
+```yaml
+# Asset
+- asset.update
+
+# Album
 - album.create
-- album.addAsset
-- album.removeAsset
 - album.update
-- tag.asset
+# Album Assets
+- albumAsset.create
+- albumAsset.delete
+
+# Tag
 - tag.create
--->
+- tag.update
+- tag.asset
+```

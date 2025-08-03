@@ -56,8 +56,8 @@
     "description": "The source of the clock. Either client or server."
   },
   {
-    "yaml": "refresh",
-    "env": "KIOSK_REFRESH",
+    "yaml": "duration",
+    "env": "KIOSK_DURATION",
     "type": "int",
     "default": 60,
     "description": "The amount in seconds a image will be displayed for."

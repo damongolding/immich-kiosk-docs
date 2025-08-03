@@ -6,7 +6,7 @@ You can configure settings for individual devices through the URL. This feature 
 
 Example:
 ```http
-https://{URL}?refresh=120&background_blur=false&transition=none
+https://{URL}?duration=120&background_blur=false&transition=none
 ```
 
-The above would set refresh to 120 seconds (2 minutes), turn off the background blurred image and remove all transitions for this device/browser.
+The above would set `duration` to 120 seconds (2 minutes), turn off the background blurred image and remove all transitions for this device/browser.

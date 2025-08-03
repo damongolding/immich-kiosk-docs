@@ -28,12 +28,12 @@ The `/image/reload` endpoint does the same as [`/image`](#image) but wraps the s
 
 ### Accepted configuration
 The endpoint accepts the same options as [`/image`](#image) but also accepts:
-- [`refresh`](/configuration/behavior/#refresh).
+- [`duration`](/configuration/behavior/#duration).
 - [`image_fit`](/configuration/image-fit)
 
 Examples:
 - `http://{URL}/image/reload?album=ALBUM_ID`
-- `http://{URL}/image/reload?person=PERSON_ID&refresh=10`
+- `http://{URL}/image/reload?person=PERSON_ID&duration=10`
 - `http://{URL}/image/reload?date=last-30-days`
 - `http://{URL}/image/reload?tag=TAG_VALUE&image_fit=contain`
 - `http://{URL}/image/reload?tag=TAG_VALUE&image_fit=cover&album=ALBUM_ID&person=PERSON_ID`

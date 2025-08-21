@@ -55,4 +55,4 @@ Your changes will need to pass our automated checks before being merged.
 
 Need help? We're here for you!
 - Open an issue on GitHub
-- Chat with us in the [Discord channel](https://discord.com/channels/979116623879368755/1293191523927851099)
+- Chat with us in the [Discord channel](https://discord.gg/4uYz8pQmDH)

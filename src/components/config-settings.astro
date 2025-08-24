@@ -17,6 +17,7 @@ const { config, env, url, value, defaultValue, configOver, envOver, urlOver } =
     Astro.props;
 
 let dValue = defaultValue ?? '""';
+let defaultURL = url ?? config;
 
 const html = `
   <table>
@@ -42,7 +43,7 @@ const html = `
           <tr>
               <td>URL</td>
               <td>
-                  <code>${url}</code>
+                  <code>${defaultURL}</code>
               </td>
           </tr>
           <tr>
@@ -82,10 +83,10 @@ const html = `
     />
     }
 
-    { url !== "N/A" &&
+    { defaultURL !== "N/A" &&
     <h5>Using with url queries</h5>
     <Code
-        code={urlOver ? urlOver : `http://{URL}?${url}=${dValue}`}
+        code={urlOver ? urlOver : `http://{URL}?${defaultURL}=${dValue}`}
         lang="http"
     />
     }

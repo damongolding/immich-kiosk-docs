@@ -21,6 +21,23 @@ kiosk:
   prefetch: true
 ```
 
+
+## Config validation level :badge[New]{variant="note"}
+
+The config validation level determines how strict Kiosk is when validating the configuration. The default is `error`, which will cause Kiosk to exit if the configuration is invalid. The other options are `warning` and `off`, which will log a warning or bypass the validation.
+
+<Settings
+    config="config_validation_level"
+    configOver={`kiosk:
+    config_validation_level: error
+    `}
+    env="KIOSK_CONFIG_VALIDATION_LEVEL"
+    url="N/A"
+    value="error | warning | off"
+    defaultValue="error"
+/>
+
+
 ## Port
 
 Which port Kiosk should use. NOTE: This is only typically needed when running Kiosk outside of a container. If you are running inside a container the port will need to be reflected in your compose file, e.g. `HOST_PORT:KIOSK_PORT`
@@ -52,7 +69,7 @@ If you are running Kiosk behind a proxy, set this to true. This will enable Kios
 />
 
 
-## Disable url queries :badge[New]{variant="note"}
+## Disable url queries
 
 Disable overriding config options via the URL.
 

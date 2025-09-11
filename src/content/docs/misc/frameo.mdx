@@ -34,24 +34,18 @@ If you have a Frameo frame device and want to use Kiosk on it, follow these step
 <Steps>
 
     1. Connect USB-C cable from the Frameo Frame to computer through a USB-A port
-
     2. On the computer list devices
-    ```sh
-       adb devices
-    ```
-
-   3. If the list of devices has `Unauthorized` next to it then you will need to go to `Settings->About->Enable Beta Program.` and toggle it back and forth
-
+        ```sh
+        adb devices
+        ```
+    3. If the list of devices has `Unauthorized` next to it then you will need to go to `Settings->About->Enable Beta Program.` and toggle it back and forth
         a. A reboot might be needed as well
-
-   4. The list of devices should show `device` next to the frame that is attached via USB. If that isn't the case, then go back to step 3.
-
-   5. Enable tcpip on the frame
-   ```sh
-      adb tcpip 55555
-   ```
-
-   6. You can now continue with the steps below
+    4. The list of devices should show `device` next to the frame that is attached via USB. If that isn't the case, then go back to step 3.
+    5. Enable tcpip on the frame
+        ```sh
+        adb tcpip 55555
+        ```
+    6. You can now continue with the steps below
 </Steps>
 
 ## Updating the system WebView

@@ -1,5 +1,7 @@
 ---
 title: Tags
+sidebar:
+  badge: {"text":"Updated", "variant":"tip"}
 ---
 
 import { Aside } from '@astrojs/starlight/components';
@@ -35,8 +37,31 @@ A date range or ranges. See Date range for more information.
 When you specify multiple tags, Immich Kiosk creates a pool of all the requested tag values.
 For each asset refresh, Kiosk randomly selects one of the tag values from this pool and fetches an asset associated with it.
 
-## Special tags
+---
 
+## Excluded Tags :badge[New]{variant="note"}
+
+You can use this feature to hide assets with certain tags from appearing in the slideshow.
+
+<Settings
+    config="excluded_tags"
+    env="KIOSK_EXCLUDED_TAGS"
+    url="exclude_tag"
+    value="[]string"
+    defaultValue="[]"
+    configOver={`excluded_tags:
+    - TAG_VALUE
+    - TAG_VALUE
+    `}
+    envOver={`environment:
+    KIOSK_EXCLUDED_TAGS: "TAG_VALUE, TAG_VALUE, TAG_VALUE"
+    `}
+    urlOver={"http://{URL}?exclude_tag=TAG_VALUE&exclude_tag=TAG_VALUE&exclude_tag=TAG_VALUE"}
+/>
+
+---
+
+## Special tags
 
 ### Skip
 Tagging an asset with "kiosk-skip" will exclude it from displaying.

@@ -1,5 +1,7 @@
 ---
 title: Image Endpoint
+sidebar:
+  badge: {"text":"Updated", "variant":"tip"}
 ---
 
 ## `/image`
@@ -7,7 +9,9 @@ title: Image Endpoint
 Kiosk exposes a `/image` endpoint that serves up a raw image rather then HTML.
 
 ### Accepted configuration
-The endpoint accepts all of the "bucket" options (`album`, `person`, `date` and `tag`).
+The endpoint accepts:
+- All of the "bucket" options (`album`, `person`, `date` and `tag`).
+- portrait and landscape layout options.
 
 Examples:
 - `http://{URL}/image?album=ALBUM_ID`
@@ -15,6 +19,8 @@ Examples:
 - `http://{URL}/image?date=last-30-days`
 - `http://{URL}/image?tag=TAG_VALUE`
 - `http://{URL}/image?tag=TAG_VALUE&album=ALBUM_ID&person=PERSON_ID`
+- `http://{URL}/image?layout=portrait`
+- `http://{URL}/image?layout=landscape`
 
 
 ### Use Cases

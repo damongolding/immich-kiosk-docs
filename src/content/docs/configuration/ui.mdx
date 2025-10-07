@@ -1,11 +1,13 @@
 ---
 title: User Interface
+sidebar:
+  badge: {"text":"Updated", "variant":"tip"}
 ---
 
 import { Aside } from '@astrojs/starlight/components';
 import Settings from "../../../components/config-settings.astro";
 
-## Disable Navigation
+## Disable navigation
 
 Disable all Kiosk’s navigation (touch/click, keyboard and menu).
 
@@ -53,7 +55,47 @@ Remove borders and rounded corners on images.
     defaultValue="false"
 />
 
-## Hide Cursor
+## Frame padding :badge[New]{variant="note"}
+
+Add padding around the outside of Kiosk.
+
+<Settings
+    config="frame_padding"
+    env="KIOSK_FRAME_PADDING"
+    url="frame_padding"
+    value="int | []int"
+    defaultValue="0"
+/>
+
+### Frame padding examples
+
+#### Single padding
+```yaml
+frame_padding: 10 ## add 10px padding around the outside of Kiosk
+```
+
+#### Top and bottom padding
+```yaml
+frame_padding: [10, 20] ## add 10px padding top and bottom, 20px padding right and left
+```
+
+#### Top, right, left and bottom padding
+```yaml
+frame_padding: [10, 20, 30, 40] ## add 10px padding top, 20px padding right, 30px padding bottom, 40px padding left
+```
+
+#### URL params
+##### Add 10px top and bottom and 20px left and right padding via URL
+```url
+https://example.com?frame_padding=10&frame_padding=20
+```
+
+##### Add 10px top, 20px right, 30px bottom and 40px left padding via URL
+```url
+https://example.com?frame_padding=10&frame_padding=20&frame_padding=30&frame_padding=40
+```
+
+## Hide cursor
 
 Hide cursor/mouse via CSS.
 
@@ -67,7 +109,7 @@ Hide cursor/mouse via CSS.
 
 
 
-## Font Size
+## Font size
 
 The base font size for Kiosk. Default is 100% (16px). DO NOT include the % character.
 
@@ -80,7 +122,7 @@ The base font size for Kiosk. Default is 100% (16px). DO NOT include the % chara
 />
 
 
-## Background Blur
+## Background blur
 
 Display a blurred version of the image as a background.
 
@@ -93,7 +135,7 @@ Display a blurred version of the image as a background.
 />
 
 
-## Background Blur Amount
+## Background blur amount
 
 The amount of blur to apply to the background image (sigma).
 

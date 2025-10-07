@@ -1,0 +1,34 @@
+---
+title: Partners
+sidebar:
+  badge: {"text":"New", "variant":"note"}
+---
+
+import { Aside } from '@astrojs/starlight/components';
+import Settings from "../../../components/config-settings.astro";
+
+## Getting a partner ID from Immich
+1. Open Immich's web interface and click on "Sharing" in the left-hand navigation.
+2. Click on the partner you want the ID of.
+3. The url will now look something like this `http://192.168.86.123:2283/partners/a04175f4-97bb-4d97-8d49-3700263043e5`.
+4. The partner ID is everything after `partners/`, so in this example it would be `a04175f4-97bb-4d97-8d49-3700263043e5`.
+
+## Exclude partners
+
+This feature allows you to prevent partner(s) assets from being displayed in the slideshow.
+
+<Settings
+    config="excluded_partners"
+    env="KIOSK_EXCLUDED_PARTNERS"
+    url="exclude_partner"
+    value="[]string"
+    defaultValue="[]"
+    configOver={`excluded_partners:
+    - PARTNER_ID
+    - PARTNER_ID
+    `}
+    envOver={`environment:
+    KIOSK_EXCLUDED_PARTNERS: "PARTNER_ID, PARTNER_ID"
+    `}
+    urlOver={"http://{URL}?exclude_partner=PARTNER_ID"}
+/>

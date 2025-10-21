@@ -7,39 +7,18 @@ sidebar:
 ---
 
 import { Aside } from '@astrojs/starlight/components';
-import { Card } from '@astrojs/starlight/components';
-
+import Settings from "../../../components/config-settings.astro";
 
 ## Immich API key
 
 The API for your Immich server.
 
-<Card title="Settings" icon="setting">
-|         |                        |
-| ------- | ---------------------- |
-| CONFIG  | `immich_api_key`       |
-| ENV     | `KIOSK_IMMICH_API_KEY` |
-| URL     | `N/A`                  |
-| VALUE   | `string`               |
-| DEFAULT | `""`                   |
-
-#### Using with config.yaml file
-
-```yaml
-immich_api_key: ******
-```
-
-#### Using with ENV in your docker-compose file
-
-```yaml
-environment:
-  KIOSK_IMMICH_API_KEY: ******
-```
-
-#### Using with url queries
-N/A
-
-</Card>
+<Settings
+    config="immich_api_key"
+    env="KIOSK_IMMICH_API_KEY"
+    url="N/A"
+    value="string"
+/>
 
 ---
 
@@ -47,32 +26,12 @@ N/A
 
 The URL of your Immich server. MUST include a port if one is needed e.g. `http://192.168.1.123:2283`.
 
-<Card title="Settings" icon="setting">
-|         |                    |
-| ------- | ------------------ |
-| CONFIG  | `immich_url`       |
-| ENV     | `KIOSK_IMMICH_URL` |
-| URL     | `N/A`              |
-| VALUE   | `string`           |
-| DEFAULT | `""`               |
-
-#### Using with config.yaml file
-
-```yaml
-immich_url: http://192.168.1.123:2283
-```
-
-#### Using with ENV in your docker-compose file
-
-```yaml
-environment:
-  KIOSK_IMMICH_URL: http://192.168.1.123:2283
-```
-
-#### Using with url queries
-N/A
-
-</Card>
+<Settings
+    config="immich_url"
+    env="KIOSK_IMMICH_URL"
+    url="N/A"
+    value="string"
+/>
 
 ---
 
@@ -84,29 +43,65 @@ Example: `https://photos.example.com`.
 
 If not set, falls back to immich_url.
 
-<Card title="Settings" icon="setting">
-|         |                             |
-| ------- | --------------------------- |
-| CONFIG  | `immich_external_url`       |
-| ENV     | `KIOSK_IMMICH_EXTERNAL_URL` |
-| URL     | `N/A`              |
-| VALUE   | `string`                    |
-| DEFAULT | `""`                        |
+<Settings
+    config="immich_external_url"
+    env="KIOSK_IMMICH_EXTERNAL_URL"
+    url="N/A"
+    value="string"
+/>
 
-#### Using with config.yaml file
+## Secrets :badge[New]{variant="note"}
+
+#### Supported Variables
+
+| config          | ENV |
+| --------------- | ------------------------- |
+| immich_api_key  | KIOSK_IMMICH_API_KEY_FILE |
+
+
+### Docker secrets
+
+You may also supply select variables via a docker secret. You will need to create a docker secret, add that secret to the Kiosk service, then tell Kiosk where to find the secret via the environment variable e.g. `KIOSK_IMMICH_API_KEY_FILE`.
+
+#### Example with a minimal docker-compose file
 
 ```yaml
-immich_external_url: https://photos.example.com
+services:
+  immich-kiosk:
+    image: ghcr.io/damongolding/immich-kiosk:latest
+    environment:
+      KIOSK_IMMICH_URL: http://192.168.1.123:2283
+      KIOSK_IMMICH_API_KEY_FILE: /run/secrets/immich_api_key
+    secrets:
+      - immich_api_key
+
+secrets:
+  immich_api_key:
+    file: /path/to/immich_api_key.txt
 ```
 
-#### Using with ENV in your docker-compose file
+### Systemd credential :badge[New]{variant="note"}
 
-```yaml
-environment:
-  KIOSK_IMMICH_EXTERNAL_URL: https://photos.example.com
+You may also supply select variables via systemd credentials.
+
+#### Example with a minimal service file
+
+```ini
+[Unit]
+Description=Immich Kiosk Service
+After=network.target
+
+[Service]
+Type=simple
+User=immichkiosk
+Group=immichkiosk
+WorkingDirectory=/opt/immich-kiosk
+Environment="KIOSK_IMMICH_URL=http://192.168.1.123:2283"
+LoadCredential=immich_api_key:/path/to/immich_api_key.txt
+ExecStart=/opt/immich-kiosk/immich-kiosk
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
 ```
-
-#### Using with url queries
-N/A
-
-</Card>

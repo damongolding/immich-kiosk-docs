@@ -1,5 +1,7 @@
 ---
 title: Additional Options
+sidebar:
+  badge: {"text":"Updated", "variant":"tip"}
 ---
 
 import { Aside } from '@astrojs/starlight/components';
@@ -91,6 +93,20 @@ Disable the config endpoint which outputs a redacted version of the config.yaml 
     disable_config_endpoint: false
     `}
     env="KIOSK_DISABLE_CONFIG_ENDPOINT"
+    url="N/A"
+    value="bool"
+    defaultValue="false"/>
+
+## URL Builder :badge[New]{variant="note"}
+
+Enable the URL builder endpoint at `/url-builder`.
+
+<Settings
+    config="enable_url_builder"
+    configOver={`kiosk:
+    enable_url_builder: false
+    `}
+    env="KIOSK_ENABLE_URL_BUILDER"
     url="N/A"
     value="bool"
     defaultValue="false"/>

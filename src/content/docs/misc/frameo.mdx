@@ -58,6 +58,13 @@ If you have a Frameo frame device and want to use Kiosk on it, follow these step
     A big thank you to [Rob](https://github.com/3rob3). This guide wouldn’t be possible without his help!
 </Acknowledgement>
 
+<Aside type="tip">
+    The location of the WebView APK may vary depending on your device or Android version. To find its path, use:
+    ```sh
+    adb shell pm path com.android.webview
+    ```
+</Aside>
+
 Frameo frame device normally come with a very old system WebView that is not compatible with Kiosk. To update the WebView, follow these steps:
 
 <Steps>

@@ -260,3 +260,15 @@ Balances asset selection when multiple sources are used, e.g. multiple people an
     value="bool"
     defaultValue="true"
 />
+
+## Logging 
+
+The logging level determines how much information is logged by Kiosk. The default is `warning`, which will log warnings and errors. The other options are `error`, `info`, `debug`, and `verbose`, which will log more information.
+
+<Settings
+    config="N/A"
+    env="KIOSK_LOG_LEVEL"
+    url="N/A"
+    value="error | warning | info | debug | verbose"
+    defaultValue="warning"
+/>

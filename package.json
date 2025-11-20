@@ -12,8 +12,10 @@
   "dependencies": {
     "@astrojs/starlight": "^0.36.2",
     "@lorenzo_lewis/starlight-utils": "^0.3.2",
-    "astro": "^5.15.4",
-    "sharp": "^0.34.4",
+    "astro": "^5.16.0",
+    "node-addon-api": "^8.5.0",
+    "node-gyp": "^12.1.0",
+    "sharp": "^0.34.5",
     "starlight-heading-badges": "^0.6.1"
   }
 }

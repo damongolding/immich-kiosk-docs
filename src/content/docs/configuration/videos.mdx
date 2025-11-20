@@ -1,0 +1,63 @@
+---
+title: Videos
+sidebar:
+  badge: {"text":"New", "variant":"note"}
+---
+
+import { Aside } from '@astrojs/starlight/components';
+import Settings from "../../../components/config-settings.astro";
+
+## Show videos :badge[New]{variant="note"}
+
+<Aside type="caution">
+This feature comes with certain limitations:
+- Videos will autoplay with audio muted.
+- The `show_videos` setting must be enabled.
+- The `prefetch` setting must be enabled.
+- Browser codec support may vary.
+</Aside>
+
+<Settings
+    config="show_videos"
+    env="KIOSK_SHOW_VIDEOS"
+    url="show_videos"
+    value="bool"
+    defaultValue="false"
+/>
+
+
+### Video Optimization Recommendations
+
+For optimal playback performance, it's strongly recommended to transcode your videos. This can be configured in Immich:
+```
+Admin Panel -> System Settings -> Video Transcoding
+```
+
+**Recommended Settings:**
+- Codec: H264 (for maximum browser compatibility)
+- Target Resolution: Select the lowest acceptable resolution for your needs
+
+### How Video Playback Works
+
+1. **Video Selection Process:**
+   - When Kiosk selects a video, it first checks if the video is cached.
+   - Videos are temporarily stored in the operating system's temp directory.
+   - If not cached, the video downloads in the background while another asset is displayed.
+
+2. **Cache Management:**
+   - Downloaded videos are queued for display once ready.
+   - Cached videos are automatically removed after 10 minutes of inactivity to conserve disk space.
+   - Videos are automatically removed when Kiosk shuts down.
+
+3. **Playback Handling:**
+   Kiosk will skip to the next asset if any of these conditions occur:
+   - Video codec is unsupported by the browser
+   - Playback doesn't start within 5 seconds
+   - Video playback completes
+   - Any playback errors are detected
+
+### Troubleshooting Tips
+- Ensure your videos are transcoded to H264 format.
+- Check browser compatibility with your video codecs.
+- Verify that `prefetch` is enabled in your configuration.
+- Monitor system storage for cached video files.

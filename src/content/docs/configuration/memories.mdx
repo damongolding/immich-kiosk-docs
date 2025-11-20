@@ -1,10 +1,31 @@
 ---
 title: Memories
+sidebar:
+  badge: {"text":"Updated", "variant":"tip"}
 ---
 
 import { Aside } from '@astrojs/starlight/components';
 import Settings from "../../../components/config-settings.astro";
 
+## Memories
+
 Display memories.
 
-<Settings config="memories" env="KIOSK_MEMORIES" url="memories" value="bool" defaultValue="false" />
+<Settings 
+  config="memories" 
+  env="KIOSK_MEMORIES" 
+  url="memories" 
+  value="bool" 
+  defaultValue="false" />
+
+
+## Include past memories :badge[New]{variant="note"}
+
+Include memories from the last N days. 0 shows only today.
+
+<Settings 
+  config="past_memory_days" 
+  env="KIOSK_PAST_MEMORY_DAYS" 
+  url="past_memory_days" 
+  value="int" 
+  defaultValue="0" />

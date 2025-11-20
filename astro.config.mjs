@@ -96,6 +96,9 @@ export default defineConfig({
             { slug: "configuration/themes" },
             { slug: "configuration/layouts" },
             {
+              slug: "configuration/videos",
+            },
+            {
               slug: "configuration/live-photos",
             },
             { slug: "configuration/weather" },

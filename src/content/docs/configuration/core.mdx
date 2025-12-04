@@ -45,10 +45,11 @@ Secrets can be used to securely pass sensitive information such as API keys or p
 
 #### Supported Variables
 
-| config                                                                              | ENV                       |
-| ----------------------------------------------------------------------------------- | ------------------------- |
-| immich_api_key                                                                      | KIOSK_IMMICH_API_KEY_FILE |
-| [password](https://docs.immichkiosk.app/configuration/additional-options/#password) | KIOSK_PASSWORD_FILE       |
+| config                                                                              | ENV                        |
+| ----------------------------------------------------------------------------------- | -------------------------- |
+| immich_api_key                                                                      | KIOSK_IMMICH_API_KEY_FILE  |
+| [password](https://docs.immichkiosk.app/configuration/additional-options/#password) | KIOSK_PASSWORD_FILE        |
+| weather.api_key                                                                     | KIOSK_WEATHER_API_KEY_FILE |
 
 ### Docker secrets
 
@@ -64,15 +65,19 @@ services:
       KIOSK_IMMICH_URL: http://192.168.1.123:2283
       KIOSK_IMMICH_API_KEY_FILE: /run/secrets/immich_api_key
       KIOSK_PASSWORD_FILE: /run/secrets/password
+      KIOSK_WEATHER_API_KEY_FILE: /run/secrets/weather_api_key
     secrets:
       - immich_api_key
       - password
+      - weather_api_key
 
 secrets:
   immich_api_key:
     file: /path/to/immich_api_key.txt
   password:
     file: /path/to/password.txt
+  weather_api_key:
+    file: /path/to/weather_api_key.txt
 ```
 
 ### Systemd credential :badge[New]{variant="note"}

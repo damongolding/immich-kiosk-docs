@@ -5,6 +5,11 @@ title: Weather
 import { Aside } from '@astrojs/starlight/components';
 import Settings from "../../../components/config-settings.astro";
 
+<Aside type="caution">This feature can only be configured using a `config.yaml` file.</Aside>
+
+<Aside type="note">To use the weather feature, you’ll need an API key from [OpenWeatherMap](https://openweathermap.org).</Aside>
+
+<Aside type="tip">OpenWeatherMap limits API usage to 60 calls per hour. Since the kiosk refreshes weather data every 10 minutes, you can monitor up to 6 locations with a single API key.</Aside>
 
 <Settings
     config="weather"
@@ -23,11 +28,6 @@ import Settings from "../../../components/config-settings.astro";
     `}
 />
 
-<Aside type="caution">This feature can only be configured using a `config.yaml` file.</Aside>
-
-<Aside type="note">To use the weather feature, you’ll need an API key from [OpenWeatherMap](https://openweathermap.org).</Aside>
-
-<Aside type="tip">OpenWeatherMap limits API usage to 60 calls per hour. Since the kiosk refreshes weather data every 10 minutes, you can monitor up to 6 locations with a single API key.</Aside>
 
 ### Setting Up Weather Locations
 

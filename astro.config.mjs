@@ -6,6 +6,7 @@ import starlightHeadingBadges from "starlight-heading-badges";
 
 // https://astro.build/config
 export default defineConfig({
+  site: "https://immich-kiosk-docs.com",
   integrations: [
     starlight({
       title: "Immich Kiosk",

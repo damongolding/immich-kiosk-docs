@@ -4,7 +4,7 @@ sidebar:
   order: 1
 ---
 
-import { Aside, Steps } from '@astrojs/starlight/components';
+import { Aside, Steps, Tabs, TabItem } from '@astrojs/starlight/components';
 import  Acknowledgement from '../../../components/acknowledgement.astro';
 
 
@@ -111,82 +111,93 @@ Frameo frame device normally come with a very old system WebView that is not com
 
 </Steps>
 
+## Displaying Kiosk on your Frameo
 
-## Installing Fully Kiosk Browser
+Below are the two most common apps used to display the Kiosk on Frameos. Please note that you do not need to install both apps.
 
-<Aside type="tip">
-    Setting `sleep_dim_screen=true` will automatically dim the screen when the device enters sleep mode.
-</Aside>
+<Tabs syncKey="display_app">
+    <TabItem label="Fully Kiosk Browser">
 
-<Steps>
-    1. Download the latest Fully Kiosk Browser apk from [here](https://www.fully-kiosk.com/files/2025/01/Fully-Kiosk-Browser-v1.57.1.apk)
+        #### Installing Fully Kiosk Browser
+      
+        <Aside type="tip">
+          Setting `sleep_dim_screen=true` will automatically dim the screen when the device enters sleep mode.
+        </Aside>
+      
+        <Steps>
+        1. Download the latest Fully Kiosk Browser apk from [here](https://www.fully-kiosk.com/files/2025/01/Fully-Kiosk-Browser-v1.57.1.apk)
+      
+        2. Connect to your device with adb
+           ```sh
+           adb connect <device_ip>:5555
+           ```
+      
+        3. Install the Fully Kiosk Browser apk
+           ```sh
+           adb install path/to/downloaded/Fully-Kiosk-Browser.apk
+           ```
+      
+        4. Start the Fully Kiosk Browser app
+           ```sh
+           adb shell am start -n de.ozerov.fully/.MainActivity
+           ```
+      
+        </Steps>
+        
+    </TabItem>
+  
+  <TabItem label="ImmichFrame">
+      #### Installing ImmichFrame
+    
+      <Aside type="tip">
+        Setting `sleep_dim_screen=true` will automatically dim the screen when the device enters sleep mode.
+      </Aside>
+    
+    Although Kiosk doesn’t have its own dedicated Android app, the ImmichFrame team has developed a native Android application that’s compatible with Kiosk.
+    
+    <Aside type="note">
+        The ImmicFrame app has an option to set an authsecret in the settings. This will be passed along to Kiosk as the [password](/configuration/additional-options/#password).
+    </Aside>
+    
+    <Steps>
+        1. Download the latest ImmichFrame apk from [here](https://github.com/immichFrame/ImmichFrame_Android/releases)
+    
+        2. Connect to your device with adb
+           ```sh
+           adb connect <device_ip>:5555
+           ```
+    
+        3. Install the ImmichFrame apk
+           ```sh
+           adb install path/to/downloaded/immichframe.apk
+           ```
+    </Steps>
+    
+    #### Uninstall ImmichFrame
+    
+    <Steps>
+        1. Connect to your device with adb
+           ```sh
+           adb connect <device_ip>:5555
+           ```
+    
+        2. Uninstall the ImmichFrame app
+           ```sh
+           adb uninstall com.immichframe.immichframe
+           ```
+    
+        3. Enable the Frameo app
+           ```sh
+           pm enable net.frameo.frame
+           ```
+    </Steps>
 
-    2. Connect to your device with adb
-       ```sh
-       adb connect <device_ip>:5555
-       ```
-
-    3. Install the Fully Kiosk Browser apk
-       ```sh
-       adb install path/to/downloaded/Fully-Kiosk-Browser.apk
-       ```
-
-    4. Start the Fully Kiosk Browser app
-       ```sh
-       adb shell am start -n de.ozerov.fully/.MainActivity
-       ```
-
-</Steps>
+    </TabItem>
+</Tabs>
 
 
-### Disable Frameo app
 
-<Steps>
-    1. Enter root
-       ```sh
-       adb shell su
-       ```
-
-    2. Disable the Frameo app
-       ```sh
-       pm disable net.frameo.frame
-       ```
-
-    3. Exit root
-       ```sh
-       exit
-       ```
-</Steps>
-
-## Installing ImmichFrame
-
-<Aside type="tip">
-    Setting `sleep_dim_screen=true` will automatically dim the screen when the device enters sleep mode.
-</Aside>
-
-Although Kiosk doesn’t have its own dedicated Android app, the ImmichFrame team has developed a native Android application that’s compatible with Kiosk.
-
-<Aside type="note">
-    The ImmicFrame app has an option to set an authsecret in the settings. This will be passed along to Kiosk as the [password](/configuration/additional-options/#password).
-</Aside>
-
-<Steps>
-    1. Download the latest ImmichFrame apk from [here](https://github.com/immichFrame/ImmichFrame_Android/releases)
-
-    2. Connect to your device with adb
-       ```sh
-       adb connect <device_ip>:5555
-       ```
-
-    3. Install the ImmichFrame apk
-       ```sh
-       adb install path/to/downloaded/immichframe.apk
-       ```
-
-</Steps>
-
-
-### Disable Frameo app
+## Disable Frameo app
 
 <Steps>
     1. Connect to your device with adb
@@ -207,25 +218,5 @@ Although Kiosk doesn’t have its own dedicated Android app, the ImmichFrame tea
     4. Exit root
        ```sh
        exit
-       ```
-</Steps>
-
-
-### Uninstall ImmichFrame
-
-<Steps>
-    1. Connect to your device with adb
-       ```sh
-       adb connect <device_ip>:5555
-       ```
-
-    2. Uninstall the ImmichFrame app
-       ```sh
-       adb uninstall com.immichframe.immichframe
-       ```
-
-    3. Enable the Frameo app
-       ```sh
-       pm enable net.frameo.frame
        ```
 </Steps>

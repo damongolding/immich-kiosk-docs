@@ -1,5 +1,7 @@
 ---
 title: Behavior
+sidebar:
+  badge: {"text":"Updated", "variant":"tip"}
 ---
 
 import { Aside } from '@astrojs/starlight/components';
@@ -133,6 +135,47 @@ Enable GPU acceleration for improved performance (e.g., CSS transforms)
   url="use_gpu"
   value="bool"
   defaultValue="true"
+/>
+
+
+## Burn-in protection :badge[New]{variant="note"}
+
+Burn-in protection helps reduce the risk of permanent image retention on displays that show static content for long periods of time. When enabled, Immich Kiosk periodically dims static interface elements such as the clock, icons, and image metadata. The dimming effect runs at a configurable interval, lasts for a short duration, and then smoothly returns to full opacity. This behaviour is subtle by design and is intended to protect OLED, AMOLED, and other long-running displays without distracting from the slideshow experience.
+
+### Burn-in interval :badge[New]{variant="note"}
+
+The interval (in minutes) between burn-in protection cycles (0 to disable).
+
+<Settings
+  config="burn_in_interval"
+  env="KIOSK_BURN_IN_INTERVAL"
+  url="burn_in_interval"
+  value="int"
+  defaultValue="0"
+/>
+
+### Burn-in duration :badge[New]{variant="note"}
+
+The duration of each burn-in protection cycle (seconds).
+
+<Settings
+  config="burn_in_duration"
+  env="KIOSK_BURN_IN_DURATION"
+  url="burn_in_duration"
+  value="int"
+  defaultValue="30"
+/>
+
+### Burn-in opacity :badge[New]{variant="note"}
+
+The opacity the UI will dip to, as a percentage.
+
+<Settings
+  config="burn_in_opacity"
+  env="KIOSK_BURN_IN_OPACITY"
+  url="burn_in_opacity"
+  value="int"
+  defaultValue="30"
 />
 
 

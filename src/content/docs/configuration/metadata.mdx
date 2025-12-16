@@ -1,5 +1,7 @@
 ---
 title: Metadata
+sidebar:
+  badge: {"text":"Updated", "variant":"tip"}
 ---
 
 import { Aside, Badge } from "@astrojs/starlight/components";
@@ -107,6 +109,12 @@ These examples assume that today's date is the 22nd of August 2024.
 Display image description from METADATA (if available).
 
 <Settings config="show_image_description" env="KIOSK_SHOW_IMAGE_DESCRIPTION" value="bool" defaultValue="false" />
+
+## Show Image Camera :badge[New]{variant="note"}
+
+Display camera make and model from METADATA (if available).
+
+<Settings config="show_image_camera" env="KIOSK_SHOW_IMAGE_CAMERA" value="bool" defaultValue="false" />
 
 ## Show Image Exif
 

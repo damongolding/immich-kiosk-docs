@@ -1,9 +1,23 @@
 ---
 title: User Interface
+sidebar:
+  badge: {"text":"Updated", "variant":"tip"}
 ---
 
 import { Aside } from '@astrojs/starlight/components';
 import Settings from "../../../components/config-settings.astro";
+
+## Clear cache menu button :badge[New]{variant="note"}
+
+Show a menu button to clear the Kiosk server cache.
+
+<Settings
+    config="show_clear_cache_button"
+    env="KIOSK_SHOW_CLEAR_CACHE_BUTTON"
+    url="show_clear_cache_button"
+    value="bool"
+    defaultValue="false"
+/>
 
 ## Disable navigation
 

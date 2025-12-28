@@ -169,7 +169,7 @@ Your device should now show as `device` (not `unauthorized`) without needing to 
     1. First, connect via USB (see Option 1 above)
     2. Enable ADB over network:
         ```sh
-        adb tcpip 55555
+        adb tcpip 5555
         ```
     3. Find your device's IP address:
         ```sh
@@ -179,9 +179,9 @@ Your device should now show as `device` (not `unauthorized`) without needing to 
     4. Disconnect USB cable
     5. Connect via network:
         ```sh
-        adb connect <device_ip>:55555
+        adb connect <device_ip>:5555
         ```
-        Example: `adb connect 192.168.1.100:55555`
+        Example: `adb connect 192.168.1.100:5555`
     6. Verify connection:
         ```sh
         adb devices
@@ -191,7 +191,7 @@ Your device should now show as `device` (not `unauthorized`) without needing to 
 **When using network ADB:** Replace commands throughout this guide that start with `adb` with the network connection first. For example:
 ```sh
 # If using network ADB, connect first:
-adb connect 192.168.1.100:55555
+adb connect 192.168.1.100:5555
 
 # Then run your command:
 adb install ImmichFrame_v48.apk

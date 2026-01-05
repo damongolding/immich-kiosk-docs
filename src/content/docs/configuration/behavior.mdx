@@ -1,7 +1,5 @@
 ---
 title: Behavior
-sidebar:
-  badge: {"text":"Updated", "variant":"tip"}
 ---
 
 import { Aside } from '@astrojs/starlight/components';
@@ -138,11 +136,11 @@ Enable GPU acceleration for improved performance (e.g., CSS transforms)
 />
 
 
-## Burn-in protection :badge[New]{variant="note"}
+## Burn-in protection
 
 Burn-in protection helps reduce the risk of permanent image retention on displays that show static content for long periods of time. When enabled, Immich Kiosk periodically dims static interface elements such as the clock, icons, and image metadata. The dimming effect runs at a configurable interval, lasts for a short duration, and then smoothly returns to full opacity. This behaviour is subtle by design and is intended to protect OLED, AMOLED, and other long-running displays without distracting from the slideshow experience.
 
-### Burn-in interval :badge[New]{variant="note"}
+### Burn-in interval
 
 The interval (in minutes) between burn-in protection cycles (0 to disable).
 
@@ -154,7 +152,7 @@ The interval (in minutes) between burn-in protection cycles (0 to disable).
   defaultValue="0"
 />
 
-### Burn-in duration :badge[New]{variant="note"}
+### Burn-in duration
 
 The duration of each burn-in protection cycle (seconds).
 

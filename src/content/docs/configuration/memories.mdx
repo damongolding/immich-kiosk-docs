@@ -1,5 +1,7 @@
 ---
 title: Memories
+sidebar:
+  badge: {"text":"Updated", "variant":"tip"}
 ---
 
 import { Aside } from '@astrojs/starlight/components';
@@ -27,3 +29,15 @@ Include memories from the last N days. 0 shows only today.
   url="past_memory_days" 
   value="int" 
   defaultValue="0" />
+
+
+## Memory weighting :badge[New]{variant="note"}
+
+Weight of memories. 1.0 is normal, 0.5 is half weight.
+
+<Settings 
+  config="memory_weight" 
+  env="KIOSK_MEMORY_WEIGHT" 
+  url="memory_weight" 
+  value="float" 
+  defaultValue="1.0" />

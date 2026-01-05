@@ -2,7 +2,7 @@
 title: Weather
 ---
 
-import { Aside } from '@astrojs/starlight/components';
+import { Aside } from "@astrojs/starlight/components";
 import Settings from "../../../components/config-settings.astro";
 
 <Aside type="caution">This feature can only be configured using a `config.yaml` file.</Aside>
@@ -12,22 +12,22 @@ import Settings from "../../../components/config-settings.astro";
 <Aside type="tip">OpenWeatherMap limits API usage to 60 calls per hour. Since the kiosk refreshes weather data every 10 minutes, you can monitor up to 6 locations with a single API key.</Aside>
 
 <Settings
-    config="weather"
-    env="N/A"
-    url="N/A"
-    value="[]WeatherLocation"
-    defaultValue="[]"
-    configOver={`weather:
+  config="weather"
+  env="N/A"
+  url="N/A"
+  value="[]WeatherLocation"
+  defaultValue="[]"
+  configOver={`weather:
     - name: london
       lat: 51.5285262
       lon: -0.2663999
       api: API_KEY
       unit: metric
+      round_temperature: false
       lang: en
       default: false
     `}
 />
-
 
 ### Setting Up Weather Locations
 
@@ -37,15 +37,16 @@ You can configure multiple locations in the `config.yaml` file, and choose which
 
 <Aside type="tip">If you would prefer to use the location name from OpenWeatherMap's API, add "-api" to the end of the name. e.g. `name: london-api`</Aside>
 
-| **Value** | **Description**                                                                                              |
-| --------- | ------------------------------------------------------------------------------------------------------------ |
-| name      | The location’s display name (used in the URL query).                                                         |
-| lat       | Latitude of the location.                                                                                    |
-| lon       | Longitude of the location.                                                                                   |
-| api       | OpenWeatherMap API key.                                                                                      |
-| unit      | Units of measurement (`standard`, `metric`, or `imperial`).                                                  |
-| lang      | Language code for weather descriptions (see the full list [here](https://openweathermap.org/current#multi)). |
-| default   | Set this location as the default (when no location is specified)                                             |
+| **Value**         | **Description**                                                                                              |
+| ----------------- | ------------------------------------------------------------------------------------------------------------ |
+| name              | The location’s display name (used in the URL query).                                                         |
+| lat               | Latitude of the location.                                                                                    |
+| lon               | Longitude of the location.                                                                                   |
+| api               | OpenWeatherMap API key.                                                                                      |
+| unit              | Units of measurement (`standard`, `metric`, or `imperial`).                                                  |
+| round_temperature | Round temperature to the nearest whole number.                                                               |
+| lang              | Language code for weather descriptions (see the full list [here](https://openweathermap.org/current#multi)). |
+| default           | Set this location as the default (when no location is specified)                                             |
 
 ### Example Configuration
 
@@ -74,5 +75,6 @@ weather:
     lon: -74.1444838
     api: API_KEY
     unit: imperial
+    round_temperature: true
     lang: en
 ```

@@ -2,16 +2,11 @@
 title: Webhooks
 ---
 
-import { Aside } from '@astrojs/starlight/components';
+import { Aside } from "@astrojs/starlight/components";
 
+<Aside type="caution">This feature can only be configured using a `config.yaml` file.</Aside>
 
-<Aside type="caution">
- This feature can only be configured using a `config.yaml` file.
-</Aside>
-
-<Aside type="tip">
- To include the `clientName` in your webhook payload, append `client=YOUR_CLIENT_NAME` to your URL parameters.
-</Aside>
+<Aside type="tip">To include the `clientName` in your webhook payload, append `client=YOUR_CLIENT_NAME` to your URL parameters.</Aside>
 
 Kiosk can notify external services about certain events using webhooks. When enabled, Kiosk will send HTTP POST requests to your specified webhook URL(s) when these events occur.
 
@@ -19,9 +14,7 @@ Kiosk can notify external services about certain events using webhooks. When ena
 
 Add webhook configuration to your `config.yaml`:
 
-<Aside type="tip">
- You can have multiple webhooks for different urls and events.
-</Aside>
+<Aside type="tip">You can have multiple webhooks for different urls and events.</Aside>
 
 ```yaml
 webhooks:
@@ -36,31 +29,34 @@ When a secret is provided, Kiosk will generate a SHA-256 HMAC signature using th
 This allows you to verify that webhook request came from your Kiosk instance, following the same validation pattern as [GitHub webhooks](https://docs.github.com/en/webhooks/using-webhooks/validating-webhook-deliveries).
 
 To validate webhooks on your server, you should:
+
 1. Get the signature from the `X-Kiosk-Signature-256` header
 2. Generate a HMAC hex digest using your secret and the raw request body
 3. Compare the signatures using a constant-time comparison function
 
 ## Available Events
 
-| Event                              | Description                                                                         |
-|------------------------------------|-------------------------------------------------------------------------------------|
-|`asset.new`                         | Triggered when a new asset is requested from Kiosk                                  |
-|`asset.prefetch`                    | Triggered when Kiosk prefetches an asset data from Immich                           |
-|`asset.history.next`                | Triggered when a history asset (next) is requested from Kiosk                       |
-|`asset.history.previous`            | Triggered when a history asset (previous) is requested from Kiosk                   |
-|`cache.flushed`                     | Triggered when the cache is manually cleared                                        |
-|`user.navigation.custom`            | Triggered when the user clicks/taps the custom navigation section in Kiosk          |
-|`user.webhook.trigger.info_overlay` | Triggered when the "trigger webhook" button is clicked in the asset details overlay |
-|`user.like.info_overlay`            | Triggered when the "like" button is clicked in the asset details overlay            |
-|`user.unlike.info_overlay`          | Triggered when the "unlike" button is clicked in the asset details overlay          |
-|`user.hide.info_overlay`            | Triggered when the "hide" button is clicked in the asset details overlay            |
-|`user.unhide.info_overlay`          | Triggered when the "unhide" button is clicked in the asset details overlay          |
-
+| Event                               | Description                                                                               |
+| ----------------------------------- | ----------------------------------------------------------------------------------------- |
+| `asset.new`                         | Triggered when a new asset is requested from Kiosk                                        |
+| `asset.prefetch`                    | Triggered when Kiosk prefetches an asset data from Immich                                 |
+| `asset.history.next`                | Triggered when a history asset (next) is requested from Kiosk                             |
+| `asset.history.previous`            | Triggered when a history asset (previous) is requested from Kiosk                         |
+| `cache.flushed`                     | Triggered when the cache is manually cleared                                              |
+| `user.navigation.custom`            | Triggered when the user clicks/taps the custom navigation section in Kiosk                |
+| `user.webhook.trigger.info_overlay` | Triggered when the "trigger webhook" button is clicked in the asset details overlay       |
+| `user.like.info_overlay`            | Triggered when the "like" button is clicked in the asset details overlay                  |
+| `user.unlike.info_overlay`          | Triggered when the "unlike" button is clicked in the asset details overlay                |
+| `user.hide.info_overlay`            | Triggered when the "hide" button is clicked in the asset details overlay                  |
+| `user.unhide.info_overlay`          | Triggered when the "unhide" button is clicked in the asset details overlay                |
+| `asset.offline.new`                 | Triggered when a new asset is requested from Kiosk when using offline mode                |
+| `asset.offline.history.next`        | Triggered when a history asset (next) is requested from Kiosk when using offline mode     |
+| `asset.offline.history.previous`    | Triggered when a history asset (previous) is requested from Kiosk when using offline mode |
 
 ## Webhook Payload
 
 | Field        | Type          | Description                                          |
-|--------------|---------------|------------------------------------------------------|
+| ------------ | ------------- | ---------------------------------------------------- |
 | `event`      | string        | The type of event, e.g., "asset.new".                |
 | `timestamp`  | string (ISO)  | The time the event occurred, in ISO 8601 format.     |
 | `deviceID`   | string (UUID) | Unique identifier for the device.                    |
@@ -74,26 +70,26 @@ To validate webhooks on your server, you should:
 
 ```json
 {
-    "event": "asset.new",
-    "timestamp": "2024-11-19T11:03:07Z",
-    "deviceID": "ed08beb1-6de7-4592-9827-078c3ad91ae4",
-    "clientName": "dining-room-pi",
-    "assetCount": 1,
-    "assets": [
-         {
-             "id": "bb4ce63b-b80d-430f-ad37-5cfe243e08b1",
-             "type": "IMAGE",
-             "originalMimeType": "image/jpeg",
-             "localDateTime": "2013-04-06T23:45:54Z"
-             /* ... other properties omitted for brevity */
-         }
-     ],
-     "config": {
-         /* ... configuration fields omitted for brevity */
-     },
-     "meta": {
-         "source": "immich-kiosk",
-         "version": "0.13.1"
-     }
+  "event": "asset.new",
+  "timestamp": "2024-11-19T11:03:07Z",
+  "deviceID": "ed08beb1-6de7-4592-9827-078c3ad91ae4",
+  "clientName": "dining-room-pi",
+  "assetCount": 1,
+  "assets": [
+    {
+      "id": "bb4ce63b-b80d-430f-ad37-5cfe243e08b1",
+      "type": "IMAGE",
+      "originalMimeType": "image/jpeg",
+      "localDateTime": "2013-04-06T23:45:54Z"
+      /* ... other properties omitted for brevity */
+    }
+  ],
+  "config": {
+    /* ... configuration fields omitted for brevity */
+  },
+  "meta": {
+    "source": "immich-kiosk",
+    "version": "0.13.1"
+  }
 }
 ```

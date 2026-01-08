@@ -43,7 +43,7 @@ Excluded albums take precedence over album selection methods. If an album is in 
 <Settings
     config="excluded_albums"
     env="KIOSK_EXCLUDED_ALBUMS"
-    url="excluded_albums"
+    url="exclude_album"
     value="[]string"
     defaultValue="[]"
     configOver={`excluded_albums:
@@ -51,9 +51,9 @@ Excluded albums take precedence over album selection methods. If an album is in 
     - ALBUM_ID
     `}
     envOver={`environment:
-    KIOSK_ALBUM: "ALBUM_ID, ALBUM_ID"
+    KIOSK_EXCLUDED_ALBUMS: "ALBUM_ID, ALBUM_ID"
     `}
-    urlOver={"http://{URL}?excluded_albums=ALBUM_ID"}
+    urlOver={"http://{URL}?exclude_album=ALBUM_ID"}
 />
 
 <Aside type="tip">

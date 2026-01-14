@@ -63,3 +63,20 @@ You can use this feature to hide assets with certain tags from appearing in the 
 
 ### Skip
 Tagging an asset with "kiosk-skip" will exclude it from displaying.
+
+
+## Tag wildcards
+You can use wildcard patterns when including or excluding tags:
+
+- `parent` - Match exactly "parent"
+- `parent/*` - Match direct children only (e.g., "parent/child")  
+- `parent/**` - Match all descendants (e.g., "parent/child/grandchild")
+
+Example configuration:
+```yaml
+tags:
+  - vacation
+  
+excluded_tags:
+  - vacation/2023/**  # Exclude all 2023 vacation photos
+```

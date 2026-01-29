@@ -73,3 +73,14 @@ e.g.
     padding: 2rem;
 }
 ```
+
+## Target assets by tag with CSS
+
+You can style images based on their tags using CSS attribute selectors.
+
+```css
+/* Target images tagged with "kiosk-contain" */
+img[data-tags~="kiosk-contain"] {
+  object-fit: contain;
+}
+```

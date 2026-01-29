@@ -59,3 +59,16 @@ Admin Panel -> System Settings -> Video Transcoding
 - Check browser compatibility with your video codecs.
 - Verify that `prefetch` is enabled in your configuration.
 - Monitor system storage for cached video files.
+
+
+## Maximum video length
+
+Exclude videos longer than a specified duration (in seconds).
+
+<Settings
+    config="exclude_videos_over"
+    env="KIOSK_EXCLUDE_VIDEOS_OVER"
+    url="exclude_videos_over"
+    value="int"
+    defaultValue="0"
+/>

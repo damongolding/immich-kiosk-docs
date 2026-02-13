@@ -48,7 +48,7 @@ Ready to contribute? Here's how:
 
 4. Commit your changes with a helpful message
    ```sh
-   git commit -m "feat: description of your change"
+   git commit -m "feature/description-of-your-change"
    ```
 
 5. Push your changes to GitHub

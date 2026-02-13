@@ -44,9 +44,12 @@ Ready to contribute? Here's how:
 
 ## Guidelines
 
-We try to keep things organized, so please:
+To ensure the long-term maintainability of the project, we do not accept AI-generated or “vibe-coded” contributions.
+
+All submissions must:
 - Follow [Go best practices](https://golang.org/doc/effective_go)
 - Write clear commit messages following [conventional commits](https://www.conventionalcommits.org/)
+- Be fully understood by the contributor
 - Keep changes focused and manageable in size
 - Update docs if you change how things work
 - Add tests for new features

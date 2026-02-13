@@ -10,9 +10,9 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/starlight": "^0.37.5",
+    "@astrojs/starlight": "^0.37.6",
     "@lorenzo_lewis/starlight-utils": "^0.3.2",
-    "astro": "^5.17.1",
+    "astro": "^5.17.2",
     "node-addon-api": "^8.5.0",
     "node-gyp": "^12.2.0",
     "sharp": "^0.34.5",

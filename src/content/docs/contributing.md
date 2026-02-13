@@ -2,6 +2,25 @@
 title: Contributing
 ---
 
+## Guidelines
+
+To ensure the long-term maintainability of the project, we do not accept AI-generated or “vibe-coded” contributions.
+
+All submissions must:
+- Follow [Go best practices](https://golang.org/doc/effective_go)
+- Write clear commit messages following [conventional commits](https://www.conventionalcommits.org/)
+- Be fully understood by the contributor
+- Keep changes focused and manageable in size
+- Update docs if you change how things work
+- Add tests for new features
+
+Your changes will need to pass our automated checks before being merged.
+
+Need help? We're here for you!
+- Open an issue on GitHub
+- Chat with us in the [Discord channel](https://discord.gg/4uYz8pQmDH)
+
+
 ## Prerequisites
 Want to help improve Immich Kiosk? Great! Here's what you'll need to get started:
 
@@ -41,21 +60,3 @@ Ready to contribute? Here's how:
    - Tell us what your changes do and why you made them
    - Link to any related issues
    - Add screenshots if you changed anything visual
-
-## Guidelines
-
-To ensure the long-term maintainability of the project, we do not accept AI-generated or “vibe-coded” contributions.
-
-All submissions must:
-- Follow [Go best practices](https://golang.org/doc/effective_go)
-- Write clear commit messages following [conventional commits](https://www.conventionalcommits.org/)
-- Be fully understood by the contributor
-- Keep changes focused and manageable in size
-- Update docs if you change how things work
-- Add tests for new features
-
-Your changes will need to pass our automated checks before being merged.
-
-Need help? We're here for you!
-- Open an issue on GitHub
-- Chat with us in the [Discord channel](https://discord.gg/4uYz8pQmDH)

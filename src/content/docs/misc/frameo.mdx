@@ -7,12 +7,48 @@ sidebar:
 import { Aside, Steps, Tabs, TabItem } from '@astrojs/starlight/components';
 import  Acknowledgement from '../../../components/acknowledgement.astro';
 
-
 <Aside type="note">
-    Frameo devices tend to be low powered devices with limited resources. It is recommended to disable any [image effects](/configuration/image-effects/) and depending on your device's capabilities you may need to enable [optimize_images](/configuration/behavior/#optimize-images).
+    **Not all Frameo devices are equal!** Devices running **Android 13 or newer** offer significantly better performance and easier installation. See the [Model Compatibility](#model-compatibility) section below for tested devices and Android version recommendations.
 </Aside>
 
-If you have a Frameo frame device and want to use Kiosk on it, follow these steps:
+## Model Compatibility
+
+<Aside type="tip" title="Recommended Android Version">
+    **Android 13+** - Frameo devices running Android 13 or newer provide the best experience for Kiosk. They include modern WebView (v101+), excellent performance, and require **no root access** or WebView updates. Installation is quick and straightforward.
+</Aside>
+
+### Tested Devices
+
+| Model | Marketing Name | Android | Firmware | WebView | Root Required | WebView Update | Performance |
+|-------|----------------|---------|----------|---------|---------------|----------------|-------------|
+| **ZN-DP1101** | Yenock Frameo | 13 | BND-A133-1101-20241127 | v101.0.4951.61 | ❌ No | ❌ Not needed | Excellent |
+| Older models | Various | <13 | Various | v80-v100 | ✅ Yes | ✅ Required | Limited |
+
+### Quick Start for Android 13+ Devices
+
+If you have a Frameo device running **Android 13 or newer**, you can follow this simplified installation path:
+
+<Steps>
+    1. **Configure WiFi** using Android system settings (not just the Frameo wizard), as the Frameo app WiFi settings won't work when disabled
+    2. Enable ADB in `Settings -> About -> Enable Beta Program`
+    3. Connect via USB or enable ADB over TCP/IP
+    4. **Make ADB persistent** (survives reboots)
+    5. **Skip the WebView update section** (already compatible!)
+    6. Install ImmichFrame APK via ADB
+    7. Configure your Kiosk server URL
+    8. Set ImmichFrame as default launcher and disable Frameo app
+    9. Done!
+
+Total time: ~10 minutes
+</Steps>
+
+See the [ImmichFrame installation](#displaying-kiosk-on-your-frameo) section below for detailed commands.
+
+---
+
+## General Installation Guide
+
+The following sections provide detailed instructions for all Frameo devices. If you have a device running **Android 13 or newer**, you can skip the WebView update section.
 
 ## Prerequisites
 
@@ -21,41 +57,162 @@ If you have a Frameo frame device and want to use Kiosk on it, follow these step
 - (Might need) USB-C to USB-A cable to connect your frameo frame to your computer.
     - Some frames do not have tcpip enabled on the frame by default so a USB connection might be needed.
 
-## Connecting to the Frameo Frame through USB
+<Aside type="tip" title="Accessing Android System Settings">
+    Throughout this guide, you'll need to access Android system settings. Here are the available methods:
+    - **From ImmichFrame** (after installation): Swipe down from the top of the screen within the ImmichFrame app, then select "Launch Android Settings"
+    - **From Frameo app**: Swipe down from the top to open quick settings, then tap the gear icon
+    - **Via ADB**: Use commands like `adb shell am start -a android.settings.SETTINGS` or `adb shell am start -a android.settings.WIFI_SETTINGS`
+</Aside>
+
+## Important Pre-Installation Steps
+
+<Aside type="caution">
+    Complete these steps **before** disabling the Frameo app to ensure your device stays connected.
+</Aside>
+
+### Configure WiFi in Android Settings
+
+<Aside type="caution" title="Critical Step">
+    The Frameo setup wizard only configures WiFi within the Frameo app. When you disable the Frameo app, these settings won't work and your device will lose connectivity. You **must** configure WiFi in Android system settings.
+</Aside>
+
+<Steps>
+    1. On the Frameo device, access Android settings using **one of these methods**:
+       - **From ImmichFrame** (if already installed): Swipe down from the top within the ImmichFrame app, then select "Launch Android Settings"
+       - **From Frameo app**: Swipe down from the top to access quick settings, then tap the gear icon
+       - **Via ADB**: `adb shell am start -a android.settings.WIFI_SETTINGS`
+
+    2. Navigate to `Network & Internet` or `WiFi`
+
+    3. Connect to your WiFi network using the Android WiFi settings (not the Frameo app)
+
+    4. Verify the connection is established
+</Steps>
+
+<Aside type="tip">
+    **Accessing Android Settings from ImmichFrame**: Once ImmichFrame is installed, you can easily access Android system settings by swiping down from the top of the screen while in the ImmichFrame app and selecting "Launch Android Settings". This is the quickest way to access settings after setup.
+</Aside>
+
+<Aside type="tip">
+    After configuring WiFi in Android settings, your device will maintain connectivity even when the Frameo app is disabled.
+</Aside>
+
+## Connecting to the Frameo Frame with ADB
+
+You have two options for connecting to your Frameo device via ADB: **USB (wired)** or **Network (wireless)**. Choose the method that works best for you.
+
+### Option 1: USB Connection (Recommended for Setup)
+
+<Aside type="tip">
+    USB connection is more reliable for initial setup and doesn't require knowing the device's IP address.
+</Aside>
 
 <Aside type="tip">
     Some Frameo frames only allow one device to connect to it. Otherwise, this process needs to be done by each device connecting to the frame.
 </Aside>
 
-<Aside type="caution">
-    Once rebooted, the device will lose these settings. In order to keep the settings and enable connecting remotely, you will need to use a program like Tasker to restore ADB each reboot.
-</Aside>
-
 <Steps>
-    1. Connect USB-C cable from the Frameo Frame to computer through a USB-A port
-    2. On the computer list devices
+    1. Connect USB-C cable from the Frameo Frame to your computer
+    2. Verify the connection:
         ```sh
         adb devices
         ```
-    3. If the list of devices has `Unauthorized` next to it then you will need to go to `Settings->About->Enable Beta Program.` and toggle it back and forth
-        a. A reboot might be needed as well
-    4. The list of devices should show `device` next to the frame that is attached via USB. If that isn't the case, then go back to step 3.
-    5. Enable tcpip on the frame
-        ```sh
-        adb tcpip 55555
-        ```
-    6. You can now continue with the steps below
+        You should see your device listed (e.g., `2c000c64a6c0c7d21dd device`)
+    3. If the list shows `unauthorized`:
+        - Go to `Settings -> About -> Enable Beta Program` on the device
+        - Toggle it off and back on
+        - Accept the authorization prompt on the device screen
+    4. Verify the device now shows as `device` (not `unauthorized`)
 </Steps>
+
+**All commands below work with USB connection** - no need to change them, just run as-is.
+
+### Making ADB Persistent (Highly Recommended)
+
+<Aside type="tip" title="Critical: Never Need Frameo App Again">
+    By default, ADB authorization resets after rebooting, which would require you to **re-enable the Frameo app** to access settings and toggle Beta Program again. This fix makes ADB persist permanently across reboots, **eliminating any need to ever enable the Frameo app again**.
+</Aside>
+
+Once you have ADB connected and authorized, run these commands to make it persistent:
+
+```sh
+# Set persistent USB configuration for ADB
+adb shell "setprop persist.sys.usb.config adb"
+
+# Ensure ADB and developer settings stay enabled
+adb shell "settings put global adb_enabled 1"
+adb shell "settings put global development_settings_enabled 1"
+```
+
+**Verify it worked:**
+```sh
+adb shell getprop persist.sys.usb.config
+```
+Should output: `adb`
+
+**Test after reboot:**
+```sh
+adb reboot
+# Wait for device to fully boot (30-60 seconds)
+adb devices
+```
+
+Your device should now show as `device` (not `unauthorized`) without needing to toggle Beta Program!
+
+### Option 2: Network Connection (Wireless)
+
+<Aside type="caution">
+    Network ADB resets after reboot. You'll need to re-enable it via USB after each restart, or use tools like Tasker to automate this.
+</Aside>
+
+<Steps>
+    1. First, connect via USB (see Option 1 above)
+    2. Enable ADB over network:
+        ```sh
+        adb tcpip 5555
+        ```
+    3. Find your device's IP address:
+        ```sh
+        adb shell ip addr show wlan0 | grep "inet "
+        ```
+        Or check in Android Settings under `Network & Internet -> WiFi`
+    4. Disconnect USB cable
+    5. Connect via network:
+        ```sh
+        adb connect <device_ip>:5555
+        ```
+        Example: `adb connect 192.168.1.100:5555`
+    6. Verify connection:
+        ```sh
+        adb devices
+        ```
+</Steps>
+
+**When using network ADB:** Replace commands throughout this guide that start with `adb` with the network connection first. For example:
+```sh
+# If using network ADB, connect first:
+adb connect 192.168.1.100:5555
+
+# Then run your command:
+adb install ImmichFrame_v48.apk
+```
 
 ## Updating the system WebView
 
+<Aside type="tip">
+    **Check WebView version first**: Before attempting to update WebView, verify your current version:
+    ```sh
+    adb shell dumpsys webviewupdate
+    ```
+    If you see **WebView v101 or newer**, you can skip this entire section - your device is already compatible with Kiosk.
+</Aside>
 
 <Aside type="caution">
     Not all Frameo devices are the same and hardware and software versions may differ, and these instructions may not work for every device. Proceed at your own risk. We accept no responsibility for any damage or issues that may result from following these steps.
 </Aside>
 
 <Acknowledgement type="tip" title="Acknowledgement">
-    A big thank you to [Rob](https://github.com/3rob3). This guide wouldn’t be possible without his help!
+    A big thank you to [Rob](https://github.com/3rob3). This guide wouldn't be possible without his help!
 </Acknowledgement>
 
 <Aside type="tip">
@@ -65,16 +222,14 @@ If you have a Frameo frame device and want to use Kiosk on it, follow these step
     ```
 </Aside>
 
-Frameo frame device normally come with a very old system WebView that is not compatible with Kiosk. To update the WebView, follow these steps:
+**Older** Frameo frame devices normally come with a very old system WebView that is not compatible with Kiosk. To update the WebView, follow these steps:
 
 <Steps>
 
     1. Download the 106 WebView apk from [here](https://www.apkmirror.com/apk/lineageos/android-system-webview-2/android-system-webview-2-106-0-5249-126-release/android-system-webview-106-0-5249-126-12-android-apk-download/)
 
-    2. Connect to your device with adb
-       ```sh
-       adb connect <device_ip>:5555
-       ```
+    2. Connect to your device with ADB (see [connection options](#connecting-to-the-frameo-frame-with-adb) above - USB or network)
+
     3. Push the WebView apk to the device
        ```sh
        adb push path/to/downloaded/webview.apk /sdcard/
@@ -126,12 +281,9 @@ Below are the two most common apps used to display the Kiosk on Frameos. Please 
       
         <Steps>
         1. Download the latest Fully Kiosk Browser apk from [here](https://www.fully-kiosk.com/files/2025/01/Fully-Kiosk-Browser-v1.57.1.apk)
-      
-        2. Connect to your device with adb
-           ```sh
-           adb connect <device_ip>:5555
-           ```
-      
+
+        2. Connect to your device with ADB (see [connection options](#connecting-to-the-frameo-frame-with-adb) above - USB or network)
+
         3. Install the Fully Kiosk Browser apk
            ```sh
            adb install path/to/downloaded/Fully-Kiosk-Browser.apk
@@ -148,39 +300,49 @@ Below are the two most common apps used to display the Kiosk on Frameos. Please 
   
   <TabItem label="ImmichFrame">
       #### Installing ImmichFrame
-    
+
       <Aside type="tip">
         Setting `sleep_dim_screen=true` will automatically dim the screen when the device enters sleep mode.
       </Aside>
-    
-    Although Kiosk doesn’t have its own dedicated Android app, the ImmichFrame team has developed a native Android application that’s compatible with Kiosk.
-    
+
+    Although Kiosk doesn't have its own dedicated Android app, the ImmichFrame team has developed a native Android application that's compatible with Kiosk.
+
     <Aside type="note">
         The ImmicFrame app has an option to set an authsecret in the settings. This will be passed along to Kiosk as the [password](/configuration/additional-options/#password).
     </Aside>
-    
+
     <Steps>
         1. Download the latest ImmichFrame apk from [here](https://github.com/immichFrame/ImmichFrame_Android/releases)
-    
-        2. Connect to your device with adb
-           ```sh
-           adb connect <device_ip>:5555
-           ```
-    
+
+        2. Connect to your device with ADB (see [connection options](#connecting-to-the-frameo-frame-with-adb) above - USB or network)
+
         3. Install the ImmichFrame apk
            ```sh
            adb install path/to/downloaded/immichframe.apk
            ```
+
+        4. Start the ImmichFrame app
+           ```sh
+           adb shell am start -n com.immichframe.immichframe/.MainActivity
+           ```
+           Configure your Kiosk server URL and auth secret on the device screen
+
+        5. Disable the Frameo app (prevents conflicts)
+           ```sh
+           adb shell pm disable-user --user 0 net.frameo.frame
+           ```
+
+        6. Set ImmichFrame as the default launcher (auto-starts on boot)
+           ```sh
+           adb shell cmd package set-home-activity com.immichframe.immichframe/.MainActivity
+           ```
     </Steps>
     
     #### Uninstall ImmichFrame
-    
+
     <Steps>
-        1. Connect to your device with adb
-           ```sh
-           adb connect <device_ip>:5555
-           ```
-    
+        1. Connect to your device with ADB (see [connection options](#connecting-to-the-frameo-frame-with-adb) above - USB or network)
+
         2. Uninstall the ImmichFrame app
            ```sh
            adb uninstall com.immichframe.immichframe
@@ -199,24 +361,112 @@ Below are the two most common apps used to display the Kiosk on Frameos. Please 
 
 ## Disable Frameo app
 
+<Aside type="tip">
+    **Newer devices** (Android 13+) don't require root access to disable the Frameo app. Use the simpler method shown in step 1.
+</Aside>
+
+<Tabs syncKey="disable_method">
+    <TabItem label="Without Root (Newer Devices)">
+        <Steps>
+            1. Connect to your device with ADB (see [connection options](#connecting-to-the-frameo-frame-with-adb) above - USB or network)
+
+            2. Disable the Frameo app
+               ```sh
+               adb shell pm disable-user --user 0 net.frameo.frame
+               ```
+        </Steps>
+    </TabItem>
+
+    <TabItem label="With Root (Older Devices)">
+        <Steps>
+            1. Connect to your device with ADB (see [connection options](#connecting-to-the-frameo-frame-with-adb) above - USB or network)
+
+            2. Enter root
+               ```sh
+               adb shell su
+               ```
+
+            3. Disable the Frameo app
+               ```sh
+               pm disable net.frameo.frame
+               ```
+
+            4. Exit root
+               ```sh
+               exit
+               ```
+        </Steps>
+    </TabItem>
+</Tabs>
+
+## Troubleshooting
+
+### Device Loses WiFi Connection After Disabling Frameo App
+
+<Aside type="caution">
+    This is the most common issue! The Frameo wizard only configures WiFi within the Frameo app, not in Android system settings.
+</Aside>
+
+**Solution:**
+
 <Steps>
-    1. Connect to your device with adb
+    1. Re-enable the Frameo app temporarily:
        ```sh
-       adb connect <device_ip>:5555
+       adb shell pm enable net.frameo.frame
        ```
 
-    2. Enter root
-       ```sh
-       adb shell su
-       ```
+    2. Access Android WiFi settings on the device using **one of these methods**:
+       - **From ImmichFrame**: Swipe down from the top within the ImmichFrame app, select "Launch Android Settings"
+       - **From Frameo app**: Swipe down from the top, tap the gear icon for Settings
+       - Then navigate to `Network & Internet -> WiFi`
 
-    3. Disable the Frameo app
-       ```sh
-       pm disable net.frameo.frame
-       ```
+    3. Connect to your WiFi network in Android settings (not Frameo app)
 
-    4. Exit root
+    4. Verify connection is working
+
+    5. Disable the Frameo app again:
        ```sh
-       exit
+       adb shell pm disable-user --user 0 net.frameo.frame
        ```
 </Steps>
+
+### ImmichFrame Not Starting on Boot
+
+Verify ImmichFrame is set as the default home launcher:
+
+```sh
+adb shell cmd package set-home-activity com.immichframe.immichframe/.MainActivity
+```
+
+Test by simulating a home button press:
+
+```sh
+adb shell input keyevent KEYCODE_HOME
+```
+
+### ADB Connection Issues
+
+If you see "unauthorized" when connecting:
+
+<Steps>
+    1. On the Frameo device, go to `Settings -> About -> Enable Beta Program`
+    2. Toggle it off and back on
+    3. Accept the authorization prompt on the device screen
+    4. Try connecting again: `adb devices`
+    5. **Make ADB persistent** to avoid this issue after reboots - see [Making ADB Persistent](#making-adb-persistent-highly-recommended) section
+</Steps>
+
+### Re-enable Frameo App (Restore Original Functionality)
+
+If you need to restore the original Frameo functionality:
+
+```sh
+# Re-enable the Frameo app
+adb shell pm enable net.frameo.frame
+
+# Set it as default launcher
+adb shell cmd package set-home-activity net.frameo.frame/.MainActivity
+
+# (Optional) Uninstall ImmichFrame
+adb uninstall com.immichframe.immichframe
+```

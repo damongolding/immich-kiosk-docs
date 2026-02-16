@@ -22,7 +22,7 @@ import  Acknowledgement from '../../../components/acknowledgement.astro';
 | Model | Marketing Name | Android | Firmware | WebView | Root Required | WebView Update | Performance |
 |-------|----------------|---------|----------|---------|---------------|----------------|-------------|
 | **ZN-DP1101** | Yenock Frameo | 13 | BND-A133-1101-20241127 | v101.0.4951.61 | ❌ No | ❌ Not needed | Excellent |
-| Older models | Various | <13 | Various | v80-v100 | ✅ Yes | ✅ Required | Limited |
+| Older models | Various | < 13 | Various | v80-v100 | ✅ Yes | ✅ Required | Limited |
 
 ### Quick Start for Android 13+ Devices
 
@@ -30,16 +30,22 @@ If you have a Frameo device running **Android 13 or newer**, you can follow this
 
 <Steps>
     1. **Configure WiFi** using Android system settings (not just the Frameo wizard), as the Frameo app WiFi settings won't work when disabled
-    2. Enable ADB in `Settings -> About -> Enable Beta Program`
-    3. Connect via USB or enable ADB over TCP/IP
-    4. **Make ADB persistent** (survives reboots)
-    5. **Skip the WebView update section** (already compatible!)
-    6. Install ImmichFrame APK via ADB
-    7. Configure your Kiosk server URL
-    8. Set ImmichFrame as default launcher and disable Frameo app
-    9. Done!
 
-Total time: ~10 minutes
+    2. Enable ADB in `Settings -> About -> Enable Beta Program`
+
+    3. Connect via USB or enable ADB over TCP/IP
+
+    4. **Make ADB persistent** (survives reboots)
+
+    5. **Skip the WebView update section** (already compatible!)
+
+    6. Install ImmichFrame APK via ADB
+
+    7. Configure your Kiosk server URL
+
+    8. Set ImmichFrame as default launcher and disable Frameo app
+
+    9. Done!
 </Steps>
 
 See the [ImmichFrame installation](#displaying-kiosk-on-your-frameo) section below for detailed commands.

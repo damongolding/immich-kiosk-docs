@@ -19,10 +19,10 @@ import  Acknowledgement from '../../../components/acknowledgement.astro';
 
 ### Tested Devices
 
-| Model | Marketing Name | Android | Firmware | WebView | Root Required | WebView Update | Performance |
-|-------|----------------|---------|----------|---------|---------------|----------------|-------------|
-| **ZN-DP1101** | Yenock Frameo | 13 | BND-A133-1101-20241127 | v101.0.4951.61 | ❌ No | ❌ Not needed | Excellent |
-| Older models | Various | < 13 | Various | v80-v100 | ✅ Yes | ✅ Required | Limited |
+| Model | Marketing Name | Android | Firmware | WebView | Root Required | WebView Update |
+|-------|----------------|---------|----------|---------|---------------|----------------|
+| **ZN-DP1101** | Yenock Frameo | 13 | BND-A133-1101-20241127 | v101.0.4951.61 | ❌ No | ❌ Not needed |
+| Older models | Various | 6.0.1 | Various | v80-v100 | ✅ Yes | ✅ Required |
 
 ### Quick Start for Android 13+ Devices
 
@@ -176,21 +176,26 @@ Your device should now show as `device` (not `unauthorized`) without needing to 
 
 <Steps>
     1. First, connect via USB (see Option 1 above)
+
     2. Enable ADB over network:
         ```sh
         adb tcpip 5555
         ```
+        
     3. Find your device's IP address:
         ```sh
         adb shell ip addr show wlan0 | grep "inet "
         ```
         Or check in Android Settings under `Network & Internet -> WiFi`
+        
     4. Disconnect USB cable
+    
     5. Connect via network:
         ```sh
         adb connect <device_ip>:5555
         ```
         Example: `adb connect 192.168.1.100:5555`
+        
     6. Verify connection:
         ```sh
         adb devices

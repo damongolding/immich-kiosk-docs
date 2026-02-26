@@ -87,6 +87,7 @@ export default defineConfig({
             { slug: "configuration/memories" },
             { slug: "configuration/date-range" },
             { slug: "configuration/tags" },
+            { slug: "configuration/rating" },
             { slug: "configuration/partners" },
             { slug: "configuration/metadata" },
             { slug: "configuration/clock" },

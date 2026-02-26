@@ -1,5 +1,7 @@
 ---
 title: Weather
+sidebar:
+  badge: {"text":"Updated", "variant":"tip"}
 ---
 
 import { Aside } from "@astrojs/starlight/components";
@@ -18,14 +20,15 @@ import Settings from "../../../components/config-settings.astro";
   value="[]WeatherLocation"
   defaultValue="[]"
   configOver={`weather:
-    - name: london
-      lat: 51.5285262
-      lon: -0.2663999
-      api: API_KEY
-      unit: metric
-      round_temperature: false
-      lang: en
-      default: false
+    locations:
+      - name: london
+        lat: 51.5285262
+        lon: -0.2663999
+        api: API_KEY
+        unit: metric
+        round_temperature: false
+        lang: en
+        default: false
     `}
 />
 
@@ -48,6 +51,14 @@ You can configure multiple locations in the `config.yaml` file, and choose which
 | lang              | Language code for weather descriptions (see the full list [here](https://openweathermap.org/current#multi)). |
 | default           | Set this location as the default (when no location is specified)                                             |
 
+
+### Location rotation :badge[New]{variant="note"}
+
+You can rotate between configured weather locations by setting weather to rotate in the URL e.g. `https://{KIOSK_URL}?weather=rotate`.
+
+Use `rotation_interval` to control how often locations rotate.
+
+
 ### Example Configuration
 
 Here’s an example of how to add London, London using OpenWeatherMap's name and New York to the config.yaml file. These locations would be selectable via the URL, like this:
@@ -55,26 +66,28 @@ Here’s an example of how to add London, London using OpenWeatherMap's name and
 
 ```yaml
 weather:
-  - name: london
-    lat: 51.5285262
-    lon: -0.2663999
-    api: API_KEY
-    unit: metric
-    lang: en
-    default: true
+  rotation_interval: 60 # in seconds (10 is the minimum).
+  locations:
+    - name: london
+      lat: 51.5285262
+      lon: -0.2663999
+      api: API_KEY
+      unit: metric
+      lang: en
+      default: true
 
-  - name: london-api
-    lat: 51.5285262
-    lon: -0.2663999
-    api: API_KEY
-    unit: metric
-    lang: en
+    - name: london-api
+      lat: 51.5285262
+      lon: -0.2663999
+      api: API_KEY
+      unit: metric
+      lang: en
 
-  - name: new-york
-    lat: 40.6973709
-    lon: -74.1444838
-    api: API_KEY
-    unit: imperial
-    round_temperature: true
-    lang: en
+    - name: new-york
+      lat: 40.6973709
+      lon: -74.1444838
+      api: API_KEY
+      unit: imperial
+      round_temperature: true
+      lang: en
 ```

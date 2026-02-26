@@ -1,5 +1,7 @@
 ---
 title: Additional Options
+sidebar:
+  badge: {"text":"Updated", "variant":"tip"}
 ---
 
 import { Aside } from '@astrojs/starlight/components';
@@ -269,4 +271,19 @@ The logging level determines how much information is logged by Kiosk. The defaul
     url="N/A"
     value="error | warning | info | debug | verbose"
     defaultValue="warning"
+/>
+
+## CORS :badge[New]{variant="note"}
+
+<Settings
+    config="allowed_origins"
+    configOver={`kiosk:
+    allowed_origins:
+      - https://example.com
+      - https://example.org
+    `}
+    env="N/A"
+    url="N/A"
+    value="bool"
+    defaultValue="true"
 />

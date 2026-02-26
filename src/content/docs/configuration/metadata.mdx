@@ -1,9 +1,17 @@
 ---
 title: Metadata
+sidebar:
+  badge: {"text":"Updated", "variant":"tip"}
 ---
 
 import { Aside, Badge } from "@astrojs/starlight/components";
 import Settings from "../../../components/config-settings.astro";
+
+## Show rating :badge[New]{variant="note"}
+
+Display the asset rating stars.
+
+<Settings config="show_image_rating" env="KIOSK_SHOW_IMAGE_RATING" value="bool" defaultValue="false" />
 
 ## Show Owner
 
@@ -126,11 +134,28 @@ Display the image location from METADATA (if available).
 
 <Settings config="show_image_location" env="KIOSK_SHOW_IMAGE_LOCATION" value="bool" defaultValue="false" />
 
+## Hide image location parts :badge[New]{variant="note"}
+
+<Settings 
+  config="See below"
+  configOver={`image_location:
+    hide_city: false
+    hide_state: false
+    hide_country: false`}
+  env="See below"
+  envOver={`environment:
+    KIOSK_IMAGE_LOCATION_HIDE_CITY: false
+    KIOSK_IMAGE_LOCATION_HIDE_STATE: false
+    KIOSK_IMAGE_LOCATION_HIDE_COUNTRY: false
+    `} 
+    urlOver={"http://{URL}?image_location_hide_city=false&image_location_hide_state=false&image_location_hide_country=false"}
+  value="map[string]string" />
+
 ## Hide Countries
 
 List of countries to hide from image_location
 
-<Settings config="hide_countries" env="KIOSK_HIDE_COUNTRIES" value="[]string" defaultValue="[]" />
+<Settings config="hide_countries" env="KIOSK_HIDE_COUNTRIES" value="[]string" url="N/A" defaultValue="[]" />
 
 ## Show Image QR
 

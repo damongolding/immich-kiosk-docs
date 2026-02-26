@@ -1,5 +1,7 @@
 ---
 title: Multiple Users
+sidebar:
+  badge: {"text":"Updated", "variant":"tip"}
 ---
 
 import { Aside, Steps } from "@astrojs/starlight/components";
@@ -7,24 +9,7 @@ import Settings from "../../../components/config-settings.astro";
 
 <Aside type="caution">This feature can only be configured using a config.yaml file.</Aside>
 
-<Aside type="caution">
-It is not possible to mix assets from different accounts. The example below will not work.
-
-`http://{URL}?user=john&person=PERSON_ID&user=jane&person=PERSON_ID`
-
-</Aside>
-
-<Aside type="tip">
-You can remove specific asset sources that were previously set in your config.yaml or environment variables by using none in the URL query parameters.
-
-Example:
-
-```yaml
-https://{URL}?user=USER&person=none&album=none
-This will disable both the 'person' and 'album' asset sources.
-```
-
-</Aside>
+<Aside type="caution">This feature currently only supports `people` and `albums`.</Aside>
 
 Immich Kiosk supports multiple user API keys.
 
@@ -33,7 +18,10 @@ Immich Kiosk supports multiple user API keys.
 key:value mappings of Immich usernames to their corresponding API keys.
 
 <Settings
- config="immich_users_api_keys"
+ configOver={`immich_users_api_keys:
+   damon: "api_key_here"
+   laura: "api_key_here"
+`}
  env="N/A"
  url="N/A"
  value="map[string]string"
@@ -47,17 +35,29 @@ key:value mappings of Immich usernames to their corresponding API keys.
 
    ```yaml
    immich_users_api_keys:
-   john: "api_key_here"
-   jane: "api_key_here"
+     damon: "api_key_here"
+     laura: "api_key_here"
    ```
 
-2. Access a specific user's content by including the user parameter in the URL:
+2. Append the @username to the asset ID to use a specific user's API key:
 
-   ```http
-   https://{URL}?user=john
+   ```yaml
+   people:
+     - 1234       # This will the default API key
+     - 5678@damon # This will use Damon's API key
+     - 9101@laura # This will use Laura's API key
+   
+   album:
+     - 4321       # This will the default API key
+     - 8765@damon # This will use Damon's API key
+     - 1019@laura # This will use Laura's API key
    ```
+   or 
 
-   <Aside type="note">If no user is specified in the URL, Immich Kiosk will default to using the global API key defined in immich_api_key.</Aside>
+   ```url
+    # URL
+    https://KIOSK_URL?person=1234@damon
+   ```
 
 </Steps>
 

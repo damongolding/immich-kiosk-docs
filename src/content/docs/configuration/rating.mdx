@@ -1,0 +1,20 @@
+---
+title: Rating
+sidebar:
+  badge: {"text":"New", "variant":"note"}
+---
+
+import { Aside, Badge } from '@astrojs/starlight/components';
+import Settings from "../../../components/config-settings.astro";
+
+## Rating :badge[New]{variant="note"}
+
+The star rating of assets you want to display. Must be between `-1` - `5` (`-1` is off).
+
+<Settings
+    config="rating"
+    env="KIOSK_RATING"
+    url="rating"
+    value="int"
+    defaultValue="-1"
+/>

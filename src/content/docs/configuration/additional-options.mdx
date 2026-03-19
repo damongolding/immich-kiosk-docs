@@ -114,7 +114,11 @@ Enable the URL builder endpoint at `/url-builder`.
 
 ## Watch Config
 
-Should Kiosk watch config.yaml file for changes. Reloads all connect clients if a change is detected.
+<Aside type="caution">
+  Changes to the weather configuration require a container restart. `watch_config` will detect the changes but they will not be implimented in Kiosk untill a restart.
+</Aside>
+
+Should Kiosk watch config.yaml file for changes. Reloads all connected clients if a change is detected.
 
 <Settings
     config="watch_config"

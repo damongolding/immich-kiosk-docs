@@ -17,7 +17,9 @@ import Acknowledgement from "../../../components/acknowledgement.astro";
 
 ## Connecting via USB
 
-<Aside type="tip">Some Frameo frames only allow one ADB connection at a time. If connecting multiple devices, each will need to go through this process.</Aside>
+<Aside type="tip">
+    Some Frameo frames only allow one ADB connection at a time. If connecting multiple devices, each will need to go through this process.
+</Aside>
 
 <Steps>
     1. Connect the Frameo frame to your computer via USB
@@ -44,7 +46,9 @@ Once TCP/IP is enabled (see above), you can connect without USB:
 adb connect <device_ip>:5555
 ```
 
-<Aside type="caution">Network ADB resets after reboot. You will need to re-enable it via USB after each restart, or use a tool like Tasker to automate this.</Aside>
+<Aside type="caution">
+    Network ADB resets after reboot. You will need to re-enable it via USB after each restart, or use a tool like Tasker to automate this.
+</Aside>
 
 ### Making ADB persistent (optional)
 
@@ -78,11 +82,24 @@ adb devices
 
 ## Updating the system WebView
 
-<Aside type="danger">Not all Frameo devices are the same, hardware and software versions may differ and these steps may not work for every device. Proceed at your own risk. We accept no responsibility for any damage or issues that may result.</Aside>
+<Aside type="danger">
+    Not all Frameo devices are the same, hardware and software versions may differ and these steps may not work for every device. Proceed at your own risk. We accept no responsibility for any damage or issues that may result.
+</Aside>
 
-<Aside type="caution">Check your current WebView version before proceeding: ```sh adb shell dumpsys webviewupdate ``` If you have **WebView v101 or newer**, skip this section - your device is already compatible.</Aside>
+<Aside type="caution">
+    Check your current WebView version before proceeding: 
+    ```sh 
+    adb shell dumpsys webviewupdate
+    ``` 
+    If you have **WebView v101 or newer**, skip this section - your device is already compatible.
+</Aside>
 
-<Aside type="tip">The WebView APK path may vary by device. To find it: ```sh adb shell pm path com.android.webview ```</Aside>
+<Aside type="tip">
+    The WebView APK path may vary by device. To find it: 
+    ```sh 
+    adb shell pm path com.android.webview
+    ```
+</Aside>
 
 Older Frameo devices ship with a system WebView that is not compatible with Kiosk. To update it:
 

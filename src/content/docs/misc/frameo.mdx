@@ -4,12 +4,10 @@ sidebar:
   order: 1
 ---
 
-import { Aside, Steps, Tabs, TabItem } from '@astrojs/starlight/components';
-import Acknowledgement from '../../../components/acknowledgement.astro';
+import { Aside, Steps, Tabs, TabItem } from "@astrojs/starlight/components";
+import Acknowledgement from "../../../components/acknowledgement.astro";
 
-<Aside type="note">
-    Frameo devices tend to be low-powered with limited resources. It is recommended to disable any [image effects](/configuration/image-effects/) and depending on your device you may need to enable [optimize_images](/configuration/behavior/#optimize-images).
-</Aside>
+<Aside type="note">Frameo devices tend to be low-powered with limited resources. It is recommended to disable any [image effects](/configuration/image-effects/) and depending on your device you may need to enable [optimize_images](/configuration/behavior/#optimize-images).</Aside>
 
 ## Prerequisites
 
@@ -19,9 +17,7 @@ import Acknowledgement from '../../../components/acknowledgement.astro';
 
 ## Connecting via USB
 
-<Aside type="tip">
-    Some Frameo frames only allow one ADB connection at a time. If connecting multiple devices, each will need to go through this process.
-</Aside>
+<Aside type="tip">Some Frameo frames only allow one ADB connection at a time. If connecting multiple devices, each will need to go through this process.</Aside>
 
 <Steps>
     1. Connect the Frameo frame to your computer via USB
@@ -37,22 +33,23 @@ import Acknowledgement from '../../../components/acknowledgement.astro';
         ```sh
         adb tcpip 5555
         ```
+
 </Steps>
 
 ## Connecting wirelessly
 
 Once TCP/IP is enabled (see above), you can connect without USB:
+
 ```sh
 adb connect <device_ip>:5555
 ```
 
-<Aside type="caution">
-    Network ADB resets after reboot. You will need to re-enable it via USB after each restart, or use a tool like Tasker to automate this.
-</Aside>
+<Aside type="caution">Network ADB resets after reboot. You will need to re-enable it via USB after each restart, or use a tool like Tasker to automate this.</Aside>
 
 ### Making ADB persistent (optional)
 
 If you want ADB to survive reboots without needing to toggle Beta Program each time:
+
 ```sh
 # Set persistent USB configuration for ADB
 adb shell "setprop persist.sys.usb.config adb"
@@ -63,12 +60,14 @@ adb shell "settings put global development_settings_enabled 1"
 ```
 
 Verify it worked:
+
 ```sh
 adb shell getprop persist.sys.usb.config
 # Should output: adb
 ```
 
 Test after reboot:
+
 ```sh
 adb reboot
 # Wait for device to fully boot (30-60 seconds)
@@ -79,24 +78,11 @@ adb devices
 
 ## Updating the system WebView
 
-<Aside type="danger">
-    Not all Frameo devices are the same, hardware and software versions may differ and these steps may not work for every device. Proceed at your own risk. We accept no responsibility for any damage or issues that may result.
-</Aside>
+<Aside type="danger">Not all Frameo devices are the same, hardware and software versions may differ and these steps may not work for every device. Proceed at your own risk. We accept no responsibility for any damage or issues that may result.</Aside>
 
-<Aside type="caution">
-    Check your current WebView version before proceeding:
-    ```sh
-    adb shell dumpsys webviewupdate
-    ```
-    If you have **WebView v101 or newer**, skip this section - your device is already compatible.
-</Aside>
+<Aside type="caution">Check your current WebView version before proceeding: ```sh adb shell dumpsys webviewupdate ``` If you have **WebView v101 or newer**, skip this section - your device is already compatible.</Aside>
 
-<Aside type="tip">
-    The WebView APK path may vary by device. To find it:
-    ```sh
-    adb shell pm path com.android.webview
-    ```
-</Aside>
+<Aside type="tip">The WebView APK path may vary by device. To find it: ```sh adb shell pm path com.android.webview ```</Aside>
 
 Older Frameo devices ship with a system WebView that is not compatible with Kiosk. To update it:
 
@@ -139,10 +125,11 @@ Older Frameo devices ship with a system WebView that is not compatible with Kios
         ```sh
         adb reboot
         ```
+
 </Steps>
 
 <Acknowledgement type="tip" title="Acknowledgement">
-    A big thank you to [Rob](https://github.com/3rob3). This guide wouldn't be possible without his help!
+  A big thank you to [Rob](https://github.com/3rob3). This guide wouldn't be possible without his help!
 </Acknowledgement>
 
 ---
@@ -215,6 +202,7 @@ Choose one of the apps below - you do not need to install both.
         </Steps>
 
     </TabItem>
+
 </Tabs>
 
 ---
@@ -246,6 +234,7 @@ Choose one of the apps below - you do not need to install both.
                 ```
         </Steps>
     </TabItem>
+
 </Tabs>
 
 ---
@@ -269,11 +258,13 @@ If you have already disabled the Frameo app and lost connectivity:
     2. Open Android WiFi settings and connect to your network
 
     3. Disable the Frameo app again once connectivity is confirmed
+
 </Steps>
 
 ### ADB shows "unauthorized"
 
 Go to `Settings -> About -> Enable Beta Program` on the frame and toggle it off and back on. Accept the authorisation prompt on the device screen, then retry:
+
 ```sh
 adb devices
 ```
@@ -281,11 +272,13 @@ adb devices
 ### ImmichFrame not launching on boot
 
 Set it as the default home launcher:
+
 ```sh
 adb shell cmd package set-home-activity com.immichframe.immichframe/.MainActivity
 ```
 
 ### Restoring the original Frameo experience
+
 ```sh
 # Re-enable the Frameo app
 adb shell pm enable net.frameo.frame
@@ -296,3 +289,11 @@ adb shell cmd package set-home-activity net.frameo.frame/.MainActivity
 # Optionally uninstall ImmichFrame
 adb uninstall com.immichframe.immichframe
 ```
+
+## Tested devices
+
+The following devices have been tested by the community. This list is not exhaustive - if you have a device that works (or doesn't), please [add it](https://github.com/damongolding/immich-kiosk-docs/issues).
+
+| Model            | Android version | WebView version | Root required | Notes                    |
+| ---------------- | --------------- | --------------- | ------------- | ------------------------ |
+| Yenock ZN-DP1101 | 13              | v101.0.4951.61  | No            | No WebView update needed |

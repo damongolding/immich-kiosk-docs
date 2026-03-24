@@ -1,7 +1,7 @@
 ---
 title: Weather
 sidebar:
-  badge: {"text":"Updated", "variant":"tip"}
+  badge: { "text": "Updated", "variant": "tip" }
 ---
 
 import { Aside } from "@astrojs/starlight/components";
@@ -29,6 +29,10 @@ import Settings from "../../../components/config-settings.astro";
         round_temperature: false
         lang: en
         default: false
+        show:
+          humidity: false
+          wind: false
+          visibility: false
     `}
 />
 
@@ -50,14 +54,15 @@ You can configure multiple locations in the `config.yaml` file, and choose which
 | round_temperature | Round temperature to the nearest whole number.                                                               |
 | lang              | Language code for weather descriptions (see the full list [here](https://openweathermap.org/current#multi)). |
 | default           | Set this location as the default (when no location is specified)                                             |
+| show.humidity     | Display humidity for location.                                                                               |
+| show.wind         | Display wind for location.                                                                                   |
+| show.visibility   | Display visibility for location.                                                                             |
 
-
-### Location rotation :badge[New]{variant="note"}
+### Location rotation
 
 You can rotate between configured weather locations by setting weather to rotate in the URL e.g. `https://{KIOSK_URL}?weather=rotate`.
 
 Use `rotation_interval` to control how often locations rotate.
-
 
 ### Example Configuration
 

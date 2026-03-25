@@ -96,9 +96,11 @@ Set the position of the progress bar.
 
 ## Disable Screensaver
 
-Ask browser to request a lock that prevents device screens from dimming or locking.
+<Aside type="note">
+    This feature requires Kiosk to be served over https 
+</Aside>
 
-NOTE: I haven't been able to get this to work constantly on IOS.
+Ask browser to request a lock that prevents device screens from dimming or locking.
 
 <Settings
   config="disable_screensaver"
@@ -110,9 +112,11 @@ NOTE: I haven't been able to get this to work constantly on IOS.
 
 ## Optimize Images
 
-Whether Kiosk should resize images to match your browser screen dimensions for better performance.
+<Aside type="note">
+    In most cases this is not necessary, but if you are accessing Kiosk on a low-powered device, this may help.
+</Aside>
 
-NOTE: In most cases this is not necessary, but if you are accessing Kiosk on a low-powered device, this may help.
+Whether Kiosk should resize images to match your browser screen dimensions for better performance.
 
 <Settings
   config="optimize_images"

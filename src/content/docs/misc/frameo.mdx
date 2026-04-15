@@ -21,6 +21,12 @@ import Acknowledgement from "../../../components/acknowledgement.astro";
     Some Frameo frames only allow one ADB connection at a time. If connecting multiple devices, each will need to go through this process.
 </Aside>
 
+<Aside type="tip">
+    Some devices require a high-current USB-C cable and a USB port capable of supplying sufficient power, not just data.
+
+    This is because the USB-C connection is used for both data transfer and power delivery. If the port cannot provide enough power, the device may not function correctly.
+</Aside>
+
 <Steps>
     1. Connect the Frameo frame to your computer via USB
 
@@ -31,11 +37,10 @@ import Acknowledgement from "../../../components/acknowledgement.astro";
 
     3. If the device shows as `unauthorized`, go to `Settings -> About -> Enable Beta Program` on the frame and toggle it off and back on. A reboot may also be needed.
 
-    4. Once the device shows as `device`, enable TCP/IP for wireless ADB:
+    4. Optional: Once the device shows as `device`, enable TCP/IP for wireless ADB:
         ```sh
         adb tcpip 5555
         ```
-
 </Steps>
 
 ## Connecting wirelessly

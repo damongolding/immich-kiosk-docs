@@ -1,7 +1,5 @@
 ---
 title: Weather
-sidebar:
-  badge: { "text": "Updated", "variant": "tip" }
 ---
 
 import { Aside } from "@astrojs/starlight/components";
@@ -28,12 +26,13 @@ import Settings from "../../../components/config-settings.astro";
         unit: metric
         round_temperature: false
         lang: en
-        default: false
+        forecast: false
         show:
           temperature_range: false
           humidity: false
           wind: false
           visibility: false
+        default: false
     `}
 />
 
@@ -54,11 +53,12 @@ You can configure multiple locations in the `config.yaml` file, and choose which
 | unit                   | Units of measurement (`standard`, `metric`, or `imperial`).                                                  |
 | round_temperature      | Round temperature to the nearest whole number.                                                               |
 | lang                   | Language code for weather descriptions (see the full list [here](https://openweathermap.org/current#multi)). |
-| default                | Set this location as the default (when no location is specified)                                             |
+| forecast | Display the forecast for the next three days |
 | show.temperature_range | Display temperature range for the next 24 hours.                                                             |
 | show.humidity          | Display humidity for location.                                                                               |
 | show.wind              | Display wind for location.                                                                                   |
 | show.visibility        | Display visibility for location.                                                                             |
+| default                | Set this location as the default (when no location is specified)                                             |
 
 ### Location rotation
 

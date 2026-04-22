@@ -14,7 +14,7 @@
     "@lorenzo_lewis/starlight-utils": "^0.3.2",
     "astro": "^6.1.8",
     "node-addon-api": "^8.7.0",
-    "node-gyp": "^12.2.0",
+    "node-gyp": "^12.3.0",
     "sharp": "^0.34.5",
     "starlight-heading-badges": "^0.7.0"
   }

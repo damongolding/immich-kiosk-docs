@@ -14,18 +14,37 @@ Filters allow you to filter asset buckets (people/albums/date etc.) by certain c
 
 ## Date filter
 
-<Aside type="caution">
-    `date_filter` applies to person, album, tag and random assets.
-</Aside>
+Limit assets from sources to a given date range.
 
-`date_filter` accepts the same values as [date range](/configuration/date-range).
+`filter_date` accepts the same values as [date range](/configuration/date-range).
 
 <Settings
-    config="date_filter"
-    env="N/A"
-    url="date_filter"
+    config="filter_date"
+    env="KIOSK_FILTER_DATE"
+    url="filter_date"
     value="string"
-    urlOver={"http://{URL}?person=PERSON_ID&date_filter=2023-01-01_to_2023-02-01"}
+    urlOver={"http://{URL}?person=PERSON_ID&filter_date=2023-01-01_to_2023-02-01"}    
 />
 
-`http://{URL}?date_filter=last-30-days` will only show (random) assets from the last 30 days.
+### Examples
+
+- `http://{URL}?filter_date=last-30-days` will only show (random) assets from the last 30 days.
+- `http://{URL}?filter_date=2021-01-01_to_today` will only show (random) assets between 2021-01-01 and today.
+
+
+## Newest filter
+
+Limit asset sources to only the newest X assets.
+
+
+<Settings
+    config="filter_newest"
+    env="KIOSK_FILTER_NEWEST"
+    url="filter_newest"
+    value="int"
+/>
+
+### Examples
+
+- `http://{URL}?filter_newest=200` will only show (random) assets from the newest 200.
+- `http://{URL}?album=XXX&filter_newest=200` will only show the newest 200 (random) assets from supplied album.

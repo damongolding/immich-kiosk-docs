@@ -1,7 +1,5 @@
 ---
 title: Clock
-sidebar:
-  badge: { "text": "Updated", "variant": "tip" }
 ---
 
 import { Aside } from '@astrojs/starlight/components';
@@ -33,16 +31,28 @@ Display clock time in either 12-hour or 24-hour format. This can either be 12 or
     defaultValue="24"
 />
 
-## Show AM/PM :badge[New]{variant="note"}
+## Show AM/PM
 
 Hide the AM/PM suffix on the 12-hour clock.
 
 <Settings
     config="show_am_pm"
-    env="KIOSK_TIME_FORMAT"
+    env="KIOSK_SHOW_AM_PM"
     url="show_am_pm"
     value="bool"
     defaultValue="true"
+/>
+
+## Show Seconds
+
+Display seconds.
+
+<Settings
+    config="show_seconds"
+    env="KIOSK_SHOW_SECONDS"
+    url="show_seconds"
+    value="bool"
+    defaultValue="false"
 />
 
 

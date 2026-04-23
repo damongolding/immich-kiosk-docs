@@ -103,6 +103,9 @@ export default defineConfig({
             {
               slug: "configuration/live-photos",
             },
+            {
+              slug: "configuration/gifs",
+            },
             { slug: "configuration/weather" },
             { slug: "configuration/filters" },
             { slug: "configuration/more-info" },

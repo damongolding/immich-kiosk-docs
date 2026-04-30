@@ -48,3 +48,19 @@ Limit asset sources to only the newest X assets.
 
 - `http://{URL}?filter_newest=200` will only show (random) assets from the newest 200.
 - `http://{URL}?album=XXX&filter_newest=200` will only show the newest 200 (random) assets from supplied album.
+
+
+## Exclude faces filter
+
+<Aside type="note">
+    Requires Immich to have already processed face detection on your assets.
+</Aside>
+
+Excludes assets where Immich has detected a face. Useful for slideshows focused on scenery, landscapes, or architecture.
+
+<Settings
+    config="filter_exclude_faces"
+    env="KIOSK_FILTER_EXCLUDE_FACES"
+    url="filter_exclude_faces"
+    value="bool"
+/>

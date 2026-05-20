@@ -2,6 +2,8 @@
 title: Navigation Controls
 ---
 
+import Settings from "../../../components/config-settings.astro";
+
 You can interact with Kiosk in three ways: touch, mouse, or keyboard.
 
 ## Touch & Click Zones
@@ -25,3 +27,44 @@ Kiosk's display is divided into interactive zones:
 | r Key         | Play/Pause and Toggle Menu and redirects info overlay    |
 | p Key         | Pause and Toggle Menu and redirects info overlay         |
 | shift+p Key   | Play and Toggle Menu and redirects info overlay          |
+
+## Custom Navigation
+
+### Up Arrow
+
+Bind a custom action to the keyboard up arrow.
+
+Options:
+ - "mute"
+ - "redirects"
+ - "pause"
+ - "more-info"
+ - "fullscreen"
+
+<Settings
+    config="up_arrow_action"
+    env="KIOSK_UP_ARROW_ACTION"
+    url="up_arrow_action"
+    value="string"
+    defaultValue=""
+/>
+
+
+### Down Arrow
+
+Bind a custom action to the keyboard down arrow.
+
+Options:
+ - "mute"
+ - "redirects"
+ - "pause"
+ - "more-info"
+ - "fullscreen"
+
+<Settings
+    config="down_arrow_action"
+    env="KIOSK_DOWN_ARROW_ACTION"
+    url="down_arrow_action"
+    value="string"
+    defaultValue=""
+/>

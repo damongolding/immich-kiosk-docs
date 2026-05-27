@@ -10,18 +10,17 @@ import Settings from "../../../components/config-settings.astro";
 
 ## Docker
 
-    **Volume Mount**
+    #### Volume Mount
 
-    If you are using Docker you will need to mount a volume into the container.
+    You will need to mount a volume into the container to store the downloaded assets.
 
-    e.g.
-
+    Example:
     ```yaml
     volumes:
-      - ./offline-assets:/offline-assets  # Mount a local directory to persist cached assets
+      - ./offline-assets:/offline-assets
     ```
 
-    **Permissions**
+    #### Permissions
 
     Kiosk does not run as root, so if you see permission errors you may need to adjust the mounted directory's permissions.
 

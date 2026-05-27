@@ -7,7 +7,12 @@ import Settings from "../../../components/config-settings.astro";
 
 
 <Aside type="caution">
-    If you are using Docker and want offline assets to persist between container restarts, you will need to mount a volume into the container.
+
+## Docker
+
+    **Volume Mount**
+
+    If you are using Docker you will need to mount a volume into the container.
 
     e.g.
 
@@ -15,9 +20,19 @@ import Settings from "../../../components/config-settings.astro";
     volumes:
       - ./offline-assets:/offline-assets  # Mount a local directory to persist cached assets
     ```
+
+    **Permissions**
+
+    Kiosk does not run as root, so if you see permission errors you may need to adjust the mounted directory's permissions.
+
+    ```bash
+    sudo chown 65532:65532 /path/to/offline-assets
+    ```
+
+
 </Aside>
 
-<Aside type="caution">
+<Aside type="note">
  Most configuration options cannot be overridden via URL parameters while using Offline Mode. Only a few UI options are allowed:
  - `use_offline_mode` (required for offline mode)
  - `show_progress`

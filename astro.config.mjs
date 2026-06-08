@@ -129,11 +129,11 @@ export default defineConfig({
         },
         {
           label: "Misc",
-          autogenerate: { directory: "misc" },
+          items: [{ autogenerate: { directory: "misc" } }],
         },
         {
           label: "Guides",
-          autogenerate: { directory: "guides" },
+          items: [{ autogenerate: { directory: "guides" } }],
         },
         {
           slug: "error",

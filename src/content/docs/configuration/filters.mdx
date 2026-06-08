@@ -31,6 +31,27 @@ Limit assets from sources to a given date range.
 - `http://{URL}?filter_date=last-30-days` will only show (random) assets from the last 30 days.
 - `http://{URL}?filter_date=2021-01-01_to_today` will only show (random) assets between 2021-01-01 and today.
 
+## Favorite filter
+
+Limit asset sources to only favorite assets.
+
+<Settings
+    config="filter_favorites"
+    env="KIOSK_FILTER_FAVORITES"
+    url="filter_favorites"
+    value="bool"
+    defaultValue="false"
+    configOver={`filter_favorites: true`}
+    envOver={`environment:
+    KIOSK_FILTER_FAVORITES: true
+    `}
+    urlOver={"http://{URL}?album=ALBUM_ID&filter_favorites=true"}
+/>
+
+### Examples
+
+- `http://{URL}?filter_favorites=true` will only show favourite random assets.
+- `http://{URL}?album=ALBUM_ID&filter_favorites=true` will only show favourite assets from the supplied album.
 
 ## Newest filter
 

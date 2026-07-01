@@ -128,12 +128,12 @@ export default defineConfig({
           ],
         },
         {
-          label: "Misc",
-          items: [{ autogenerate: { directory: "misc" } }],
-        },
-        {
           label: "Guides",
           items: [{ autogenerate: { directory: "guides" } }],
+        },
+        {
+          label: "Misc",
+          items: [{ autogenerate: { directory: "misc" } }],
         },
         {
           slug: "error",

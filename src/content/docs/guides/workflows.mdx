@@ -1,0 +1,75 @@
+---
+title: "Immich Workflows"
+description: "Use Immich workflows"
+sidebar:
+  order: 0
+---
+
+import { Steps, Aside } from '@astrojs/starlight/components';
+
+<Aside type="note">
+    Immich V3 is required for workflows.
+</Aside>
+
+
+A collection of Immich workflows for ImmichKiosk.
+
+## How to use
+
+<Steps>
+    1. Find the workflow you want to use in the collection below.
+
+    2. Copy the workflow JSON.
+    
+    3. Go to [https://my.immich.app/workflows](https://my.immich.app/workflows) and click "Create Workflow" button. Click the "JSON" tab and paste the copied JSON into the editor.
+    
+    4. Edit the workflow as needed and click "Save" to create it.
+</Steps>
+
+
+## Clear ImmichKiosk cache on asset upload
+
+Clear ImmichKiosk's cache via a webhook when a new asset is uploaded to Immich, ensuring all connected clients fetch fresh data on their next asset request.
+
+### Clear cache workflow
+```json
+{
+  "name": "Clear ImmichKiosk cache on asset upload",
+  "description": "Clears ImmichKiosk's server-side cache via a webhook when a new asset is uploaded to Immich, ensuring all connected clients fetch fresh data on their next asset request.\n",
+  "enabled": true,
+  "trigger": "AssetCreate",
+  "steps": [
+    {
+      "method": "immich-plugin-core#webhook",
+      "config": {
+        "url": "http://{{KIOSK_URL}}:{{KIOSK_PORT}}/cache/flush",
+        "method": "POST"
+      },
+      "enabled": true
+    }
+  ]
+}
+```
+
+### Clear cache workflow with authentication
+You can include authentication by adding a `headerName` and `headerValue` to the webhook config when using [password](https://docs.immichkiosk.app/configuration/additional-options/#password)
+```json
+{
+  "name": "Clear ImmichKiosk cache on asset upload",
+  "description": "Clears ImmichKiosk's server-side cache via a webhook when a new asset is uploaded to Immich, ensuring all connected clients fetch fresh data on their next asset request.\n",
+  "enabled": true,
+  "trigger": "AssetCreate",
+  "steps": [
+    {
+      "method": "immich-plugin-core#webhook",
+      "config": {
+        "url": "http://{{KIOSK_URL}}:{{KIOSK_PORT}}/cache/flush",
+        "method": "POST",
+        "headerName": "X-Api-Key",
+        "headerValue": "{{PASSWORD}}"
+      },
+      "enabled": true
+    }
+  ]
+}
+```

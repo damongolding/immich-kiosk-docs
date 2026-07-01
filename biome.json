@@ -6,7 +6,15 @@
 		"useIgnoreFile": true
 	},
 	"files": {
-		"includes": ["**", "!!**/dist"]
+		"includes": [
+			"**",
+			"!!**/dist",
+			"",
+			"!!node_modules",
+			"!public",
+			"!src/assets",
+			"!!**/*.astro"
+		]
 	},
 	"formatter": {
 		"enabled": true,
@@ -21,6 +29,13 @@
 	"javascript": {
 		"formatter": {
 			"quoteStyle": "double"
+		}
+	},
+	"html": {
+		"experimentalFullSupportEnabled": true,
+		"formatter": {
+			"enabled": true,
+			"indentScriptAndStyle": true
 		}
 	},
 	"assist": {

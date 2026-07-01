@@ -1,30 +1,29 @@
 ---
-import StarlightPage from "@astrojs/starlight/components/StarlightPage.astro";
-import AnchorHeading from "@astrojs/starlight/components/AnchorHeading.astro";
-
 import { Code } from "@astrojs/starlight/components";
+import AnchorHeading from "@astrojs/starlight/components/AnchorHeading.astro";
+import StarlightPage from "@astrojs/starlight/components/StarlightPage.astro";
 
 const config = await fetch(
-    "https://raw.githubusercontent.com/damongolding/immich-kiosk/refs/heads/main/docker-compose.yaml",
+	"https://raw.githubusercontent.com/damongolding/immich-kiosk/refs/heads/main/docker-compose.yaml",
 );
 const myCode = await config.text();
 
 const composeEnv = await fetch(
-    "https://raw.githubusercontent.com/damongolding/immich-kiosk/refs/heads/main/docker-compose-env.yaml",
+	"https://raw.githubusercontent.com/damongolding/immich-kiosk/refs/heads/main/docker-compose-env.yaml",
 );
 const composeEnvExample = await composeEnv.text();
 ---
 
 <StarlightPage
-    frontmatter={{
+	frontmatter={{
         title: "docker-compose.yaml",
     }}
 >
-    <Code code={myCode} lang="yaml" title="docker-compose.yaml" />
+	<Code code={myCode} lang="yaml" title="docker-compose.yaml" />
 
-    <AnchorHeading level="2" id="With Environment Variables"
-        >With Environment Variables</AnchorHeading
-    >
+	<AnchorHeading level="2" id="With Environment Variables"
+		>With Environment Variables</AnchorHeading
+	>
 
-    <Code code={composeEnvExample} lang="yaml" title="docker-compose.yaml" />
+	<Code code={composeEnvExample} lang="yaml" title="docker-compose.yaml" />
 </StarlightPage>

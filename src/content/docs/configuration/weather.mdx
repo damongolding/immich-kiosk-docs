@@ -75,6 +75,7 @@ A select few weather options can be overridden via URL query parameters:
 - `weather_round_temperature`
 
 #### Example
+
 `https://{KIOSK_URL}?weather_show_forecast=true&weather_show_humidity=true`
 
 ### Location rotation
@@ -114,4 +115,172 @@ weather:
       unit: imperial
       round_temperature: true
       lang: en
+```
+
+## Custom Weather Provider
+
+<Aside type="note">You will most likely need to create a custom weather service/server that will fetch your weather data and provide it in the required format below.</Aside>
+
+If you point a location at a custom weather URL, the response must be JSON and must decode into the structure below.
+Any field not listed is ignored; so a "required" field here means "required for the feature to actually show something useful," not that decoding will fail without it.
+
+### Example weather Location
+
+```yaml
+weather:
+  locations:
+    - name: custom
+      custom_weather_url: https://{CUSTOM_WEATHER_PROVIDER_URL}
+      lat: 0
+      lon: 0
+      forecast: false
+      show:
+        temperature_range: false
+        humidity: false
+        wind: false
+        visibility: false
+      default: false
+```
+
+### Current weather (top-level object)
+
+Fetched into the `Weather` struct. This is what's used for the current-conditions display.
+
+| JSON key     | Type                     | Notes                                                           |
+| ------------ | ------------------------ | --------------------------------------------------------------- |
+| `base`       | string                   | Not currently used in the UI                                    |
+| `name`       | string                   | Location name                                                   |
+| `weather`    | array                    | See **Data** below                                              |
+| `sys`        | object                   | See **Sys** below                                               |
+| `main`       | object                   | See **Main** below                                              |
+| `wind`       | object                   | See **Wind** below                                              |
+| `coord`      | object                   | See **Coord** below — not currently rendered                    |
+| `visibility` | integer                  | Meters — shown if `weather_show_visibility` is enabled          |
+| `clouds`     | object                   | See **Clouds** below — not currently rendered                   |
+| `dt`         | integer (unix timestamp) | Not currently rendered                                          |
+| `timezone`   | integer                  | Seconds offset from UTC — used to align forecast day boundaries |
+| `id`         | integer                  | Not currently used                                              |
+| `cod`        | integer                  | Not currently used                                              |
+
+#### Data (`weather[]` items)
+
+| JSON key      | Type    | Notes                                                               |
+| ------------- | ------- | ------------------------------------------------------------------- |
+| `id`          | integer | Used to pick the weather icon; falls back to 800 (clear) if missing |
+| `main`        | string  | Not currently rendered                                              |
+| `description` | string  | Not currently rendered                                              |
+| `icon`        | string  | Not currently used — icon is derived from `id`, not this field      |
+
+#### Main
+
+| JSON key     | Type    | Notes                                                    |
+| ------------ | ------- | -------------------------------------------------------- |
+| `temp`       | number  | **Required** — the headline temperature                  |
+| `feels_like` | number  | Not currently rendered                                   |
+| `temp_min`   | number  | Used with if `weather_show_temperature_range` is enabled |
+| `temp_max`   | number  | Used with if `weather_show_temperature_range` is enabled |
+| `pressure`   | integer | Not currently rendered                                   |
+| `humidity`   | integer | Shown if `weather_show_humidity` is enabled              |
+| `sea_level`  | integer | Not currently used                                       |
+| `grnd_level` | integer | Not currently used                                       |
+
+#### Wind
+
+| JSON key | Type    | Notes                                                                                                                      |
+| -------- | ------- | -------------------------------------------------------------------------------------------------------------------------- |
+| `speed`  | number  | Shown if `weather_show_wind` is enabled                                                                                    |
+| `deg`    | integer | 0–360; used to compute compass direction if `weather_show_wind_direction` is enabled. Values outside 0–360 render as "Var" |
+| `gust`   | number  | Not currently used                                                                                                         |
+
+#### Clouds
+
+| JSON key | Type    | Notes                  |
+| -------- | ------- | ---------------------- |
+| `all`    | integer | Not currently rendered |
+
+#### Sys
+
+| JSON key  | Type                     | Notes              |
+| --------- | ------------------------ | ------------------ |
+| `country` | string                   | Not currently used |
+| `type`    | integer                  | Not currently used |
+| `id`      | integer                  | Not currently used |
+| `sunrise` | integer (unix timestamp) | Not currently used |
+| `sunset`  | integer (unix timestamp) | Not currently used |
+
+#### Coord
+
+| JSON key | Type   | Notes              |
+| -------- | ------ | ------------------ |
+| `lon`    | number | Not currently used |
+| `lat`    | number | Not currently used |
+
+### Forecast (only needed if the user enables the forecast feature)
+
+Fetched into the `Forecast` struct — same custom URL is called again, but decoded differently:
+
+| Field | JSON key | Type                                     | Notes                                                                                                              |
+| ----- | -------- | ---------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| List  | `list`   | array of **Weather** objects (see above) | Each entry should represent one forecast interval and use the exact same field shape as the current-weather object |
+
+Requirements for `list` items to produce a useful forecast:
+
+- `dt` — **required**, unix timestamp for the interval. Used to bucket items into calendar days (in the location's `timezone`) and to compute the rolling next-24h high/low.
+- `main.temp_max` / `main.temp_min` — **required** for daily highs and the next-24h range.
+- `weather[0].id` — used to pick the icon shown for each summarized day (most frequent icon per day wins). Falls back to 800 if absent.
+
+Everything else in a `list` item follows the same field table as the top-level current-weather object above, but is unused by the forecast summary logic.
+
+Only the first 3 upcoming days (excluding today) are shown, and only the next 24 hours of items are used for the high/low range.
+
+### Minimal example for current weather only
+
+```json
+{
+  "name": "Bournville",
+  "weather": [{ "id": 800, "description": "clear sky" }],
+  "main": {
+    "temp": 21.4,
+    "temp_min": 18.2,
+    "temp_max": 23.1,
+    "humidity": 55
+  },
+  "wind": { "speed": 3.1, "deg": 280 },
+  "visibility": 10000,
+  "dt": 1783502100,
+  "cod": 200
+}
+```
+
+### Minimal example with forecast enabled
+
+Same shape, plus a `list` array of forecast intervals (each item mirrors the current-weather shape above):
+
+```json
+{
+  "name": "Bournville",
+  "weather": [{ "id": 800, "description": "clear sky" }],
+  "main": {
+    "temp": 21.4,
+    "temp_min": 18.2,
+    "temp_max": 23.1,
+    "humidity": 55
+  },
+  "wind": { "speed": 3.1, "deg": 280 },
+  "visibility": 10000,
+  "dt": 1783502100,
+  "cod": 200,
+  "list": [
+    {
+      "dt": 1783512000,
+      "main": { "temp": 26.3, "temp_min": 25.0, "temp_max": 26.3 },
+      "weather": [{ "id": 800 }]
+    },
+    {
+      "dt": 1783598400,
+      "main": { "temp": 28.5, "temp_min": 24.0, "temp_max": 28.5 },
+      "weather": [{ "id": 800 }]
+    }
+  ]
+}
 ```

@@ -54,13 +54,28 @@ You can configure multiple locations in the `config.yaml` file, and choose which
 | unit                   | Units of measurement (`standard`, `metric`, or `imperial`).                                                  |
 | round_temperature      | Round temperature to the nearest whole number.                                                               |
 | lang                   | Language code for weather descriptions (see the full list [here](https://openweathermap.org/current#multi)). |
-| forecast | Display the forecast for the next three days |
+| forecast               | Display the forecast for the next three days                                                                 |
 | show.temperature_range | Display temperature range for the next 24 hours.                                                             |
 | show.humidity          | Display humidity for location.                                                                               |
 | show.wind              | Display wind for location.                                                                                   |
 | show.wind_direction    | Also display wind direction as degrees for location.                                                         |
 | show.visibility        | Display visibility for location.                                                                             |
 | default                | Set this location as the default (when no location is specified)                                             |
+
+### URL queries
+
+A select few weather options can be overridden via URL query parameters:
+
+- `weather_show_forecast`
+- `weather_show_temperature_range`
+- `weather_show_humidity`
+- `weather_show_wind`
+- `weather_show_wind_direction`
+- `weather_show_visibility`
+- `weather_round_temperature`
+
+#### Example
+`https://{KIOSK_URL}?weather_show_forecast=true&weather_show_humidity=true`
 
 ### Location rotation
 

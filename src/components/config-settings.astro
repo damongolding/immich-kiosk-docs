@@ -1,20 +1,19 @@
 ---
-import AnchorHeading from "@astrojs/starlight/components/AnchorHeading.astro";
 import { Card, Code } from "@astrojs/starlight/components";
 
 interface Props {
-    config: string;
-    env: string;
-    url: string;
-    value: string;
-    defaultValue?: string;
-    configOver?: string;
-    envOver?: string;
-    urlOver?: string;
+	config: string;
+	env: string;
+	url: string;
+	value: string;
+	defaultValue?: string;
+	configOver?: string;
+	envOver?: string;
+	urlOver?: string;
 }
 
 const { config, env, url, value, defaultValue, configOver, envOver, urlOver } =
-    Astro.props;
+	Astro.props;
 
 let dValue = defaultValue ?? '""';
 let defaultURL = url ?? config;
@@ -64,15 +63,13 @@ const html = `
 ---
 
 <Card title="Settings" icon="setting">
-    <div set:html={html} />
+	<div set:html={html} />
 
+	{config !== "N/A" &&
+      <h5>Using with config.yaml file</h5>
+      <Code code={configOver ? configOver : `${config}: ${dValue}`} lang="yaml" />}
 
-     { config !== "N/A" &&
-    <h5>Using with config.yaml file</h5>
-    <Code code={configOver ? configOver : `${config}: ${dValue}`} lang="yaml" />
-    }
-
-    { env !== "N/A" &&
+	{env !== "N/A" &&
     <h5>Using with ENV in your docker-compose file</h5>
     <Code
         code={envOver
@@ -80,14 +77,12 @@ const html = `
             : `environment:
   ${env}: ${dValue}`}
         lang="yaml"
-    />
-    }
+    />}
 
-    { defaultURL !== "N/A" &&
+	{defaultURL !== "N/A" &&
     <h5>Using with url queries</h5>
     <Code
         code={urlOver ? urlOver : `http://{URL}?${defaultURL}=${dValue}`}
         lang="http"
-    />
-    }
+    />}
 </Card>

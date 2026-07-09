@@ -13,7 +13,7 @@
     "fmt": "biome format --write"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.5.2"
+    "@biomejs/biome": "^2.5.3"
   },
   "dependencies": {
     "@astrojs/starlight": "^0.41.3",
@@ -22,6 +22,6 @@
     "node-addon-api": "^8.9.0",
     "node-gyp": "^13.0.1",
     "sharp": "^0.35.3",
-    "starlight-heading-badges": "^0.7.0"
+    "starlight-heading-badges": "^0.8.0"
   }
 }

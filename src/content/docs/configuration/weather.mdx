@@ -121,8 +121,9 @@ weather:
 
 <Aside type="note">You will most likely need to create a custom weather service/server that will fetch your weather data and provide it in the required format below.</Aside>
 
-You can use any weather data provider by setting `custom_weather_url`, the response must be JSON and must decode into the structure below.
-Any field not listed is ignored; so a "required" field here means "required for the feature to actually show something useful," not that decoding will fail without it.
+You can use any weather data provider by setting `custom_weather_url` on a weather location. The provider's response must be JSON, and it must match the structure described below.
+
+You don't need to include every field, anything not listed is simply ignored, and anything listed but missing just means that part of the display won't show anything useful.
 
 ### Example weather Location
 
@@ -282,3 +283,17 @@ Same shape, plus a `list` array of forecast intervals (each item mirrors the cur
   ]
 }
 ```
+
+### Weather icons IDs
+
+| ID                                                                                                                | icon          |
+| ----------------------------------------------------------------------------------------------------------------- | ------------- |
+| default                                                                                                           | sun           |
+| `801` `802` `803` `804`                                                                                           | cloud         |
+| `500` `501` `502` `503` `504` `511` `520` `521` `522` `531` `300` `301` `302` `310` `311` `312` `313` `314` `321` | rain          |
+| `600` `601` `602` `611` `612` `613` `615` `616` `620` `621` `622`                                                 | snow          |
+| `200` `201` `202` `210` `211` `212` `221` `230` `231` `232`                                                       | thunder storm |
+| `701` `711` `721` `731` `741` `751` `761`                                                                         | fog           |
+| `762`                                                                                                             | volcano       |
+| `771`                                                                                                             | wind          |
+| `781`                                                                                                             | tornado       |

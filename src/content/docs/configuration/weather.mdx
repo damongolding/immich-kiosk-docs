@@ -121,7 +121,7 @@ weather:
 
 <Aside type="note">You will most likely need to create a custom weather service/server that will fetch your weather data and provide it in the required format below.</Aside>
 
-If you point a location at a custom weather URL, the response must be JSON and must decode into the structure below.
+You can use any weather data provider by setting `custom_weather_url`, the response must be JSON and must decode into the structure below.
 Any field not listed is ignored; so a "required" field here means "required for the feature to actually show something useful," not that decoding will fail without it.
 
 ### Example weather Location

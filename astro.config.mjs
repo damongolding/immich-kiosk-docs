@@ -95,7 +95,8 @@ export default defineConfig({
 						{ slug: "configuration/behavior" },
 						{ slug: "configuration/image-fit" },
 						{ slug: "configuration/image-effects" },
-						{ slug: "configuration/ui" },
+            { slug: "configuration/ui" },
+            { slug: "configuration/transitions" },
 						{ slug: "configuration/themes" },
 						{ slug: "configuration/layouts" },
 						{

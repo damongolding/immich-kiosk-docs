@@ -19,56 +19,6 @@ The amount of time in seconds an asset will be displayed for.
 />
 
 
-## Transition
-
-Which transition to use when changing images.
-
-<Settings
-  config="transition"
-  env="KIOSK_TRANSITION"
-  url="transition"
-  value="none | fade | cross-fade"
-  defaultValue="none"
-/>
-
-### Fade Example
-
-<video controls>
-    <source src="/video/transition_fade.mov" type="video/mp4"/>
-</video>
-
-### Fade Transition Duration
-
-The duration of the fade (in seconds) transition.
-
-<Settings
-  config="fade_transition_duration"
-  env="KIOSK_TRANSITION"
-  url="fade_transition_duration"
-  value="float"
-  defaultValue="1"
-/>
-
-
-### Cross Fade Example
-
-<video controls>
-    <source src="/video/transition_crossfade.mov" type="video/mp4"/>
-</video>
-
-
-### Cross Fade Transition Duration
-
-The duration of the cross-fade (in seconds) transition.
-
-<Settings
-  config="cross_fade_transition_duration"
-  env="KIOSK_CROSS_FADE_TRANSITION_DURATION"
-  url="cross_fade_transition_duration"
-  value="float"
-  defaultValue="1"
-/>
-
 ## Show Progress bar
 
 Show a progress bar indicating the time remaining for the current asset.

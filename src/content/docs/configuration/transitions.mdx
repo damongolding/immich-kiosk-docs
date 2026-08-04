@@ -1,0 +1,135 @@
+---
+title: Transitions
+---
+
+import { Aside } from '@astrojs/starlight/components';
+import Settings from "../../../components/config-settings.astro";
+
+
+## Transition
+
+Which transition to use when changing images.
+
+<Settings
+  config="transition"
+  env="KIOSK_TRANSITION"
+  url="transition"
+  value="none | fade | cross-fade | slide-up | slide-right | slide-down | slide-left | slide-random | push-up | push-right | push-down | push-left | push-random"
+  defaultValue="none"
+/>
+
+### Fade Example
+
+<video controls>
+    <source src="/video/transition_fade.mov" type="video/mp4"/>
+</video>
+
+### Fade Transition Duration
+
+The duration of the slide (in seconds) transition.
+
+<Settings
+  config="fade_transition_duration"
+  env="KIOSK_FADE_TRANSITION_DURATION"
+  url="fade_transition_duration"
+  value="float"
+  defaultValue="1"
+/>
+
+
+### Cross Fade Example
+
+<video controls>
+    <source src="/video/transition_crossfade.mov" type="video/mp4"/>
+</video>
+
+
+### Cross Fade Transition Duration
+
+The duration of the cross-fade (in seconds) transition.
+
+<Settings
+  config="cross_fade_transition_duration"
+  env="KIOSK_CROSS_FADE_TRANSITION_DURATION"
+  url="cross_fade_transition_duration"
+  value="float"
+  defaultValue="1"
+/>
+
+
+### Slide Examples
+
+#### `slide-up`
+
+<video controls>
+    <source src="/video/transition_slide-up.mp4" type="video/mp4"/>
+</video>
+
+#### `slide-right`
+
+<video controls>
+    <source src="/video/transition_slide-right.mp4" type="video/mp4"/>
+</video>
+
+#### `slide-down`
+
+<video controls>
+    <source src="/video/transition_slide-down.mp4" type="video/mp4"/>
+</video>
+
+#### `slide-left`
+
+<video controls>
+    <source src="/video/transition_slide-left.mp4" type="video/mp4"/>
+</video>
+
+### Slide Transition Duration
+
+The duration of the slide (in seconds) transition.
+
+<Settings
+  config="slide_transition_duration"
+  env="KIOSK_SLIDE_TRANSITION_DURATION"
+  url="slide_transition_duration"
+  value="float"
+  defaultValue="2"
+/>
+
+
+### Push Examples
+
+#### `push-up`
+
+<video controls>
+    <source src="/video/transition_push-up.mp4" type="video/mp4"/>
+</video>
+
+#### `push-right`
+
+<video controls>
+    <source src="/video/transition_push-right.mp4" type="video/mp4"/>
+</video>
+
+#### `push-down`
+
+<video controls>
+    <source src="/video/transition_push-down.mp4" type="video/mp4"/>
+</video>
+
+#### `push-left`
+
+<video controls>
+    <source src="/video/transition_push-left.mp4" type="video/mp4"/>
+</video>
+
+### Push Transition Duration
+
+The duration of the push (in seconds) transition.
+
+<Settings
+  config="push_transition_duration"
+  env="KIOSK_PUSH_TRANSITION_DURATION"
+  url="slide_transition_duration"
+  value="float"
+  defaultValue="3"
+/>

@@ -28,8 +28,9 @@ Each redirect consists of:
 ### Examples
 
 ```yaml
-kiosk:
-  redirects:
+redirects:
+  show_albums: false
+  items:
     - name: london
       url: /?weather=london
       type: external
@@ -47,3 +48,13 @@ kiosk:
 | `http://{URL}/london`      | `/?weather=london`                                            |
 | `http://{URL}/sheffield`   | `http://{URL}/sheffield`                                      |
 | `http://{URL}/our-wedding` | `/?weather=london&album=51be319b-55ea-40b0-83b7-27ac0a0d84a3` |
+
+
+## Show Albums
+
+To show albums on the redirect overlay, set `show_albums` to `true` in the `redirects` section:
+
+```yaml
+redirects:
+  show_albums: true
+```

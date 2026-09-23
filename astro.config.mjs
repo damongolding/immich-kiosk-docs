@@ -111,7 +111,8 @@ export default defineConfig({
 						{ slug: "configuration/weather" },
 						{ slug: "configuration/filters" },
 						{ slug: "configuration/more-info" },
-						{ slug: "configuration/redirects" },
+            { slug: "configuration/redirects" },
+						{ slug: "configuration/url-builder" },
 						{ slug: "configuration/sleep-mode" },
 						{
 							slug: "configuration/offline-mode",

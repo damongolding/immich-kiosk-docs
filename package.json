@@ -16,7 +16,7 @@
     "@biomejs/biome": "^2.5.14"
   },
   "dependencies": {
-    "@astrojs/starlight": "^0.41.11",
+    "@astrojs/starlight": "^0.42.2",
     "@lorenzo_lewis/starlight-utils": "^0.3.2",
     "astro": "^7.3.3",
     "node-addon-api": "^8.9.2",

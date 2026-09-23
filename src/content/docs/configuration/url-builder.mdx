@@ -1,0 +1,18 @@
+---
+title: URL Builder
+---
+
+import { Aside, Steps } from "@astrojs/starlight/components";
+import Settings from "../../../components/config-settings.astro";
+
+Enabling the URL builder allows you to visually construct redirect URLs for Kiosk. Once enabled, the URL builder endpoint is available at `/url-builder`.
+
+<Settings
+    config="enable_url_builder"
+    configOver={`kiosk:
+    enable_url_builder: false
+    `}
+    env="KIOSK_ENABLE_URL_BUILDER"
+    url="N/A"
+    value="bool"
+    defaultValue="false"/>

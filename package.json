@@ -18,7 +18,7 @@
   "dependencies": {
     "@astrojs/starlight": "^0.42.6",
     "@lorenzo_lewis/starlight-utils": "^0.3.2",
-    "astro": "^7.3.8",
+    "astro": "^7.4.1",
     "node-addon-api": "^8.9.2",
     "node-gyp": "^13.1.0",
     "sharp": "^0.35.5",

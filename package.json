@@ -13,12 +13,12 @@
     "fmt": "biome format --write"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.5.15"
+    "@biomejs/biome": "^2.6.4"
   },
   "dependencies": {
-    "@astrojs/starlight": "^0.42.6",
+    "@astrojs/starlight": "^0.42.8",
     "@lorenzo_lewis/starlight-utils": "^0.3.2",
-    "astro": "^7.4.1",
+    "astro": "^7.4.5",
     "node-addon-api": "^8.9.2",
     "node-gyp": "^13.1.0",
     "sharp": "^0.35.5",

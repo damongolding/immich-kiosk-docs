@@ -1,0 +1,98 @@
+---
+title: Raw filters
+description: "A guide to using raw JSON Immich Kiosk"
+sidebar:
+  order: 3
+---
+
+import { Code, Aside } from '@astrojs/starlight/components';
+
+
+<Aside type="caution">
+    This feature is quite advanced and requires the user understand advanced JSON structures and how JSON payloads work.
+</Aside>
+
+You can find the offical Immich api documentation for the search filter [here](https://api.immich.app/models/SearchFilter)
+
+## Raw Filter Configuration Options
+
+
+| **Value**              | **Description**                                            |
+| ---------------------- | ---------------------------------------------------------- |
+| name                   | Optional: Friendly name that can be used in a URL query.   |
+| user                   | Optional: Use a different users API key.                   |
+| filter                 | The raw filter that will be used in the Immich API call.   |
+
+
+export const exampleConfig = `
+#  Excluded the rest of the config for brevity
+
+immich_users_api_keys:
+  damon: "api_key_here"
+  laura: "api_key_here"
+
+raw_filters:
+   # filter for person using default API key
+   - filter: |
+       {
+         "personIds": {
+           "any" : ["7e581e78-d6d9-4b19-8ba3-e3a7014aa399"]
+         }
+       }
+
+   # filter for multiple people using damons API key
+   - name: friends
+     user: damon # tell Kiosk to use damons API key
+     filter: |
+       {
+         "personIds": {
+           "any" : [
+             "df751520-7dbd-401c-be3c-b5e3e8f085ff",
+             "0ba9c65c-2bb2-4953-8a14-474ebfd56d1b",
+             "09a079ad-a44a-44f9-8776-b03b4708fb9a"
+           ]
+         }
+       }
+
+   # filter for album OR person in cities
+   - name: album-or-person
+     user: laura # tell Kiosk to use lauras API key
+     filter: |
+       {
+         "or": [
+           {
+             "albumIds": {
+               "any": [
+                 "a9ea15ac-ee37-4418-9b0f-973308076fd3"
+               ]
+             }
+           },
+           {
+             "personIds": {
+               "all": [
+                 "c195bc59-395e-4001-b3c9-8305bb666dc1"
+               ]
+             },
+             "city": {
+               "in": [
+                 "London",
+                 "Manchester",
+                 "Sheffield",
+                 "Liverpool"
+               ]
+             }
+           }
+         ]
+       }
+`
+
+## Raw Filter Configuration Example
+
+<Code code={exampleConfig} lang="yaml" title="config.yaml" />
+
+
+## URL Query Example
+
+```url
+https://{KIOSK_URL}?raw_filter=friends
+```

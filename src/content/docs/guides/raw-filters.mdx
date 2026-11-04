@@ -9,7 +9,7 @@ import { Code, Aside } from '@astrojs/starlight/components';
 
 
 <Aside type="caution">
-    This feature is quite advanced and requires the user understand advanced JSON structures and how JSON payloads work.
+    This feature is quite advanced and requires the user to understand advanced JSON structures and how JSON http payloads work.
 </Aside>
 
 You can find the offical Immich api documentation for the search filter [here](https://api.immich.app/models/SearchFilter)
@@ -92,6 +92,8 @@ raw_filters:
 
 
 ## URL Query Example
+
+This will remove all other sources (albums, perople etc) and only show the selected raw filter assets 
 
 ```url
 https://{KIOSK_URL}?raw_filter=friends

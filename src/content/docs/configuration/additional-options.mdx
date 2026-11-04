@@ -98,6 +98,10 @@ Disable the config endpoint which outputs a redacted version of the config.yaml 
 
 ## URL Builder
 
+<Aside type="info">
+    You can find a guide in the URL builder [here](/guides/url-builder)
+</Aside>
+
 Enable the URL builder endpoint at `/url-builder`.
 
 <Settings
@@ -250,7 +254,7 @@ Pre-fetch assets in the background, so images load much quicker when duration ti
 
 ## Asset Weighting
 
-Balances asset selection when multiple sources are used, e.g. multiple people and albums. When enabled, sources with fewer assets will show less often.
+Gives every source an equal chance of being shown across multiple sources (e.g. people and albums) by weighting each source by its asset count.
 
 <Settings
     config="asset_weighting"

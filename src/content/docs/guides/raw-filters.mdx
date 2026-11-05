@@ -20,11 +20,12 @@ You can find the offical Immich api documentation for the search filter [here](h
 ## Raw Filter Configuration Options
 
 
-| **Value**              | **Description**                                            |
-| ---------------------- | ---------------------------------------------------------- |
-| name                   | Optional: Friendly name that can be used in a URL query.   |
-| user                   | Optional: Use a different users API key.                   |
-| filter                 | The raw filter that will be used in the Immich API call.   |
+| **Value**              | **Description**                                                                                      |
+| ---------------------- | -----------------------------------------------------------------------------------------------------|
+| name                   | Optional: Friendly name that can be used in a URL query.                                             |
+| user                   | Optional: Use a different users API key.                                                             |
+| query_only             | Optional: When set to true this filter will be off by default and has to be enabled via URL queries. |
+| filter                 | The raw filter that will be used in the Immich API call.                                             |
 
 
 export const exampleConfig = `
